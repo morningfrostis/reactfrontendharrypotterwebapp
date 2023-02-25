@@ -8,8 +8,8 @@ const Home: FC = () => {
   // const [marsList, setMarsList] = useState<Mars[]>([]);
   const navigate = useNavigate();
 
-  // const getMarsList = useCallback(async () => {
-  //   const mars = await getMars();
+  // const getCharactersList = useCallback(async () => {
+  //   const characters = await getMars();
   //   setMarsList(mars);
   // }, []);
 
