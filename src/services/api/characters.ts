@@ -12,10 +12,9 @@ export type Character = {
   patronus: string;
   actor: string;
   image: string;
-      
 };
 
-const BASE_API_URL = "http://localhost:8000/syncCharacters";
+const BASE_API_URL = "http://localhost:8000/characters";
 
 export const getCharacters = async () => {
   try {
@@ -34,18 +33,18 @@ export const getCharacters = async () => {
   return [];
 };
 
-export const syncMars = async () => {
-  try {
-    const token = getToken();
-    await fetch("http://localhost:8000/syncApi/", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  } catch (error) {
-    console.log((error as Error).message);
-  }
-};
+// export const syncMars = async () => {
+//   try {
+//     const token = getToken();
+//     await fetch("http://localhost:8000/syncApi/", {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
+//   } catch (error) {
+//     console.log((error as Error).message);
+//   }
+// };
 
 export const removeCharacter = async (id: string) => {
   try {

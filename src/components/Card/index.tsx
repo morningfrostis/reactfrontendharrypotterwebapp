@@ -4,18 +4,20 @@ import { Container, Description, Image } from './styles'
 import {Props} from './types'
 
 const Card:FC<Props> = ({
-    nasaId,
-    sol,
+    name,
+    house,
     image,
     id
 }) => {
 
     return(
         <Container>
-            <Description>Id: {nasaId}</Description>
-            <Description>Sol: {sol}</Description>
             <Image src={image}/>
+            <Description> {name}</Description>
+            <Description> {house}</Description>
             <Link to={`/details/${id}`}>View detalles</Link>
+            <Description> {id}</Description>
+
         </Container>
     )
 }
