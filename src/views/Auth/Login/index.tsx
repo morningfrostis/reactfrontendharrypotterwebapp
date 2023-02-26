@@ -24,14 +24,14 @@ const LoginForm: FC = () => {
     const loginError = await login(values);
 
     if (!loginError) {
-      navigate("/characters ");
+      navigate("/landing");
     } else {
       setError(loginError);
     }
   };
 
   const goToBack = useCallback(() => {
-    navigate("/");
+    navigate("/landing");
   }, [navigate]);
 
   return (
