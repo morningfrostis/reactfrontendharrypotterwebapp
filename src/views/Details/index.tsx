@@ -1,10 +1,54 @@
-import { memo, FC } from "react"
+import { FC, memo, useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Card from "../../components/Card";
+import Navbar from "../../components/Navbar";
+import { Character, getCharacters } from "../../services/api/characters";
+// import Navbar from "../../components/Navbar";
+import { App, Container } from "./styles";
 
-const Details: FC = () => {
+const Detail: FC = () => {
+  const [characterList, setCharacterList] = useState<Character[]>([]);
+  const navigate = useNavigate();
+  const params = useParams();
 
-    return (
-        <p>DETAILS</p>
-    )
-}
+  const getCharactersList = useCallback(async () => {
+    const characters = await getCharacters();
+    setCharacterList(characters);
+  }, []);
 
-export default memo(Details)
+  useEffect(() => {
+    console.log("entramos");
+    getCharactersList();
+  }, [getCharactersList]);
+
+  const goBack = useCallback(() => {
+    navigate("/home", { replace: true });
+  }, [navigate]);
+
+  const { id } = params;
+  const filteredItems = characterList.filter((item) => item.id === id);
+  return (
+    <App>
+      <Navbar type="details"/>
+      <Container>
+        {filteredItems.map((character, index) => (
+          <Card
+            key={index}
+            house={character.house}
+            name={character.name}
+            species={character.species}
+            wizard={character.wizard}
+            ancestry={character.ancestry}
+            actor={character.actor}
+            patronus={character.patronus}
+            id={character.id}
+            image={character.image}
+            type="details"
+          />
+        ))}
+      </Container>
+    </App>
+  );
+};
+
+export default memo(Detail);

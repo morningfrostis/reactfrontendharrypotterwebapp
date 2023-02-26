@@ -1,6 +1,7 @@
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
+import Navbar from "../../components/Navbar";
 import { Character, getCharacters } from "../../services/api/characters";
 // import Navbar from "../../components/Navbar";
 import { App, Container } from "./styles";
@@ -12,7 +13,7 @@ const Home: FC = () => {
   const getCharactersList = useCallback(async () => {
     const characters = await getCharacters();
     setCharacterList(characters);
-    console.log(characterList)
+    console.log(characterList);
   }, []);
 
   useEffect(() => {
@@ -29,18 +30,18 @@ const Home: FC = () => {
 
   return (
     <App>
+      <Navbar />
       <Container>
-          {characterList.map((character, index) => (
-            <Card
-              key={index}
-              image={character.image}
-              name={character.name}
-              house={character.house}
-              onClick={goToDetails}
-              id={character.id}
-
-            />
-          ))}
+        {characterList.map((character, index) => (
+          <Card
+            key={index}
+            image={character.image}
+            name={character.name}
+            house={character.house}
+            onClick={goToDetails}
+            id={character.id}
+          />
+        ))}
       </Container>
     </App>
   );
