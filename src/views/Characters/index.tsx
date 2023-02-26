@@ -19,17 +19,12 @@ const Characters: FC = () => {
     const characters = await getCharacters();
     setCharacterList(characters);
     console.log(characterList);
-<<<<<<< HEAD:src/views/Home/index.tsx
-  }, [characterList]);
-=======
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
- 
+
   const syncData = useCallback(async () => {
     await syncCharacters();
- }, []);
-
- 
->>>>>>> e739a6eb800b6d4e5ddfce252855a41d11e67802:src/views/Characters/index.tsx
+  }, []);
 
   useEffect(() => {
     console.log("entramos");
@@ -39,18 +34,10 @@ const Characters: FC = () => {
 
   const goToDetails = useCallback(
     (id: string) => {
-      navigate(`/details/${id}`, { replace: true });
+      navigate(`/characterdetails/${id}`, { replace: true });
     },
     [navigate]
   );
-
-<<<<<<< HEAD:src/views/Home/index.tsx
-  const syncData = useCallback(async () => {
-    await syncCharacters();
-  }, []);
-=======
-  
->>>>>>> e739a6eb800b6d4e5ddfce252855a41d11e67802:src/views/Characters/index.tsx
 
   return (
     <App>
@@ -65,6 +52,7 @@ const Characters: FC = () => {
             house={character.house}
             onClick={goToDetails}
             id={character.id}
+            type="list"
           />
         ))}
       </Container>

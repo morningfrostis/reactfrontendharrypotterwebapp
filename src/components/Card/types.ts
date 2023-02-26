@@ -14,12 +14,9 @@ export type Props = {
   wand?: string;
   patronus?: string;
   actor?: string;
-  type?: "list" | "details";
-<<<<<<< HEAD
-=======
+  type?: "list" | "liststudents" | "liststaff" | "details";
   spellId?: string;
   spellsName?: string;
   description?: string;
-  studentsId?:string
->>>>>>> e739a6eb800b6d4e5ddfce252855a41d11e67802
+  studentsId?: string;
 };

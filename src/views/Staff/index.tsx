@@ -17,12 +17,10 @@ const Staffs: FC = () => {
     setStaffList(staff);
     console.log(staffList);
   }, []);
- 
+
   const syncData = useCallback(async () => {
     await syncStaff();
- }, []);
-
- 
+  }, []);
 
   useEffect(() => {
     console.log("entramos");
@@ -31,18 +29,16 @@ const Staffs: FC = () => {
 
   const goToDetails = useCallback(
     (staffId: string) => {
-      navigate(`/details/${staffId}`, { replace: true });
+      navigate(`/staffdetails/${staffId}`, { replace: true });
     },
     [navigate]
   );
-
-  
 
   return (
     <App>
       <Navbar />
       <Container>
-        <SyncButton onClick={syncData}/>
+        <SyncButton onClick={syncData} />
         {staffList.map((staff, index) => (
           <Card
             key={index}
@@ -51,6 +47,7 @@ const Staffs: FC = () => {
             house={staff.house}
             onClick={goToDetails}
             id={staff.id}
+            type="liststaff"
           />
         ))}
       </Container>

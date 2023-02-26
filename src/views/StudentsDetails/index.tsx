@@ -2,18 +2,19 @@ import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/Card";
 import Navbar from "../../components/Navbar";
-import { Character, getCharacters } from "../../services/api/characters";
+import { getStudents, Student } from "../../services/api/students";
 // import Navbar from "../../components/Navbar";
 import { App, Container } from "./styles";
 
-const Detail: FC = () => {
-  const [characterList, setCharacterList] = useState<Character[]>([]);
+const StudentsDetail: FC = () => {
+  const [studentList, setStudentList] = useState<Student[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const navigate = useNavigate();
   const params = useParams();
 
-  const getCharactersList = useCallback(async () => {
-    const characters = await getCharacters();
-    setCharacterList(characters);
+  const getStudentsList = useCallback(async () => {
+    const students = await getStudents();
+    setStudentList(students);
   }, []);
 
   // const getStudentsList = useCallback(async () => {
@@ -23,8 +24,8 @@ const Detail: FC = () => {
 
   useEffect(() => {
     console.log("entramos");
-    getCharactersList();
-  }, [getCharactersList]);
+    getStudentsList();
+  }, [getStudentsList]);
 
   // useEffect(() => {
   //   console.log("entramos");
@@ -36,7 +37,7 @@ const Detail: FC = () => {
   // }, [navigate]);
 
   const { id } = params;
-  const filteredItems = characterList.filter((item) => item.id === id);
+  const filteredItems = studentList.filter((item) => item.id === id);
   return (
     <App>
       <Navbar type="details" />
@@ -61,4 +62,4 @@ const Detail: FC = () => {
   );
 };
 
-export default memo(Detail);
+export default memo(StudentsDetail);
