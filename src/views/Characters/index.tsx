@@ -6,7 +6,7 @@ import { Character, getCharacters, syncCharacters } from "../../services/api/cha
 // import Navbar from "../../components/Navbar";
 import { App, Container, SyncButton } from "./styles";
 
-const Home: FC = () => {
+const Characters: FC = () => {
   // const [data, setData] = useState<Character[]>([]);
   const [characterList, setCharacterList] = useState<Character[]>([]);
   const navigate = useNavigate();
@@ -16,6 +16,12 @@ const Home: FC = () => {
     setCharacterList(characters);
     console.log(characterList);
   }, []);
+ 
+  const syncData = useCallback(async () => {
+    await syncCharacters();
+ }, []);
+
+ 
 
   useEffect(() => {
     console.log("entramos");
@@ -29,9 +35,7 @@ const Home: FC = () => {
     [navigate]
   );
 
-  const syncData = useCallback(async () => {
-   await syncCharacters();
-}, []);
+  
 
   return (
     <App>
@@ -53,4 +57,4 @@ const Home: FC = () => {
   );
 };
 
-export default memo(Home);
+export default memo(Characters);
