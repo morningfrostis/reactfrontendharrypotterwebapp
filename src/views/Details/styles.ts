@@ -14,15 +14,6 @@ export const App = styled.div`
 
 export const Container = styled.div`
 padding: 5em;
-display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 24px;
-`
-export const SyncButton = styled.button`
-    width: 40px;
-    height: 30px;
-    border-radius: 5px;
-    margin:10px;
-    cursor:pointer;
 `
 

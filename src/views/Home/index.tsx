@@ -1,22 +1,26 @@
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
+import Navbar from "../../components/Navbar";
+import { Character, getCharacters, syncCharacters } from "../../services/api/characters";
 // import Navbar from "../../components/Navbar";
-import { App, Container } from "./styles";
+import { App, Container, SyncButton } from "./styles";
 
 const Home: FC = () => {
-  // const [marsList, setMarsList] = useState<Mars[]>([]);
+  // const [data, setData] = useState<Character[]>([]);
+  const [characterList, setCharacterList] = useState<Character[]>([]);
   const navigate = useNavigate();
 
-  // const getCharactersList = useCallback(async () => {
-  //   const characters = await getMars();
-  //   setMarsList(mars);
-  // }, []);
+  const getCharactersList = useCallback(async () => {
+    const characters = await getCharacters();
+    setCharacterList(characters);
+    console.log(characterList);
+  }, []);
 
-  // useEffect(() => {
-  //   console.log("entramos");
-  //   getMarsList();
-  // }, [getMarsList]);
+  useEffect(() => {
+    console.log("entramos");
+    getCharactersList();
+  }, [getCharactersList]);
 
   const goToDetails = useCallback(
     (id: string) => {
@@ -25,20 +29,25 @@ const Home: FC = () => {
     [navigate]
   );
 
+  const syncData = useCallback(async () => {
+   await syncCharacters();
+}, []);
+
   return (
     <App>
-      {/* <Navbar /> */}
+      <Navbar />
       <Container>
-          {/* {marsList.map((mars, index) => (
-            <Card
-              key={index}
-              nasaId={mars.nasaId}
-              id={mars.id}
-              sol={mars.sol}
-              image={mars.image}
-              onClick={goToDetails}
-            />
-          ))} */}
+        <SyncButton onClick={syncData}/>
+        {characterList.map((character, index) => (
+          <Card
+            key={index}
+            image={character.image}
+            name={character.name}
+            house={character.house}
+            onClick={goToDetails}
+            id={character.id}
+          />
+        ))}
       </Container>
     </App>
   );
