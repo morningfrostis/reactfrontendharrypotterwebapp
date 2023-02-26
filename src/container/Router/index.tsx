@@ -9,6 +9,7 @@ import Students from "../../views/Students";
 import Staff from "../../views/Staff";
 import Spells from "../../views/Spells";
 import Edit from "../../views/Edit";
+import Landing from "../../views/LandingPage";
 
 const Router: FC = () => {
   return (
@@ -17,6 +18,7 @@ const Router: FC = () => {
         <Route path="/" element={<Welcome />}></Route>
         <Route path="/login" element={<LoginForm />}></Route>
         <Route path="/signup" element={<SignupForm />}></Route>
+        <Route path="/landing" element={<Landing />}></Route>
         <Route path="/characters" element={<Characters />}></Route>
         <Route path="/students" element={<Students/>}></Route>
         <Route path="/staff" element={<Staff/>}></Route>
