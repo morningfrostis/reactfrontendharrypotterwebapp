@@ -2,7 +2,11 @@ import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
 import Navbar from "../../components/Navbar";
-import { getStudents, Student, syncStudents } from "../../services/api/students";
+import {
+  getStudents,
+  Student,
+  syncStudents,
+} from "../../services/api/students";
 // import Navbar from "../../components/Navbar";
 import { App, Container, SyncButton } from "./styles";
 
@@ -16,12 +20,10 @@ const Students: FC = () => {
     setStudentsList(students);
     console.log(studentsList);
   }, []);
- 
+
   const syncData = useCallback(async () => {
     await syncStudents();
- }, []);
-
- 
+  }, []);
 
   useEffect(() => {
     console.log("entramos");
@@ -30,18 +32,16 @@ const Students: FC = () => {
 
   const goToDetails = useCallback(
     (studentsId: string) => {
-      navigate(`/details/${studentsId}`, { replace: true });
+      navigate(`/studentsdetails/${studentsId}`, { replace: true });
     },
     [navigate]
   );
 
-  
-
   return (
     <App>
       <Navbar />
+      <SyncButton onClick={syncData} />
       <Container>
-        <SyncButton onClick={syncData}/>
         {studentsList.map((student, index) => (
           <Card
             key={index}
@@ -50,6 +50,7 @@ const Students: FC = () => {
             house={student.house}
             onClick={goToDetails}
             id={student.id}
+            type="liststudents"
           />
         ))}
       </Container>

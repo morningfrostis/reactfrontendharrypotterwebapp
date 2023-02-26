@@ -2,7 +2,11 @@ import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
 import Navbar from "../../components/Navbar";
-import { Character, getCharacters, syncCharacters } from "../../services/api/characters";
+import {
+  Character,
+  getCharacters,
+  syncCharacters,
+} from "../../services/api/characters";
 // import Navbar from "../../components/Navbar";
 import { App, Container, SyncButton } from "./styles";
 
@@ -15,33 +19,31 @@ const Characters: FC = () => {
     const characters = await getCharacters();
     setCharacterList(characters);
     console.log(characterList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
- 
+
   const syncData = useCallback(async () => {
     await syncCharacters();
- }, []);
-
- 
+  }, []);
 
   useEffect(() => {
     console.log("entramos");
     getCharactersList();
-  }, [getCharactersList]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const goToDetails = useCallback(
     (id: string) => {
-      navigate(`/details/${id}`, { replace: true });
+      navigate(`/characterdetails/${id}`, { replace: true });
     },
     [navigate]
   );
 
-  
-
   return (
     <App>
       <Navbar />
+      <SyncButton onClick={syncData}>Sync Characters</SyncButton>
       <Container>
-        <SyncButton onClick={syncData}/>
         {characterList.map((character, index) => (
           <Card
             key={index}
@@ -50,6 +52,7 @@ const Characters: FC = () => {
             house={character.house}
             onClick={goToDetails}
             id={character.id}
+            type="list"
           />
         ))}
       </Container>
