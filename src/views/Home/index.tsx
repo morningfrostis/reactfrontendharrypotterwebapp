@@ -1,22 +1,24 @@
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
+import { Character, getCharacters } from "../../services/api/characters";
 // import Navbar from "../../components/Navbar";
 import { App, Container } from "./styles";
 
 const Home: FC = () => {
-  // const [marsList, setMarsList] = useState<Mars[]>([]);
+  const [characterList, setCharacterList] = useState<Character[]>([]);
   const navigate = useNavigate();
 
-  // const getMarsList = useCallback(async () => {
-  //   const mars = await getMars();
-  //   setMarsList(mars);
-  // }, []);
+  const getCharactersList = useCallback(async () => {
+    const characters = await getCharacters();
+    setCharacterList(characters);
+    console.log(characterList)
+  }, []);
 
-  // useEffect(() => {
-  //   console.log("entramos");
-  //   getMarsList();
-  // }, [getMarsList]);
+  useEffect(() => {
+    console.log("entramos");
+    getCharactersList();
+  }, [getCharactersList]);
 
   const goToDetails = useCallback(
     (id: string) => {
@@ -27,18 +29,18 @@ const Home: FC = () => {
 
   return (
     <App>
-      {/* <Navbar /> */}
       <Container>
-          {/* {marsList.map((mars, index) => (
+          {characterList.map((character, index) => (
             <Card
               key={index}
-              nasaId={mars.nasaId}
-              id={mars.id}
-              sol={mars.sol}
-              image={mars.image}
+              image={character.image}
+              name={character.name}
+              house={character.house}
               onClick={goToDetails}
+              id={character.id}
+
             />
-          ))} */}
+          ))}
       </Container>
     </App>
   );
