@@ -2,11 +2,12 @@ import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
 import Navbar from "../../components/Navbar";
-import { Character, getCharacters } from "../../services/api/characters";
+import { Character, getCharacters, syncCharacters } from "../../services/api/characters";
 // import Navbar from "../../components/Navbar";
-import { App, Container } from "./styles";
+import { App, Container, SyncButton } from "./styles";
 
 const Home: FC = () => {
+  // const [data, setData] = useState<Character[]>([]);
   const [characterList, setCharacterList] = useState<Character[]>([]);
   const navigate = useNavigate();
 
@@ -28,10 +29,15 @@ const Home: FC = () => {
     [navigate]
   );
 
+  const syncData = useCallback(async () => {
+   await syncCharacters();
+}, []);
+
   return (
     <App>
       <Navbar />
       <Container>
+        <SyncButton onClick={syncData}/>
         {characterList.map((character, index) => (
           <Card
             key={index}

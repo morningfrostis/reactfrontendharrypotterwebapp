@@ -33,18 +33,18 @@ export const getCharacters = async () => {
   return [];
 };
 
-// export const syncMars = async () => {
-//   try {
-//     const token = getToken();
-//     await fetch("http://localhost:8000/syncApi/", {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
-//   } catch (error) {
-//     console.log((error as Error).message);
-//   }
-// };
+export const syncCharacters = async () => {
+  try {
+    const token = getToken();
+    await fetch("http://localhost:8000/syncCharacters", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (error) {
+    console.log((error as Error).message);
+  }
+};
 
 export const removeCharacter = async (id: string) => {
   try {
