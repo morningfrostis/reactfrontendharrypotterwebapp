@@ -23,14 +23,14 @@ const SignupForm: FC = () => {
     const signupError = await signup(values);
 
     if (!signupError) {
-      navigate("/home ");
+      navigate("/landing");
     } else {
       setError(signupError);
     }
   };
 
   const goToBack = useCallback(() => {
-    navigate("/");
+    navigate("/landing");
   }, [navigate]);
 
   return (

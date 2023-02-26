@@ -10,7 +10,7 @@ import {
 // import Navbar from "../../components/Navbar";
 import { App, Container, SyncButton } from "./styles";
 
-const Home: FC = () => {
+const Characters: FC = () => {
   // const [data, setData] = useState<Character[]>([]);
   const [characterList, setCharacterList] = useState<Character[]>([]);
   const navigate = useNavigate();
@@ -19,7 +19,17 @@ const Home: FC = () => {
     const characters = await getCharacters();
     setCharacterList(characters);
     console.log(characterList);
+<<<<<<< HEAD:src/views/Home/index.tsx
   }, [characterList]);
+=======
+  }, []);
+ 
+  const syncData = useCallback(async () => {
+    await syncCharacters();
+ }, []);
+
+ 
+>>>>>>> e739a6eb800b6d4e5ddfce252855a41d11e67802:src/views/Characters/index.tsx
 
   useEffect(() => {
     console.log("entramos");
@@ -34,9 +44,13 @@ const Home: FC = () => {
     [navigate]
   );
 
+<<<<<<< HEAD:src/views/Home/index.tsx
   const syncData = useCallback(async () => {
     await syncCharacters();
   }, []);
+=======
+  
+>>>>>>> e739a6eb800b6d4e5ddfce252855a41d11e67802:src/views/Characters/index.tsx
 
   return (
     <App>
@@ -58,4 +72,4 @@ const Home: FC = () => {
   );
 };
 
-export default memo(Home);
+export default memo(Characters);

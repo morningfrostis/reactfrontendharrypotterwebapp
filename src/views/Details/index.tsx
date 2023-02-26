@@ -16,15 +16,24 @@ const Detail: FC = () => {
     setCharacterList(characters);
   }, []);
 
+  // const getStudentsList = useCallback(async () => {
+  //   const students = await getStudents();
+  //   setStudentList(students);
+  // }, []);
+
   useEffect(() => {
     console.log("entramos");
     getCharactersList();
   }, [getCharactersList]);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const goBack = useCallback(() => {
-    navigate("/home", { replace: true });
-  }, [navigate]);
+  // useEffect(() => {
+  //   console.log("entramos");
+  //   getStudentsList();
+  // }, [getStudentsList]);
+
+  // const goBack = useCallback(() => {
+  //   navigate("/home", { replace: true });
+  // }, [navigate]);
 
   const { id } = params;
   const filteredItems = characterList.filter((item) => item.id === id);
