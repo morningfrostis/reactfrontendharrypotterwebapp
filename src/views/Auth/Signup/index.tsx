@@ -23,7 +23,7 @@ const SignupForm: FC = () => {
     const signupError = await signup(values);
 
     if (!signupError) {
-      navigate("/home ");
+      navigate("/characters ");
     } else {
       setError(signupError);
     }

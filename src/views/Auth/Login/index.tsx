@@ -24,7 +24,7 @@ const LoginForm: FC = () => {
     const loginError = await login(values);
 
     if (!loginError) {
-      navigate("/home ");
+      navigate("/characters ");
     } else {
       setError(loginError);
     }
