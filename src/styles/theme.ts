@@ -1,3 +1,7 @@
+import { createGlobalStyle } from "styled-components";
+//@ts-ignore
+import font from "../assets/fonts/harryPotter.TTF";
+
 const theme = {
   colors: {
     accent: "#0074CA",
@@ -43,6 +47,16 @@ const theme = {
     HufflepuffLigthBrown: "#726255",
     HufflepuffDarkBrown: "#372e29",
   },
+  font: "MyFont, sans-serif",
 };
+
+export const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'MyFont';
+    src: url(${font}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+`;
 
 export default theme;

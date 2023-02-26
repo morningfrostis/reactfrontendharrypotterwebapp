@@ -21,6 +21,7 @@ const Detail: FC = () => {
     getCharactersList();
   }, [getCharactersList]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const goBack = useCallback(() => {
     navigate("/home", { replace: true });
   }, [navigate]);
@@ -29,7 +30,7 @@ const Detail: FC = () => {
   const filteredItems = characterList.filter((item) => item.id === id);
   return (
     <App>
-      <Navbar type="details"/>
+      <Navbar type="details" />
       <Container>
         {filteredItems.map((character, index) => (
           <Card
