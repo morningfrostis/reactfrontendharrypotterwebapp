@@ -1,8 +1,8 @@
 import { getToken } from "../storage";
 
-export type Student = {
+export type Staff = {
   id: string;
-  studentsId: string;
+  staffId: string;
   name: string;
   species: string;
   house: string;
@@ -14,9 +14,9 @@ export type Student = {
   image: string;
 };
 
-const BASE_API_URL = "http://localhost:8000/students";
+const BASE_API_URL = "http://localhost:8000/staff";
 
-export const getStudents = async () => {
+export const getStaff = async () => {
   try {
     const token = getToken();
     const response = await fetch(BASE_API_URL, {
@@ -24,7 +24,7 @@ export const getStudents = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const data: Student[] = await response.json();
+    const data: Staff[] = await response.json();
     console.log(data);
     return data;
   } catch (error) {
@@ -33,7 +33,7 @@ export const getStudents = async () => {
   return [];
 };
 
-export const syncStudents = async () => {
+export const syncStaff = async () => {
   try {
     const token = getToken();
     await fetch("http://localhost:8000/syncStudents", {
@@ -46,7 +46,7 @@ export const syncStudents = async () => {
   }
 };
 
-export const removeStudent = async (id: string) => {
+export const removeStaff = async (id: string) => {
   try {
     const token = getToken();
     await fetch(`${BASE_API_URL}/${id}`, {
@@ -58,7 +58,7 @@ export const removeStudent = async (id: string) => {
   }
 };
 
-export const createStudent = async (data: Omit<Student, "id">) => {
+export const createStaff = async (data: Omit<Staff, "id">) => {
   try {
     const token = getToken();
     await fetch(BASE_API_URL, {
@@ -71,7 +71,7 @@ export const createStudent = async (data: Omit<Student, "id">) => {
   }
 };
 
-export const updateStudent = async (id: string, data: Partial<Student>) => {
+export const updateStaff = async (id: string, data: Partial<Staff>) => {
   try {
     const token = getToken();
     await fetch(`${BASE_API_URL}/${id}`, {

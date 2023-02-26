@@ -9,23 +9,33 @@ import { App, Container } from "./styles";
 const Detail: FC = () => {
   const [characterList, setCharacterList] = useState<Character[]>([]);
   const navigate = useNavigate();
-  const params = useParams();
+    const params = useParams();
 
   const getCharactersList = useCallback(async () => {
     const characters = await getCharacters();
     setCharacterList(characters);
   }, []);
 
+  // const getStudentsList = useCallback(async () => {
+  //   const students = await getStudents();
+  //   setStudentList(students);
+  // }, []);
+
   useEffect(() => {
     console.log("entramos");
     getCharactersList();
   }, [getCharactersList]);
 
-  const goBack = useCallback(() => {
-    navigate("/home", { replace: true });
-  }, [navigate]);
+  // useEffect(() => {
+  //   console.log("entramos");
+  //   getStudentsList();
+  // }, [getStudentsList]);
 
-  const { id } = params;
+  // const goBack = useCallback(() => {
+  //   navigate("/home", { replace: true });
+  // }, [navigate]);
+
+  const { id  } = params;
   const filteredItems = characterList.filter((item) => item.id === id);
   return (
     <App>

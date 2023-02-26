@@ -1,22 +1,14 @@
 import { getToken } from "../storage";
 
-export type Student = {
-  id: string;
-  studentsId: string;
+export type Spell = {
+  spellId: string;
   name: string;
-  species: string;
-  house: string;
-  wizard: string;
-  ancestry: string;
-  wand: JSON;
-  patronus: string;
-  actor: string;
-  image: string;
+  description: string;
 };
 
-const BASE_API_URL = "http://localhost:8000/students";
+const BASE_API_URL = "http://localhost:8000/spells";
 
-export const getStudents = async () => {
+export const getSpells = async () => {
   try {
     const token = getToken();
     const response = await fetch(BASE_API_URL, {
@@ -24,7 +16,7 @@ export const getStudents = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const data: Student[] = await response.json();
+    const data: Spell[] = await response.json();
     console.log(data);
     return data;
   } catch (error) {
@@ -33,10 +25,10 @@ export const getStudents = async () => {
   return [];
 };
 
-export const syncStudents = async () => {
+export const syncSpells = async () => {
   try {
     const token = getToken();
-    await fetch("http://localhost:8000/syncStudents", {
+    await fetch("http://localhost:8000/syncSpells", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -46,7 +38,7 @@ export const syncStudents = async () => {
   }
 };
 
-export const removeStudent = async (id: string) => {
+export const removeSpells = async (id: string) => {
   try {
     const token = getToken();
     await fetch(`${BASE_API_URL}/${id}`, {
@@ -58,7 +50,7 @@ export const removeStudent = async (id: string) => {
   }
 };
 
-export const createStudent = async (data: Omit<Student, "id">) => {
+export const createSpells = async (data: Omit<Spell, "id">) => {
   try {
     const token = getToken();
     await fetch(BASE_API_URL, {
@@ -71,7 +63,7 @@ export const createStudent = async (data: Omit<Student, "id">) => {
   }
 };
 
-export const updateStudent = async (id: string, data: Partial<Student>) => {
+export const updateSpells = async (id: string, data: Partial<Spell>) => {
   try {
     const token = getToken();
     await fetch(`${BASE_API_URL}/${id}`, {

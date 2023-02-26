@@ -2,35 +2,36 @@ import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
 import Navbar from "../../components/Navbar";
-import { getStudents, Student, syncStudents } from "../../services/api/students";
+import { Staff } from "../../services/api/staff";
+import { getStaff, syncStaff } from "../../services/api/staff";
 // import Navbar from "../../components/Navbar";
 import { App, Container, SyncButton } from "./styles";
 
-const Students: FC = () => {
+const Staffs: FC = () => {
   // const [data, setData] = useState<Character[]>([]);
-  const [studentsList, setStudentsList] = useState<Student[]>([]);
+  const [staffList, setStaffList] = useState<Staff[]>([]);
   const navigate = useNavigate();
 
-  const getStudentsList = useCallback(async () => {
-    const students = await getStudents();
-    setStudentsList(students);
-    console.log(studentsList);
+  const getStaffList = useCallback(async () => {
+    const staff = await getStaff();
+    setStaffList(staff);
+    console.log(staffList);
   }, []);
  
   const syncData = useCallback(async () => {
-    await syncStudents();
+    await syncStaff();
  }, []);
 
  
 
   useEffect(() => {
     console.log("entramos");
-    getStudentsList();
-  }, [getStudentsList]);
+    getStaffList();
+  }, [getStaffList]);
 
   const goToDetails = useCallback(
-    (studentsId: string) => {
-      navigate(`/details/${studentsId}`, { replace: true });
+    (staffId: string) => {
+      navigate(`/details/${staffId}`, { replace: true });
     },
     [navigate]
   );
@@ -42,14 +43,14 @@ const Students: FC = () => {
       <Navbar />
       <Container>
         <SyncButton onClick={syncData}/>
-        {studentsList.map((student, index) => (
+        {staffList.map((staff, index) => (
           <Card
             key={index}
-            image={student.image}
-            name={student.name}
-            house={student.house}
+            image={staff.image}
+            name={staff.name}
+            house={staff.house}
             onClick={goToDetails}
-            id={student.id}
+            id={staff.id}
           />
         ))}
       </Container>
@@ -57,4 +58,4 @@ const Students: FC = () => {
   );
 };
 
-export default memo(Students);
+export default memo(Staffs);

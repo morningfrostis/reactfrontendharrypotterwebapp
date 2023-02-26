@@ -15,6 +15,10 @@ const Card: FC<Props> = ({
   patronus,
   actor,
   type = 'list', 
+  spellId,
+  spellsName,
+  description,
+  studentsId
 
 }) => {
   return (
