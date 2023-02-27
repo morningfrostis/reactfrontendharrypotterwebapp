@@ -73,7 +73,7 @@ const Characters: FC = () => {
             house={character.house}
             onClick={goToDetails}
             id={character.id}
-            type="list"
+            type="listcharacters"
           />
         ))}
       </Container>

@@ -33,12 +33,12 @@ export const SignoutButton = styled.button`
 export const Tittle = styled(Link)`
   padding-bottom  : 16px;
   margin: 16px;
-  color: ${({ theme }) => theme.colors.GriffindorRed};
+  color: ${({ theme }) => theme.colors.DementorBlack};
   font-family: ${({ theme }) => theme.font.MyFont};
   text-decoration:none;
   font-size:30px;
   &:hover{
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.GriffindorRedDark};
 
   }
 `;
