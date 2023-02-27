@@ -9,7 +9,7 @@ import {
 const Landing: FC = () => {
   return (
     <WelcomeContainer>
-      <WelcomeMessage>Select the info that you want</WelcomeMessage>
+      <WelcomeMessage>Select the desired info</WelcomeMessage>
       <ButtonBoxes>
         <WelcomeButton to="/characters">All Characters</WelcomeButton>
         <WelcomeButton to="/students">All Students</WelcomeButton>
