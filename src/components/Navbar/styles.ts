@@ -5,7 +5,7 @@ export const CustomNavbar = styled.nav`
   background-color: ${({ theme }) => theme.colors.RavenclawGreyLady};
   display: flex;
   justify-content: space-between;
-  height: 60px;
+  height: 90px;
   width: 100%;
 `;
 export const BackButton = styled.button`
@@ -43,6 +43,14 @@ export const Tittle = styled(Link)`
   }
 `;
 
+
+export const Logoimg = styled.div`
+  background-image: url("https://i.ibb.co/v1Rbx3Z/Logo-title-navbar-ok.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 400px;
+  height: 50px;
+`;
 
 // export const WelcomeButton = styled(Link)`
 //   padding: 10px 20px;
