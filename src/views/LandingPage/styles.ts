@@ -14,10 +14,10 @@ export const WelcomeContainer = styled.div`
 
 export const WelcomeMessage = styled.h4`
   font-size: 70px;
-  font-family: url(https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap);
+  font-family: url(https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&display=swap);
   margin-top: 20px;
   margin-bottom: 30px;
-  color: ${({ theme }) => theme.colors.white100}; ;
+  color: ${({ theme }) => theme.colors.white100};
 `;
 
 export const RedirectMessage = styled.p`

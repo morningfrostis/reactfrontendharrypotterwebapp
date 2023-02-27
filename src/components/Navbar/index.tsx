@@ -3,6 +3,7 @@ import { Props } from "./types";
 import { useNavigate } from "react-router-dom";
 import {
   BackButton,
+  Logoimg,
   SignoutButton,
   Tittle,
 } from "../../components/Navbar/styles";
@@ -43,7 +44,9 @@ const Navbar: FC<Props> = ({ type = "list" }) => {
     <>
       <GlobalStyle />
       <CustomNavbar>
-        <Tittle>Harry Potter Web App</Tittle>
+        <Tittle>
+          <Logoimg></Logoimg>
+        </Tittle>
         {type === "details" && <BackButton onClick={goToBack}>🔙</BackButton>}
         {/* <SignoutButton onClick={handleSignOut}>LogOut</SignoutButton> */}
       </CustomNavbar>
