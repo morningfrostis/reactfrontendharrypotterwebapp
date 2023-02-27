@@ -32,7 +32,7 @@ export const DescriptionApi = styled.p`
 
 export const DetailsButton = styled(Link)`
   padding: 10px 20px;
-  background-color: #3498db;
+  background: linear-gradient(to right, #d3a625, #740001);
   color: ${({ theme }) => theme.colors.white100};
   border-radius: 5px;
   text-decoration: none;
@@ -40,4 +40,5 @@ export const DetailsButton = styled(Link)`
   text-decoration: none;
   display: inline;
   padding: 5px 5px;
+  font-family: Oswald;
 `;

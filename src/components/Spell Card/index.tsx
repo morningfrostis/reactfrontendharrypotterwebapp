@@ -4,17 +4,16 @@ import { Container, Description, Image } from "./styles";
 import { Props } from "./types";
 
 const SpellCard: FC<Props> = ({
-  type = 'list', 
+  type = "list",
   spellId,
   name,
-  description
-
+  description,
 }) => {
   return (
     <Container>
       <Description>Name: {name}</Description>
-      <Description>Description: {description}</Description> 
-       {type === 'list' && <Link to={`/edit/${spellId}`}>Edit</Link>}
+      <Description>Description: {description}</Description>
+      {type === "list" && <Link to={`/edit/${spellId}`}>Edit</Link>}
       <Description>Id: {spellId}</Description>
     </Container>
   );
