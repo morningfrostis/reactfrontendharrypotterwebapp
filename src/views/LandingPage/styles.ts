@@ -10,6 +10,8 @@ export const WelcomeContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.white500};
   background-image: url("https://www.gratistodo.com/wp-content/uploads/2021/11/Harry-Potter-Fondos-de-pantalla-scaled.jpg");
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 export const WelcomeMessage = styled.h4`

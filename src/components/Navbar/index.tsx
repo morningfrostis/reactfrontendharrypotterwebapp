@@ -44,6 +44,7 @@ const Navbar: FC<Props> = ({ type = "list" }) => {
     <>
       <GlobalStyle />
       <CustomNavbar>
+
         <Tittle>
           <Logoimg></Logoimg>
         </Tittle>

@@ -11,6 +11,7 @@ import Spells from "../../views/Spells";
 import Edit from "../../views/Edit";
 import Landing from "../../views/LandingPage";
 import StudentsDetails from "../../views/StudentsDetails";
+import StaffDetails from "../../views/Staff Details";
 
 const Router: FC = () => {
   return (
@@ -26,6 +27,7 @@ const Router: FC = () => {
         <Route path="/spells" element={<Spells />}></Route>
         <Route path="/characterdetails/:id" element={<CharacterDetails />} />
         <Route path="/studentsdetails/:id" element={<StudentsDetails />} />
+        <Route path="/staffdetails/:id" element={<StaffDetails />} />
         <Route path="/edit/:id" element={<Edit />} />
       </Routes>
     </BrowserRouter>

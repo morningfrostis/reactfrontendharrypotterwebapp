@@ -32,8 +32,8 @@ export const DescriptionApi = styled.p`
 
 export const DetailsButton = styled(Link)`
   padding: 10px 20px;
-  background: linear-gradient(to right, #d3a625, #740001);
-  color: ${({ theme }) => theme.colors.white100};
+  background: linear-gradient(to right, #d3a625, #bebebe);
+  color: ${({ theme }) => theme.colors.DementorBlack};
   border-radius: 5px;
   text-decoration: none;
   margin: 0 10px;
