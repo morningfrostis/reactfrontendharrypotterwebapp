@@ -1,5 +1,4 @@
 import { FC } from "react";
-// import { Link } from "react-router-dom";
 import {
   Container,
   Description,
@@ -22,52 +21,46 @@ const Card: FC<Props> = ({
   actor,
   // type = "list",
   type,
-  spellId,
-  spellsName,
-  description,
-  studentsId,
+  
 }) => {
-  return (
-    <Container>
-      <Image src={image} />
-      {type === "list" && (
-        <Description>
-          Name:&nbsp;&nbsp;
-          <DescriptionApi>{name}</DescriptionApi>
-        </Description>
-      )}
-      {type === "liststudents" && <Description>Name: {name}</Description>}
-      {type === "list" && (
-        <Description>
-          Hogwarts house:&nbsp;&nbsp;
-          <DescriptionApi>{house}</DescriptionApi>
-        </Description>
-      )}
-      {type === "liststudents" && (
-        <Description>Hogwarts house: {house}</Description>
-      )}
-      {type === "details" && <Description>Specie: {species}</Description>}
-      {type === "details" && <Description>Is a wizard? {wizard}</Description>}
-      {type === "details" && <Description>Ancestry: {ancestry}</Description>}
-      {type === "details" && <Description>Wand: {wand}</Description>}
-      {type === "details" && <Description>Patronus: {patronus}</Description>}
-      {type === "details" && <Description>Actor: {actor}</Description>}
-      {type === "list" && (
-        <DetailsButton to={`/characterdetails/${id}`}>
-          View details
-        </DetailsButton>
-      )}
-      {type === "liststudents" && (
-        <DetailsButton to={`/studentsdetails/${id}`}>
-          View details
-        </DetailsButton>
-      )}
-      {type === "liststaff" && (
-        <DetailsButton to={`/staffdetails/${id}`}>View details</DetailsButton>
-      )}
-      {type === "details" && <Description>Id: {id}</Description>}
-    </Container>
-  );
+
+return (
+  <Container>
+    <Image src={image} />
+    {type === "listcharacters" && (
+      <>
+        <Description>Name:&nbsp;&nbsp;<DescriptionApi>{name}</DescriptionApi></Description>
+        <Description>Hogwarts house:&nbsp;&nbsp;<DescriptionApi>{house}</DescriptionApi></Description>
+        <DetailsButton to={`/characterdetails/${id}`}>View character</DetailsButton>
+      </>
+    )}
+    {type === "liststudents" && (
+      <>
+        <Description>Name:&nbsp;&nbsp;<DescriptionApi>{name}</DescriptionApi></Description>
+        <Description>Hogwarts house:&nbsp;&nbsp;<DescriptionApi>{house}</DescriptionApi></Description>
+        <DetailsButton to={`/studentsdetails/${id}`}>View student</DetailsButton>
+      </>
+    )}
+    {type === "liststaff" && (
+      <>
+        <Description>Name:&nbsp;&nbsp;<DescriptionApi>{name}</DescriptionApi></Description>
+        <Description>Hogwarts house:&nbsp;&nbsp;<DescriptionApi>{house}</DescriptionApi></Description>
+        <DetailsButton to={`/staffdetails/${id}`}>View staff</DetailsButton>
+      </>
+    )}
+    {type === "details" && (
+      <>
+        <Description>Specie: {species}</Description>
+        <Description>Is a wizard? {wizard}</Description>
+        <Description>Ancestry: {ancestry}</Description>
+        <Description>Wand: {wand}</Description>
+        <Description>Patronus: {patronus}</Description>
+        <Description>Actor: {actor}</Description>
+        <Description>Id: {id}</Description>
+      </>
+    )}
+  </Container>
+);
 };
 
 export default Card;
