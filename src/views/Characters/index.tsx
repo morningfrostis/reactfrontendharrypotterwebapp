@@ -7,30 +7,30 @@ import {
   getCharacters,
   syncCharacters,
 } from "../../services/api/characters";
-// import Navbar from "../../components/Navbar";
 import { App, Container, SyncButton } from "./styles";
 
 const Characters: FC = () => {
-  // const [data, setData] = useState<Character[]>([]);
   const [characterList, setCharacterList] = useState<Character[]>([]);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
 
   const getCharactersList = useCallback(async () => {
     const characters = await getCharacters();
     setCharacterList(characters);
     console.log(characterList);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const syncData = useCallback(async () => {
     await syncCharacters();
+    setLoading(false)
+    getCharactersList();
   }, []);
 
-  useEffect(() => {
-    console.log("entramos");
-    getCharactersList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   console.log("entramos");
+  //   getCharactersList();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const goToDetails = useCallback(
     (id: string) => {
@@ -38,6 +38,12 @@ const Characters: FC = () => {
     },
     [navigate]
   );
+
+if(loading) {
+  return(
+    <h1>LOADING</h1>
+  )
+}
 
   return (
     <App>

@@ -20,7 +20,7 @@ export const Container = styled.div`
 `;
 export const SyncButton = styled.button`
   width: 90px;
-  height: 50px;
+  height: 40px;
   border-radius: 5px;
   margin: 10px;
   margin-top: 20px;
