@@ -7,13 +7,12 @@ import {
   Student,
   syncStudents,
 } from "../../services/api/students";
-// import Navbar from "../../components/Navbar";
 import { App, Container, SyncButton } from "./styles";
 
 const Students: FC = () => {
-  // const [data, setData] = useState<Character[]>([]);
   const [studentsList, setStudentsList] = useState<Student[]>([]);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const getStudentsList = useCallback(async () => {
     const students = await getStudents();
@@ -23,12 +22,14 @@ const Students: FC = () => {
 
   const syncData = useCallback(async () => {
     await syncStudents();
+    setLoading(false);
+    getStudentsList();
   }, []);
 
-  useEffect(() => {
-    console.log("entramos");
-    getStudentsList();
-  }, [getStudentsList]);
+  // useEffect(() => {
+  //   console.log("entramos");
+  //   getStudentsList();
+  // }, [getStudentsList]);
 
   const goToDetails = useCallback(
     (studentsId: string) => {
@@ -40,7 +41,7 @@ const Students: FC = () => {
   return (
     <App>
       <Navbar />
-      <SyncButton onClick={syncData} />
+      <SyncButton onClick={syncData}>Sync Students</SyncButton>
       <Container>
         {studentsList.map((student, index) => (
           <Card

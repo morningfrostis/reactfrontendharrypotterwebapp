@@ -19,8 +19,8 @@ grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 24px;
 `
 export const SyncButton = styled.button`
-    width: 40px;
-    height: 30px;
+    width: 90px;
+    height: 40px;
     border-radius: 5px;
     margin:10px;
     cursor:pointer;

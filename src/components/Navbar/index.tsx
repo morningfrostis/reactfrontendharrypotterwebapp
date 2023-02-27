@@ -43,7 +43,7 @@ const Navbar: FC<Props> = ({ type = "list" }) => {
     <>
       <GlobalStyle />
       <CustomNavbar>
-        <Tittle>Harry Potter Web App</Tittle>
+        <Tittle to={'/landing'}>Harry Potter Web App</Tittle>
         {type === "details" && <BackButton onClick={goToBack}>🔙</BackButton>}
         {/* <SignoutButton onClick={handleSignOut}>LogOut</SignoutButton> */}
       </CustomNavbar>

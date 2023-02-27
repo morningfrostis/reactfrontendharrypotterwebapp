@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const CustomNavbar = styled.nav`
@@ -28,9 +29,27 @@ export const SignoutButton = styled.button`
   font-weight: bold;
   cursor: pointer;
 `;
-export const Tittle = styled.p`
-  padding: 16px;
+
+export const Tittle = styled(Link)`
+  padding-bottom  : 16px;
   margin: 16px;
   color: ${({ theme }) => theme.colors.GriffindorRed};
   font-family: ${({ theme }) => theme.font.MyFont};
+  text-decoration:none;
+  font-size:30px;
+  &:hover{
+    color: ${({ theme }) => theme.colors.black};
+
+  }
 `;
+
+
+// export const WelcomeButton = styled(Link)`
+//   padding: 10px 20px;
+//   background-color: ${({ theme }) => theme.colors.GriffindorRedDark};
+//   color: ${({ theme }) => theme.colors.white100};
+//   border-radius: 5px;
+//   font-family: Oswald;
+//   text-decoration: none;
+//   margin: 0 10px;
+// `;

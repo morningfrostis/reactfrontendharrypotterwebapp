@@ -4,13 +4,13 @@ import Card from "../../components/Card";
 import Navbar from "../../components/Navbar";
 import { Staff } from "../../services/api/staff";
 import { getStaff, syncStaff } from "../../services/api/staff";
-// import Navbar from "../../components/Navbar";
 import { App, Container, SyncButton } from "./styles";
 
 const Staffs: FC = () => {
-  // const [data, setData] = useState<Character[]>([]);
   const [staffList, setStaffList] = useState<Staff[]>([]);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
+
 
   const getStaffList = useCallback(async () => {
     const staff = await getStaff();
@@ -20,12 +20,14 @@ const Staffs: FC = () => {
 
   const syncData = useCallback(async () => {
     await syncStaff();
+    setLoading(false)
+    getStaffList();
   }, []);
 
-  useEffect(() => {
-    console.log("entramos");
-    getStaffList();
-  }, [getStaffList]);
+  // useEffect(() => {
+  //   console.log("entramos");
+  //   getStaffList();
+  // }, [getStaffList]);
 
   const goToDetails = useCallback(
     (staffId: string) => {
@@ -34,11 +36,17 @@ const Staffs: FC = () => {
     [navigate]
   );
 
+  if(loading) {
+    return(
+      <h1>LOADING</h1>
+    )
+  }
+
   return (
     <App>
       <Navbar />
+      <SyncButton onClick={syncData}>Sync Staff</SyncButton>  
       <Container>
-        <SyncButton onClick={syncData} />
         {staffList.map((staff, index) => (
           <Card
             key={index}
