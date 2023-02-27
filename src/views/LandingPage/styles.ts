@@ -12,8 +12,11 @@ export const WelcomeContainer = styled.div`
   background-size: cover;
 `;
 
-export const WelcomeMessage = styled.h1`
-  font-family: Oswald;
+export const WelcomeMessage = styled.h4`
+  font-size: 70px;
+  font-family: url(https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap);
+  margin-top: 20px;
+  margin-bottom: 30px;
   color: ${({ theme }) => theme.colors.white100}; ;
 `;
 
