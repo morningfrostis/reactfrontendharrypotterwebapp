@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import {
   ButtonBoxes,
-  RedirectMessage,
   WelcomeButton,
   WelcomeContainer,
   WelcomeMessage,

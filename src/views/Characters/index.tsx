@@ -47,7 +47,12 @@ const Characters: FC = () => {
         {characterList.map((character, index) => (
           <Card
             key={index}
-            image={character.image}
+            // image={character.image}
+            image={
+              character.image !== ""
+                ? character.image
+                : "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6187/6187014_sd.jpg"
+            }
             name={character.name}
             house={character.house}
             onClick={goToDetails}
