@@ -9,6 +9,8 @@ import {
   Label,
   Error,
   InputContainer,
+  StyledLink,
+  Return,
 } from "./styles";
 import { Formik, Field } from "formik";
 import { initialValues, validationSchema } from "./constants";
@@ -61,6 +63,12 @@ const SignupForm: FC = () => {
           </Field>
           <FormButton type="submit">SignUp</FormButton>
           {/* <BackButton onClick={goToBack}>🔙</BackButton> */}
+          <div style={{ marginTop: "10px" }}>
+            <Return>
+              Already have an account?{" "}
+              <StyledLink href="/login">Go to login 👈 </StyledLink>
+            </Return>
+          </div>
         </Form>
       </Formik>
     </FormContainer>

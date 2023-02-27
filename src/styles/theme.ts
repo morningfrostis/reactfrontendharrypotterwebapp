@@ -23,6 +23,7 @@ const theme = {
     grey500: "#819098",
     grey700: "#9E9E9E",
     grey900: "#6E7A76",
+    ReactBlue: "#2F73D9",
     white100: "#FFFFFF",
     white200: "#F5F5F5",
     white300: "#E5E5E5",
@@ -47,7 +48,7 @@ const theme = {
     HufflepuffLigthBrown: "#726255",
     HufflepuffDarkBrown: "#372e29",
   },
-  font: "MyFont, sans-serif",
+  font: "MyFont",
 };
 
 export const GlobalStyle = createGlobalStyle`
