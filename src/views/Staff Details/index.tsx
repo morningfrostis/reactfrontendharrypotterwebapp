@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/Card";
 import { getStaff, Staff } from "../../services/api/staff";
 // import Navbar from "../../components/Navbar";
-import { App, Container } from "./styles";
+import { App, ButtonContainer, Container, ButtonBack } from "./styles";
 
 const StaffDetails: FC = () => {
   const [staffList, setStaffList] = useState<Staff[]>([]);
@@ -20,15 +20,20 @@ const StaffDetails: FC = () => {
     getStaffList();
   }, [getStaffList]);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const goBack = useCallback(() => {
-    navigate("/staff", { replace: true });
-  }, [navigate]);
+  const goToBack = useCallback(() => {
+    navigate('/staff', { replace: true });
+  },
+  [navigate]
+);
+
 
   const { id } = params;
   const filteredItems = staffList.filter((item) => item.id === id);
   return (
     <App>
+       <ButtonContainer>
+      <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
+      </ButtonContainer>
       <Container>
         {filteredItems.map((character, index) => (
           <Card

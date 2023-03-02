@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/Card";
 import { getStudents, Student } from "../../services/api/students";
 // import Navbar from "../../components/Navbar";
-import { App, Container } from "./styles";
+import { App, ButtonContainer, Container, ButtonBack } from "./styles";
 
 const StudentsDetail: FC = () => {
   const [studentList, setStudentList] = useState<Student[]>([]);
@@ -31,14 +31,18 @@ const StudentsDetail: FC = () => {
   //   getStudentsList();
   // }, [getStudentsList]);
 
-  // const goBack = useCallback(() => {
-  //   navigate("/home", { replace: true });
-  // }, [navigate]);
-
+  const goToBack = useCallback(() => {
+    navigate('/students', { replace: true });
+  },
+  [navigate]
+);
   const { id } = params;
   const filteredItems = studentList.filter((item) => item.id === id);
   return (
     <App>
+       <ButtonContainer>
+      <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
+      </ButtonContainer>
       <Container>
         {filteredItems.map((character, index) => (
           <Card

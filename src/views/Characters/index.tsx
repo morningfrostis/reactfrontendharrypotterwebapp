@@ -53,7 +53,6 @@ const Characters: FC = () => {
     },
     [navigate]
   );
-
   const handleNextPage = () => {
     setPage(page + 1);
   };
@@ -65,13 +64,13 @@ const Characters: FC = () => {
   if (isloading) {
     return <h1>LOADING</h1>;
   }
-
   return (
     <App>
       <SyncButton onClick={syncData}>Sync Characters</SyncButton>
       <ButtonContainer>
         <ButtonPreview onClick={handlePrevPage}>Previous</ButtonPreview>
         <ButtonNext onClick={handleNextPage}>Next</ButtonNext>
+
       </ButtonContainer>
       <Container>
         {characterList

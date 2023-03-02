@@ -1,18 +1,16 @@
 import { FC, useCallback } from "react";
 import { Props } from "./types";
 import { useNavigate } from "react-router-dom";
-import { Logoimg, Tittle } from "../../components/Navbar/styles";
+import {
+  Logoimg,
+  SignoutButton,
+  Tittle,
+} from "../../components/Navbar/styles";
 import { CustomNavbar } from "./styles";
 import { GlobalStyle } from "../../styles/theme";
 
 const Navbar: FC<Props> = ({ type = "list" }) => {
   const navigate = useNavigate();
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const goToBack = useCallback(() => {
-    navigate("/characters");
-  }, [navigate]);
-
   // const handleSignOut = async () => {
   //     try {
   //         console.log(auth)
