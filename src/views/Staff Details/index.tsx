@@ -2,7 +2,6 @@ import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/Card";
 import { getStaff, Staff } from "../../services/api/staff";
-// import Navbar from "../../components/Navbar";
 import { App, ButtonContainer, Container, ButtonBack } from "./styles";
 
 const StaffDetails: FC = () => {
