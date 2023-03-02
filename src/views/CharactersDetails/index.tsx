@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/Card";
 import { Character } from "../../models/character";
 // import Navbar from "../../components/Navbar";
-import {  getCharacters } from "../../services/api/characters";
+import {  getCharacters, removeCharacter } from "../../services/api/characters";
 // import Navbar from "../../components/Navbar";
 import { App, Container } from "./styles";
 
