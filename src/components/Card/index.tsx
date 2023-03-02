@@ -10,6 +10,7 @@ import { Props } from "./types";
 
 const Card: FC<Props> = ({
   name,
+  email,
   house,
   image,
   id,
@@ -66,6 +67,12 @@ const Card: FC<Props> = ({
           <Description>Patronus: {patronus}</Description>
           <Description>Actor: {actor}</Description>
           <Description>Id: {id}</Description>
+        </>
+      )}
+      {type === "profile" && (
+        <>
+          <Description>User ID: {id}</Description>
+          <Description>Email: {email}</Description>
         </>
       )}
     </Container>
