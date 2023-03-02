@@ -26,16 +26,17 @@ const Characters: FC = () => {
     const characters = await getCharacters();
     setCharacterList(characters);
     console.log(characterList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const syncData = useCallback(async () => {
     await syncCharacters();
     setIsLoading(false);
     getCharactersList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRemoveCharacter = useCallback(async (id: string) => {
-    console.log("entramos en remove");
     setIsLoading(true);
     await removeCharacter(id);
     setCharacterList((prev) => prev.filter((item) => item.id !== id));
@@ -52,11 +53,10 @@ const Characters: FC = () => {
     },
     [navigate]
   );
-
-  
   const handleNextPage = () => {
     setPage(page + 1);
   };
+
   const handlePrevPage = () => {
     setPage(page - 1);
   };
@@ -64,8 +64,6 @@ const Characters: FC = () => {
   if (isloading) {
     return <h1>LOADING</h1>;
   }
-
-
   return (
     <App>
       <SyncButton onClick={syncData}>Sync Characters</SyncButton>
@@ -100,4 +98,5 @@ const Characters: FC = () => {
     </App>
   );
 };
+
 export default memo(Characters);

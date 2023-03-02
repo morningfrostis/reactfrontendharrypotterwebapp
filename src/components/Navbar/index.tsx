@@ -11,7 +11,6 @@ import { GlobalStyle } from "../../styles/theme";
 
 const Navbar: FC<Props> = ({ type = "list" }) => {
   const navigate = useNavigate();
-
   // const handleSignOut = async () => {
   //     try {
   //         console.log(auth)
@@ -42,7 +41,6 @@ const Navbar: FC<Props> = ({ type = "list" }) => {
         <Tittle to="/landing">
           <Logoimg></Logoimg>
         </Tittle>
-        {/* <SignoutButton onClick={handleSignOut}>LogOut</SignoutButton> */}
       </CustomNavbar>
     </>
   );

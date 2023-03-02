@@ -3,12 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/Card";
 import { Character } from "../../models/character";
 // import Navbar from "../../components/Navbar";
-import {  getCharacters, removeCharacter } from "../../services/api/characters";
+import { getCharacters, removeCharacter } from "../../services/api/characters";
 // import Navbar from "../../components/Navbar";
 import { App, ButtonBack, ButtonContainer, Container } from "./styles";
 
 const CharactersDetail: FC = () => {
   const [characterList, setCharacterList] = useState<Character[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isloading, setIsLoading] = useState<boolean>(false);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
