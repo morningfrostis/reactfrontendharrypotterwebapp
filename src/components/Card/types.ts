@@ -3,11 +3,12 @@ import { ReactNode } from "react";
 export type Props = {
   // type?: 'list' | 'details'
   onClick?: (id: string) => void;
-  onClick2?:(id: string) => void;
+  onClick2?: (id: string) => void;
   // children?: ReactNode
   name?: string;
+  email?: string;
   house?: string;
-  image: string;
+  image?: string;
   id?: string;
   species?: string;
   wizard?: string;
@@ -15,7 +16,12 @@ export type Props = {
   wand?: string;
   patronus?: string;
   actor?: string;
-  type?: "listcharacters" | "liststudents" | "liststaff" | "details";
+  type?:
+    | "listcharacters"
+    | "liststudents"
+    | "liststaff"
+    | "details"
+    | "profile";
   spellId?: string;
   spellsName?: string;
   description?: string;

@@ -14,6 +14,7 @@ import StaffDetails from "../../views/Staff Details";
 import Navbar from "../../components/Navbar";
 import { getToken } from "../../services/storage";
 import { useLocation, Navigate } from "react-router-dom";
+import Profile from "../../views/Profile";
 
 const Router: FC = () => {
   const ProtectedRoutes = ({ children }: { children: JSX.Element }) => {
@@ -153,6 +154,17 @@ const Router: FC = () => {
               <>
                 <Navbar />
                 <StaffDetails />
+              </>
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoutes>
+              <>
+                <Navbar />
+                <Profile />
               </>
             </ProtectedRoutes>
           }

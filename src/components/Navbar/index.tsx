@@ -2,7 +2,12 @@
 import { FC, useCallback } from "react";
 import { Props } from "./types";
 import { useNavigate } from "react-router-dom";
-import { Logoimg, SignoutButton, Tittle } from "../../components/Navbar/styles";
+import {
+  Logoimg,
+  ProfileButton,
+  SignoutButton,
+  Tittle,
+} from "../../components/Navbar/styles";
 import { CustomNavbar } from "./styles";
 import { GlobalStyle } from "../../styles/theme";
 
@@ -21,6 +26,7 @@ const Navbar: FC<Props> = ({ type = "list" }) => {
         <Tittle to="/landing">
           <Logoimg></Logoimg>
         </Tittle>
+        <ProfileButton to="/profile">Profile</ProfileButton>
         <SignoutButton onClick={handleSignOut}>LogOut</SignoutButton>
       </CustomNavbar>
     </>
