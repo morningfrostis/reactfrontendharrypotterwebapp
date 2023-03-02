@@ -18,7 +18,6 @@ export const getSpells = async () => {
       },
     });
     const data: Spell[] = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log((error as Error).message);

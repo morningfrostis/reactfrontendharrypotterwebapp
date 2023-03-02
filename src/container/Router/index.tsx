@@ -12,23 +12,151 @@ import Landing from "../../views/LandingPage";
 import StudentsDetails from "../../views/StudentsDetails";
 import StaffDetails from "../../views/Staff Details";
 import Navbar from "../../components/Navbar";
+import { getToken } from "../../services/storage";
+import { useLocation, Navigate } from "react-router-dom";
 
 const Router: FC = () => {
+  const ProtectedRoutes = ({ children }: { children: JSX.Element }) => {
+    const token = getToken();
+    const location = useLocation();
+
+    if (!token || token === null) {
+      return <Navigate to="/" replace state={{ from: location }} />;
+    }
+    return children;
+  };
+
+  const HandleSession = ({ children }: { children: JSX.Element }) => {
+    const token = getToken();
+    const location = useLocation();
+
+    if (token) {
+      if (
+        location.pathname === "/signup" ||
+        location.pathname === "/login" ||
+        location.pathname === "/"
+      ) {
+        return <Navigate to="/landing" replace state={{ from: location }} />;
+      }
+    }
+    return children;
+  };
+
   return (
     <BrowserRouter>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Welcome />}></Route>
-        <Route path="/login" element={<LoginForm />}></Route>
-        <Route path="/signup" element={<SignupForm />}></Route>
-        <Route path="/landing" element={<Landing />}></Route>
-        <Route path="/characters" element={<Characters />}></Route>
-        <Route path="/students" element={<Students />}></Route>
-        <Route path="/staff" element={<Staff />}></Route>
-        <Route path="/spells" element={<Spells />}></Route>
-        <Route path="/character/:id" element={<CharacterDetails />} />
-        <Route path="/student/:id" element={<StudentsDetails />} />
-        <Route path="/staff/:id" element={<StaffDetails />} />
+        <Route
+          path="/"
+          element={
+            <HandleSession>
+              <Welcome />
+            </HandleSession>
+          }
+        ></Route>
+        <Route
+          path="/login"
+          element={
+            <HandleSession>
+              <LoginForm />
+            </HandleSession>
+          }
+        ></Route>
+        <Route
+          path="/signup"
+          element={
+            <HandleSession>
+              <SignupForm />
+            </HandleSession>
+          }
+        ></Route>
+        <Route
+          path="/landing"
+          element={
+            <ProtectedRoutes>
+              <>
+                <Navbar />
+                <Landing />
+              </>
+            </ProtectedRoutes>
+          }
+        ></Route>
+        <Route
+          path="/characters"
+          element={
+            <ProtectedRoutes>
+              <>
+                <Navbar />
+                <Characters />
+              </>
+            </ProtectedRoutes>
+          }
+        ></Route>
+        <Route
+          path="/students"
+          element={
+            <ProtectedRoutes>
+              <>
+                <Navbar />
+                <Students />
+              </>
+            </ProtectedRoutes>
+          }
+        ></Route>
+        <Route
+          path="/staff"
+          element={
+            <ProtectedRoutes>
+              <>
+                <Navbar />
+                <Staff />
+              </>
+            </ProtectedRoutes>
+          }
+        ></Route>
+        <Route
+          path="/spells"
+          element={
+            <ProtectedRoutes>
+              <>
+                <Navbar />
+                <Spells />
+              </>
+            </ProtectedRoutes>
+          }
+        ></Route>
+        <Route
+          path="/character/:id"
+          element={
+            <ProtectedRoutes>
+              <>
+                <Navbar />
+                <CharacterDetails />
+              </>
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/student/:id"
+          element={
+            <ProtectedRoutes>
+              <>
+                <Navbar />
+                <StudentsDetails />
+              </>
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/staff/:id"
+          element={
+            <ProtectedRoutes>
+              <>
+                <Navbar />
+                <StaffDetails />
+              </>
+            </ProtectedRoutes>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

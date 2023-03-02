@@ -10,8 +10,10 @@ export const login = async (values: { email: string; password: string }) => {
       headers: {
         "Content-Type": "application/json",
       },
+
       body: JSON.stringify({ email: values.email, password: values.password }),
     });
+
     if (response.ok) {
       const token = await response.json();
       setToken(token);

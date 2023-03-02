@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
@@ -12,18 +13,15 @@ const Edit: FC = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-
   const getSpellsList = useCallback(async () => {
     const spells = await getSpells();
     setSpellsList(spells);
   }, []);
- 
+
   useEffect(() => {
-    console.log("entramos");
     getSpellsList();
   }, [getSpellsList]);
 
- 
   const { id } = params;
   const filteredItems = spellsList.filter((item) => item.spellId === id);
 

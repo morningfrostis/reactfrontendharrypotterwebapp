@@ -26,7 +26,6 @@ const Spells: FC = () => {
   const getSpellsList = useCallback(async () => {
     const spells = await getSpells();
     setSpellsList(spells);
-    console.log(spellsList);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

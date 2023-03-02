@@ -1,5 +1,9 @@
 import { getToken } from "../storage";
-import { Character, CharacterInput, normalizeCharacter } from "../../models/character";
+import {
+  Character,
+  CharacterInput,
+  normalizeCharacter,
+} from "../../models/character";
 
 export type CharacterResponse = {
   id: string;
@@ -52,7 +56,9 @@ export const syncCharacters = async () => {
   }
 };
 
-export const getCharacterById = async (id: string): Promise<Character | null> => {
+export const getCharacterById = async (
+  id: string
+): Promise<Character | null> => {
   try {
     const token = getToken();
     const response = await fetch(`${BASE_API_URL}/${id}`, {
@@ -60,11 +66,11 @@ export const getCharacterById = async (id: string): Promise<Character | null> =>
       headers: { Authorization: `Bearer ${token}` },
     });
     const data: CharacterResponse = await response.json();
-    return normalizeCharacter(data)
+    return normalizeCharacter(data);
   } catch (error) {
     console.log((error as Error).message);
   }
-  return null
+  return null;
 };
 
 export const removeCharacter = async (id: string) => {
@@ -77,7 +83,6 @@ export const removeCharacter = async (id: string) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(fetch);
   } catch (error) {
     console.log((error as Error).message);
   }
@@ -92,7 +97,7 @@ export const createCharacter = async (data: Omit<Character, "id">) => {
       body: JSON.stringify(data),
     });
     const character: CharacterResponse = await response.json();
-    return normalizeCharacter(character)
+    return normalizeCharacter(character);
   } catch (error) {
     console.log((error as Error).message);
   }
@@ -101,13 +106,13 @@ export const createCharacter = async (data: Omit<Character, "id">) => {
 export const updateCharacter = async (id: string, data: CharacterInput) => {
   try {
     const token = getToken();
-   const response = await fetch(`${BASE_API_URL}/${id}`, {
+    const response = await fetch(`${BASE_API_URL}/${id}`, {
       method: "PUT",
       headers: { Authorization: `Bearer ${token}` },
       body: JSON.stringify(data),
     });
     const character: CharacterResponse = await response.json();
-    return normalizeCharacter(character)
+    return normalizeCharacter(character);
   } catch (error) {
     console.log((error as Error).message);
   }

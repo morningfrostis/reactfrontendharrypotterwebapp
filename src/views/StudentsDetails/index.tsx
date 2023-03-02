@@ -22,26 +22,22 @@ const StudentsDetail: FC = () => {
   // }, []);
 
   useEffect(() => {
-    console.log("entramos");
     getStudentsList();
   }, [getStudentsList]);
 
   // useEffect(() => {
-  //   console.log("entramos");
   //   getStudentsList();
   // }, [getStudentsList]);
 
   const goToBack = useCallback(() => {
-    navigate('/students', { replace: true });
-  },
-  [navigate]
-);
+    navigate("/students", { replace: true });
+  }, [navigate]);
   const { id } = params;
   const filteredItems = studentList.filter((item) => item.id === id);
   return (
     <App>
-       <ButtonContainer>
-      <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
+      <ButtonContainer>
+        <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
       </ButtonContainer>
       <Container>
         {filteredItems.map((character, index) => (

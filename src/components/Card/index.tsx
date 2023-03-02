@@ -19,7 +19,6 @@ const Card: FC<Props> = ({
   wand,
   patronus,
   actor,
-  // type = "list",
   type,
 }) => {
   return (
@@ -33,9 +32,7 @@ const Card: FC<Props> = ({
           <Description>
             Hogwarts house:&nbsp;&nbsp;<DescriptionApi>{house}</DescriptionApi>
           </Description>
-          <DetailsButton to={`/character/${id}`}>
-            View character
-          </DetailsButton>
+          <DetailsButton to={`/character/${id}`}>View character</DetailsButton>
         </>
       )}
       {type === "liststudents" && (
@@ -46,9 +43,7 @@ const Card: FC<Props> = ({
           <Description>
             Hogwarts house:&nbsp;&nbsp;<DescriptionApi>{house}</DescriptionApi>
           </Description>
-          <DetailsButton to={`/student/${id}`}>
-            View student
-          </DetailsButton>
+          <DetailsButton to={`/student/${id}`}>View student</DetailsButton>
         </>
       )}
       {type === "liststaff" && (
