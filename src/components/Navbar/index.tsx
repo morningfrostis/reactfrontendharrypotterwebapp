@@ -14,7 +14,7 @@ const Navbar: FC<Props> = ({ type = "list" }) => {
   const navigate = useNavigate();
 
   const goToBack = useCallback(() => {
-    navigate("/home");
+    navigate("/characters");
   }, [navigate]);
 
   // const handleSignOut = async () => {
@@ -44,8 +44,7 @@ const Navbar: FC<Props> = ({ type = "list" }) => {
     <>
       <GlobalStyle />
       <CustomNavbar>
-
-        <Tittle to={'/landing'}>
+        <Tittle to="/landing">
           <Logoimg></Logoimg>
         </Tittle>
         {type === "details" && <BackButton onClick={goToBack}>🔙</BackButton>}

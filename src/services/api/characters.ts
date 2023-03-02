@@ -73,8 +73,12 @@ export const removeCharacter = async (id: string) => {
     const token = getToken();
     await fetch(`${BASE_API_URL}/${id}`, {
       method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
+    console.log(fetch);
   } catch (error) {
     console.log((error as Error).message);
   }

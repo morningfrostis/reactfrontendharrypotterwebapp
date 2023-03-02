@@ -5,11 +5,9 @@ import Card from "../../components/Card";
 import { App, Container, SyncButton } from "./styles";
 import {
   getCharacters,
-  removeCharacter,
   syncCharacters,
 } from "../../services/api/characters";
-import { Character } from "../../models/character";
-// import  { CharacterInput } from "../../models/character";
+import { App, Container, SyncButton } from "./styles";
 
 const Characters: FC = () => {
   // const {isloading, handleRemoveCharacter, handleSyncCharacters, characters, goToDetails} = useLogic()
@@ -21,20 +19,36 @@ const Characters: FC = () => {
   const [characters, setCharacter] = useState<Character[]>([]);
   const [isloading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleGetCharactersList = useCallback(async () => {
     setIsLoading(true);
     const characters = await getCharacters();
-    setCharacter(characters);
+    setCharacterList(characters);
+    console.log(characterList);
+  }, []);
+
+  const syncData = useCallback(async () => {
+    await syncCharacters();
+    setLoading(false);
+    getCharactersList();
+  }, []);
+
+  const handleRemoveCharacter = useCallback(async (id: string) => {
+    console.log("entramos en remove");
+
+    setIsLoading(true);
+    await removeCharacter(id);
+    setCharacterList((prev) => prev.filter((item) => item.id !== id));
     setIsLoading(false);
   }, []);
 
   const handleRemoveCharacter = useCallback(async (id: string) => {
-    console.log('entramos en remove')
+    console.log("entramos en remove");
 
     setIsLoading(true);
     await removeCharacter(id);
-    setCharacter((prev) => prev.filter((item) => item.id !== id));
+    setCharacterList((prev) => prev.filter((item) => item.id !== id));
     setIsLoading(false);
   }, []);
 
@@ -52,24 +66,48 @@ const Characters: FC = () => {
     [navigate]
   );
 
+  if (loading) {
+    return <h1>LOADING</h1>;
+  }
+
   return (
     <App>
-      <SyncButton onClick={handleSyncCharacters}>Sync Characters</SyncButton>
-
+      <Navbar />
+      <SyncButton onClick={syncData}>Sync Characters</SyncButton>
       <Container>
-        {characters.map((character, index) => (
+        {characterList.map((character, index) => (
           <Card
             key={index}
-            image={character.image}
+            image={
+              character.image !== ""
+                ? character.image
+                : (() => {
+                    switch (character.house) {
+                      case "Gryffindor":
+                        return "https://64.media.tumblr.com/9e0ee5d829bcc71745f02d366adc1479/tumblr_o8s13618fJ1s42pu5o2_1280.jpg";
+                      case "Slytherin":
+                        return "https://64.media.tumblr.com/7dbc0f5abd753c81f66c079e573e765f/tumblr_o8s13618fJ1s42pu5o4_1280.jpg";
+                      case "Ravenclaw":
+                        return "https://64.media.tumblr.com/43e8caab3d582a1dfd0c15fa2b9388c8/tumblr_o8s13618fJ1s42pu5o1_1280.jpg";
+                      case "Hufflepuff":
+                        return "https://64.media.tumblr.com/b56e9126b9da847babbf877cb260a08c/tumblr_o8s13618fJ1s42pu5o3_1280.jpg";
+                      default:
+                        return "https://i.pinimg.com/564x/07/a4/99/07a4993c3feeb70605ee13c7a2fc1041.jpg";
+                    }
+                  })()
+            }
             name={character.name}
             house={character.house}
             onClick={goToDetails}
             id={character.id}
             type="listcharacters"
-            onClick2={() => handleRemoveCharacter(character.id)}
           />
         ))}
       </Container>
+      <ButtonContainer>
+        <ButtonPreview onClick={handlePrevPage}>Previous</ButtonPreview>
+        <ButtonNext onClick={handleNextPage}>Next</ButtonNext>
+      </ButtonContainer>
     </App>
   );
 };

@@ -39,4 +39,10 @@ export const WelcomeButton = styled(Link)`
   font-family: Oswald;
   text-decoration: none;
   margin: 0 10px;
+  /* Efecto de iluminación */
+  &:hover {
+    box-shadow: 0 0 10px 10px #f2a65a;
+    transform: scale(1.05);
+    transition: box-shadow 0.5s ease, transform 0.5s ease;
+  }
 `;
