@@ -25,6 +25,7 @@ const StaffDetails: FC = () => {
   [navigate]
 );
 
+
   const { id } = params;
   const filteredItems = staffList.filter((item) => item.id === id);
   return (

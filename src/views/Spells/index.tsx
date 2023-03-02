@@ -1,35 +1,52 @@
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../components/Navbar";
 import SpellCard from "../../components/Spell Card";
-import { getSpells, Spell, syncSpells } from "../../services/api/spells";
-// import Navbar from "../../components/Navbar";
-import { App, Container, SyncButton } from "./styles";
+import {
+  getSpells,
+  removeSpells,
+  Spell,
+  syncSpells,
+} from "../../services/api/spells";
+import {
+  App,
+  ButtonContainer,
+  ButtonNext,
+  ButtonPreview,
+  Container,
+  SyncButton,
+} from "./styles";
 
 const Spells: FC = () => {
   // const [data, setData] = useState<Character[]>([]);
   const [spellsList, setSpellsList] = useState<Spell[]>([]);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false)
-
+  const [loading, setIsLoading] = useState<boolean>(false);
+  const [page, setPage] = useState(1);
 
   const getSpellsList = useCallback(async () => {
     const spells = await getSpells();
     setSpellsList(spells);
     console.log(spellsList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
- 
+
   const syncData = useCallback(async () => {
     await syncSpells();
-    setLoading(false)
+    setIsLoading(false);
     getSpellsList();
- }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
+  const handleRemoveSpell = useCallback(async (id: string) => {
+    setIsLoading(true);
+    await removeSpells(id);
+    setSpellsList((prev) => prev.filter((item) => item.id !== id));
+    setIsLoading(false);
+  }, []);
 
-  // useEffect(() => {
-  //   console.log("entramos");
-  //   getSpellsList();
-  // }, [getSpellsList]);
+  useEffect(() => {
+    getSpellsList();
+  }, [getSpellsList]);
 
   const goToEdit = useCallback(
     (spellId: string) => {
@@ -38,26 +55,46 @@ const Spells: FC = () => {
     [navigate]
   );
 
-  if(loading) {
-    return(
-      <h1>LOADING</h1>
-    )
+  const handleNextPage = () => {
+    setPage(page + 1);
+  };
+
+  const handlePrevPage = () => {
+    setPage(page - 1);
+  };
+
+  if (loading) {
+    return <h1>LOADING</h1>;
   }
 
   return (
     <App>
-      <SyncButton onClick={syncData}>Sync Spells</SyncButton>  
+      <SyncButton onClick={syncData}>Sync Spells</SyncButton>
+      <ButtonContainer>
+        <ButtonPreview onClick={handlePrevPage}>Previous</ButtonPreview>
+        <ButtonNext onClick={handleNextPage}>Next</ButtonNext>
+      </ButtonContainer>
       <Container>
-        {spellsList.map((spell, index) => (
-          <SpellCard
-            key={index}
-            spellId={spell.spellId}
-            name={spell.name}
-            description={spell.description}
-            onClick={goToEdit}
-          />
-        ))}
+        {spellsList
+          .slice((page - 1) * 8, (page - 1) * 8 + 8)
+          .map((spell, index) => (
+            <div key={index}>
+              <SpellCard
+                spellId={spell.spellId}
+                name={spell.name}
+                description={spell.description}
+                onClick={goToEdit}
+              />
+              <button onClick={() => handleRemoveSpell(spell.id)}>
+                DELETE
+              </button>
+            </div>
+          ))}
       </Container>
+      <ButtonContainer>
+        <ButtonPreview onClick={handlePrevPage}>Previous</ButtonPreview>
+        <ButtonNext onClick={handleNextPage}>Next</ButtonNext>
+      </ButtonContainer>
     </App>
   );
 };

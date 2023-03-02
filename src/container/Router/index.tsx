@@ -8,7 +8,6 @@ import CharacterDetails from "../../views/CharactersDetails";
 import Students from "../../views/Students";
 import Staff from "../../views/Staff";
 import Spells from "../../views/Spells";
-import Edit from "../../views/Edit";
 import Landing from "../../views/LandingPage";
 import StudentsDetails from "../../views/StudentsDetails";
 import StaffDetails from "../../views/Staff Details";
@@ -17,7 +16,7 @@ import Navbar from "../../components/Navbar";
 const Router: FC = () => {
   return (
     <BrowserRouter>
-    <Navbar/>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Welcome />}></Route>
         <Route path="/login" element={<LoginForm />}></Route>

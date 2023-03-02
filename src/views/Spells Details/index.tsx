@@ -7,6 +7,7 @@ import { App, Container } from "./styles";
 
 const SpellsDetails: FC = () => {
   const [spellList, setSpellList] = useState<Spell[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const navigate = useNavigate();
   const params = useParams();
 
@@ -27,12 +28,12 @@ const SpellsDetails: FC = () => {
       <Navbar type="details" />
       <Container>
         {filteredItems.map((spell, index) => (
-         <SpellCard
-         key={index}
-         spellId={spell.spellId}
-         name={spell.name}
-         description={spell.description}
-       />
+          <SpellCard
+            key={index}
+            spellId={spell.spellId}
+            name={spell.name}
+            description={spell.description}
+          />
         ))}
       </Container>
     </App>
