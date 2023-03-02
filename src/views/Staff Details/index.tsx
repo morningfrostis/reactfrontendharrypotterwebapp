@@ -30,7 +30,6 @@ const StaffDetails: FC = () => {
   const filteredItems = staffList.filter((item) => item.id === id);
   return (
     <App>
-      <Navbar type="details" />
       <Container>
         {filteredItems.map((character, index) => (
           <Card

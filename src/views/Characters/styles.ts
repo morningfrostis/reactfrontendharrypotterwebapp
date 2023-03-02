@@ -26,3 +26,4 @@ export const SyncButton = styled.button`
     cursor:pointer;
 `
 
+

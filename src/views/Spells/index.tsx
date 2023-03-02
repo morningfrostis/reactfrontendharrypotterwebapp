@@ -46,7 +46,6 @@ const Spells: FC = () => {
 
   return (
     <App>
-      <Navbar />
       <SyncButton onClick={syncData}>Sync Spells</SyncButton>  
       <Container>
         {spellsList.map((spell, index) => (

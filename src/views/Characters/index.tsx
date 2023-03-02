@@ -1,79 +1,72 @@
-import { FC, memo, useCallback, useEffect, useState } from "react";
+import { FC, memo, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
-import Navbar from "../../components/Navbar";
+// import useLogic from "./logic";
+import { App, Container, SyncButton } from "./styles";
 import {
-  Character,
   getCharacters,
+  removeCharacter,
   syncCharacters,
 } from "../../services/api/characters";
-import { App, Container, SyncButton } from "./styles";
+import { Character } from "../../models/character";
+// import  { CharacterInput } from "../../models/character";
 
 const Characters: FC = () => {
-  const [characterList, setCharacterList] = useState<Character[]>([]);
+  // const {isloading, handleRemoveCharacter, handleSyncCharacters, characters, goToDetails} = useLogic()
+
+  // if (isloading) {
+  //   return <h1>LOADING</h1>;
+  // }
+
+  const [characters, setCharacter] = useState<Character[]>([]);
+  const [isloading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
-  const getCharactersList = useCallback(async () => {
+  const handleGetCharactersList = useCallback(async () => {
+    setIsLoading(true);
     const characters = await getCharacters();
-    setCharacterList(characters);
-    console.log(characterList);
+    setCharacter(characters);
+    setIsLoading(false);
   }, []);
 
-  const syncData = useCallback(async () => {
+  const handleRemoveCharacter = useCallback(async (id: string) => {
+    console.log('entramos en remove')
+
+    setIsLoading(true);
+    await removeCharacter(id);
+    setCharacter((prev) => prev.filter((item) => item.id !== id));
+    setIsLoading(false);
+  }, []);
+
+  const handleSyncCharacters = useCallback(async () => {
+    setIsLoading(true);
     await syncCharacters();
-    setLoading(false);
-    getCharactersList();
-  }, []);
-
-  // useEffect(() => {
-  //   console.log("entramos");
-  //   getCharactersList();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+    await handleGetCharactersList();
+    setIsLoading(false);
+  }, [handleGetCharactersList]);
 
   const goToDetails = useCallback(
     (id: string) => {
-      navigate(`/characterdetails/${id}`, { replace: true });
+      navigate(`/character/${id}`, { replace: true });
     },
     [navigate]
   );
 
-  if (loading) {
-    return <h1>LOADING</h1>;
-  }
-
   return (
     <App>
-      <Navbar />
-      <SyncButton onClick={syncData}>Sync Characters</SyncButton>
+      <SyncButton onClick={handleSyncCharacters}>Sync Characters</SyncButton>
+
       <Container>
-        {characterList.map((character, index) => (
+        {characters.map((character, index) => (
           <Card
             key={index}
-            image={
-              character.image !== ""
-                ? character.image
-                : (() => {
-                    switch (character.house) {
-                      case "Gryffindor":
-                        return "https://64.media.tumblr.com/9e0ee5d829bcc71745f02d366adc1479/tumblr_o8s13618fJ1s42pu5o2_1280.jpg";
-                      case "Slytherin":
-                        return "https://64.media.tumblr.com/7dbc0f5abd753c81f66c079e573e765f/tumblr_o8s13618fJ1s42pu5o4_1280.jpg";
-                      case "Ravenclaw":
-                        return "https://64.media.tumblr.com/43e8caab3d582a1dfd0c15fa2b9388c8/tumblr_o8s13618fJ1s42pu5o1_1280.jpg";
-                      case "Hufflepuff":
-                        return "https://64.media.tumblr.com/b56e9126b9da847babbf877cb260a08c/tumblr_o8s13618fJ1s42pu5o3_1280.jpg";
-                      default:
-                        return "https://i.pinimg.com/564x/07/a4/99/07a4993c3feeb70605ee13c7a2fc1041.jpg";
-                    }
-                  })()
-            }
+            image={character.image}
             name={character.name}
             house={character.house}
             onClick={goToDetails}
             id={character.id}
             type="listcharacters"
+            onClick2={() => handleRemoveCharacter(character.id)}
           />
         ))}
       </Container>

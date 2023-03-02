@@ -1,8 +1,9 @@
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/Card";
-import Navbar from "../../components/Navbar";
-import { Character, getCharacters } from "../../services/api/characters";
+import { Character } from "../../models/character";
+// import Navbar from "../../components/Navbar";
+import {  getCharacters } from "../../services/api/characters";
 // import Navbar from "../../components/Navbar";
 import { App, Container } from "./styles";
 
@@ -40,7 +41,6 @@ const CharactersDetail: FC = () => {
   const filteredItems = characterList.filter((item) => item.id === id);
   return (
     <App>
-      <Navbar type="details" />
       <Container>
         {filteredItems.map((character, index) => (
           <Card

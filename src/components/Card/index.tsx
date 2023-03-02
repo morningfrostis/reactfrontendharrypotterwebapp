@@ -31,21 +31,21 @@ return (
       <>
         <Description>Name:&nbsp;&nbsp;<DescriptionApi>{name}</DescriptionApi></Description>
         <Description>Hogwarts house:&nbsp;&nbsp;<DescriptionApi>{house}</DescriptionApi></Description>
-        <DetailsButton to={`/characterdetails/${id}`}>View character</DetailsButton>
+        <DetailsButton to={`/character/${id}`}>View character</DetailsButton>
       </>
     )}
     {type === "liststudents" && (
       <>
         <Description>Name:&nbsp;&nbsp;<DescriptionApi>{name}</DescriptionApi></Description>
         <Description>Hogwarts house:&nbsp;&nbsp;<DescriptionApi>{house}</DescriptionApi></Description>
-        <DetailsButton to={`/studentsdetails/${id}`}>View student</DetailsButton>
+        <DetailsButton to={`/student/${id}`}>View student</DetailsButton>
       </>
     )}
     {type === "liststaff" && (
       <>
         <Description>Name:&nbsp;&nbsp;<DescriptionApi>{name}</DescriptionApi></Description>
         <Description>Hogwarts house:&nbsp;&nbsp;<DescriptionApi>{house}</DescriptionApi></Description>
-        <DetailsButton to={`/staffdetails/${id}`}>View staff</DetailsButton>
+        <DetailsButton to={`/staff/${id}`}>View staff</DetailsButton>
       </>
     )}
     {type === "details" && (

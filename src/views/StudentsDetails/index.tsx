@@ -40,7 +40,6 @@ const StudentsDetail: FC = () => {
   const filteredItems = studentList.filter((item) => item.id === id);
   return (
     <App>
-      <Navbar type="details" />
       <Container>
         {filteredItems.map((character, index) => (
           <Card

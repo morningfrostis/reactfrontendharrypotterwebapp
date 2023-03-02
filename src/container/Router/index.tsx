@@ -12,10 +12,12 @@ import Edit from "../../views/Edit";
 import Landing from "../../views/LandingPage";
 import StudentsDetails from "../../views/StudentsDetails";
 import StaffDetails from "../../views/Staff Details";
+import Navbar from "../../components/Navbar";
 
 const Router: FC = () => {
   return (
     <BrowserRouter>
+    <Navbar/>
       <Routes>
         <Route path="/" element={<Welcome />}></Route>
         <Route path="/login" element={<LoginForm />}></Route>
@@ -25,10 +27,9 @@ const Router: FC = () => {
         <Route path="/students" element={<Students />}></Route>
         <Route path="/staff" element={<Staff />}></Route>
         <Route path="/spells" element={<Spells />}></Route>
-        <Route path="/characterdetails/:id" element={<CharacterDetails />} />
-        <Route path="/studentsdetails/:id" element={<StudentsDetails />} />
-        <Route path="/staffdetails/:id" element={<StaffDetails />} />
-        <Route path="/edit/:id" element={<Edit />} />
+        <Route path="/character/:id" element={<CharacterDetails />} />
+        <Route path="/student/:id" element={<StudentsDetails />} />
+        <Route path="/staff/:id" element={<StaffDetails />} />
       </Routes>
     </BrowserRouter>
   );

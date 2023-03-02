@@ -33,14 +33,13 @@ const Students: FC = () => {
 
   const goToDetails = useCallback(
     (studentsId: string) => {
-      navigate(`/studentsdetails/${studentsId}`, { replace: true });
+      navigate(`/student/${studentsId}`, { replace: true });
     },
     [navigate]
   );
 
   return (
     <App>
-      <Navbar />
       <SyncButton onClick={syncData}>Sync Students</SyncButton>
       <Container>
         {studentsList.map((student, index) => (

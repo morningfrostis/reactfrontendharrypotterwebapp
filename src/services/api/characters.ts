@@ -1,6 +1,7 @@
 import { getToken } from "../storage";
+import { Character, CharacterInput, normalizeCharacter } from "../../models/character";
 
-export type Character = {
+export type CharacterResponse = {
   id: string;
   characterId: string;
   name: string;
@@ -8,10 +9,16 @@ export type Character = {
   house: string;
   wizard: string;
   ancestry: string;
-  wand: JSON;
+  wand: {
+    wood: string;
+    core: string;
+    length: string;
+  };
   patronus: string;
   actor: string;
   image: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 const BASE_API_URL = "http://localhost:8000/characters";
@@ -24,9 +31,9 @@ export const getCharacters = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const data: Character[] = await response.json();
+    const data: CharacterResponse[] = await response.json();
     console.log(data);
-    return data;
+    return data.map(normalizeCharacter);
   } catch (error) {
     console.log((error as Error).message);
   }
@@ -46,6 +53,21 @@ export const syncCharacters = async () => {
   }
 };
 
+export const getCharacterById = async (id: string): Promise<Character | null> => {
+  try {
+    const token = getToken();
+    const response = await fetch(`${BASE_API_URL}/${id}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data: CharacterResponse = await response.json();
+    return normalizeCharacter(data)
+  } catch (error) {
+    console.log((error as Error).message);
+  }
+  return null
+};
+
 export const removeCharacter = async (id: string) => {
   try {
     const token = getToken();
@@ -61,24 +83,28 @@ export const removeCharacter = async (id: string) => {
 export const createCharacter = async (data: Omit<Character, "id">) => {
   try {
     const token = getToken();
-    await fetch(BASE_API_URL, {
+    const response = await fetch(BASE_API_URL, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: JSON.stringify(data),
     });
+    const character: CharacterResponse = await response.json();
+    return normalizeCharacter(character)
   } catch (error) {
     console.log((error as Error).message);
   }
 };
 
-export const updateCharacter = async (id: string, data: Partial<Character>) => {
+export const updateCharacter = async (id: string, data: CharacterInput) => {
   try {
     const token = getToken();
-    await fetch(`${BASE_API_URL}/${id}`, {
+   const response = await fetch(`${BASE_API_URL}/${id}`, {
       method: "PUT",
       headers: { Authorization: `Bearer ${token}` },
       body: JSON.stringify(data),
     });
+    const character: CharacterResponse = await response.json();
+    return normalizeCharacter(character)
   } catch (error) {
     console.log((error as Error).message);
   }

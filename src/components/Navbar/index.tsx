@@ -45,7 +45,7 @@ const Navbar: FC<Props> = ({ type = "list" }) => {
       <GlobalStyle />
       <CustomNavbar>
 
-        <Tittle>
+        <Tittle to={'/landing'}>
           <Logoimg></Logoimg>
         </Tittle>
         {type === "details" && <BackButton onClick={goToBack}>🔙</BackButton>}

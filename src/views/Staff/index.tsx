@@ -31,7 +31,7 @@ const Staffs: FC = () => {
 
   const goToDetails = useCallback(
     (staffId: string) => {
-      navigate(`/staffdetails/${staffId}`, { replace: true });
+      navigate(`/staff/${staffId}`, { replace: true });
     },
     [navigate]
   );
@@ -44,7 +44,6 @@ const Staffs: FC = () => {
 
   return (
     <App>
-      <Navbar />
       <SyncButton onClick={syncData}>Sync Staff</SyncButton>  
       <Container>
         {staffList.map((staff, index) => (
