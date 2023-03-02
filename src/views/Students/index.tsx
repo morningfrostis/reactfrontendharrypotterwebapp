@@ -1,7 +1,6 @@
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
-import Navbar from "../../components/Navbar";
 import {
   getStudents,
   Student,
@@ -26,10 +25,9 @@ const Students: FC = () => {
     getStudentsList();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("entramos");
-  //   getStudentsList();
-  // }, [getStudentsList]);
+  useEffect(() => {
+    getStudentsList();
+  }, [getStudentsList]);
 
   const goToDetails = useCallback(
     (studentsId: string) => {

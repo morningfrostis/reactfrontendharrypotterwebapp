@@ -29,3 +29,20 @@ export const DeleteButton = styled.button`
   font-family: Oswald;
   margin-right: 20px;
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  justify-content: space-between;
+`;
+
+
+export const ButtonBack = styled.button`
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+`;
+
+
