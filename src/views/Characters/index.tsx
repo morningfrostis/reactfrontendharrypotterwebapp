@@ -25,7 +25,6 @@ const Characters: FC = () => {
   const getCharactersList = useCallback(async () => {
     const characters = await getCharacters();
     setCharacterList(characters);
-    console.log(characterList);
   }, []);
 
   const syncData = useCallback(async () => {

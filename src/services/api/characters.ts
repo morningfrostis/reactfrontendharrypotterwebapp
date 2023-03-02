@@ -32,7 +32,6 @@ export const getCharacters = async () => {
       },
     });
     const data: CharacterResponse[] = await response.json();
-    console.log(data);
     return data.map(normalizeCharacter);
   } catch (error) {
     console.log((error as Error).message);
