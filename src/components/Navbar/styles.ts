@@ -8,13 +8,6 @@ export const CustomNavbar = styled.nav`
   height: 90px;
   width: 100%;
 `;
-export const BackButton = styled.button`
-  width: 40px;
-  height: 30px;
-  border-radius: 5px;
-  margin: 10px;
-  cursor: pointer;
-`;
 
 export const SignoutButton = styled.button`
   width: 100px;

@@ -36,7 +36,7 @@ export const getStaff = async () => {
 export const syncStaff = async () => {
   try {
     const token = getToken();
-    await fetch("http://localhost:8000/syncStudents", {
+    await fetch("http://localhost:8000/syncStaff", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

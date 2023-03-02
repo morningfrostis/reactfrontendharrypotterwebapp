@@ -2,7 +2,6 @@ import { FC, useCallback } from "react";
 import { Props } from "./types";
 import { useNavigate } from "react-router-dom";
 import {
-  BackButton,
   Logoimg,
   SignoutButton,
   Tittle,
@@ -12,10 +11,6 @@ import { GlobalStyle } from "../../styles/theme";
 
 const Navbar: FC<Props> = ({ type = "list" }) => {
   const navigate = useNavigate();
-
-  const goToBack = useCallback(() => {
-    navigate("/characters");
-  }, [navigate]);
 
   // const handleSignOut = async () => {
   //     try {
@@ -47,7 +42,6 @@ const Navbar: FC<Props> = ({ type = "list" }) => {
         <Tittle to="/landing">
           <Logoimg></Logoimg>
         </Tittle>
-        {type === "details" && <BackButton onClick={goToBack}>🔙</BackButton>}
         {/* <SignoutButton onClick={handleSignOut}>LogOut</SignoutButton> */}
       </CustomNavbar>
     </>

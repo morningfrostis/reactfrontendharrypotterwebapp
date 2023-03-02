@@ -15,21 +15,25 @@ import {
   Container,
   SyncButton,
 } from "./styles";
+
 const Characters: FC = () => {
   const [characterList, setCharacterList] = useState<Character[]>([]);
   const navigate = useNavigate();
   const [isloading, setIsLoading] = useState<boolean>(false);
   const [page, setPage] = useState(1);
+
   const getCharactersList = useCallback(async () => {
     const characters = await getCharacters();
     setCharacterList(characters);
     console.log(characterList);
   }, []);
+
   const syncData = useCallback(async () => {
     await syncCharacters();
     setIsLoading(false);
     getCharactersList();
   }, []);
+
   const handleRemoveCharacter = useCallback(async (id: string) => {
     console.log("entramos en remove");
     setIsLoading(true);
@@ -37,32 +41,38 @@ const Characters: FC = () => {
     setCharacterList((prev) => prev.filter((item) => item.id !== id));
     setIsLoading(false);
   }, []);
-  // useEffect(() => {
-  //   console.log("entramos");
-  //   getCharactersList();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+
+  useEffect(() => {
+    getCharactersList();
+  }, [getCharactersList]);
+
   const goToDetails = useCallback(
     (id: string) => {
       navigate(`/characterdetails/${id}`, { replace: true });
     },
     [navigate]
   );
+
+  
   const handleNextPage = () => {
     setPage(page + 1);
   };
   const handlePrevPage = () => {
     setPage(page - 1);
   };
+
   if (isloading) {
     return <h1>LOADING</h1>;
   }
+
+
   return (
     <App>
       <SyncButton onClick={syncData}>Sync Characters</SyncButton>
       <ButtonContainer>
         <ButtonPreview onClick={handlePrevPage}>Previous</ButtonPreview>
         <ButtonNext onClick={handleNextPage}>Next</ButtonNext>
+
       </ButtonContainer>
       <Container>
         {characterList

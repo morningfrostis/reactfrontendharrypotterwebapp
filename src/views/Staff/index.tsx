@@ -24,10 +24,9 @@ const Staffs: FC = () => {
     getStaffList();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("entramos");
-  //   getStaffList();
-  // }, [getStaffList]);
+  useEffect(() => {
+    getStaffList();
+  }, [getStaffList]);
 
   const goToDetails = useCallback(
     (staffId: string) => {

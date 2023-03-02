@@ -5,7 +5,7 @@ import { Character } from "../../models/character";
 // import Navbar from "../../components/Navbar";
 import {  getCharacters, removeCharacter } from "../../services/api/characters";
 // import Navbar from "../../components/Navbar";
-import { App, Container } from "./styles";
+import { App, ButtonBack, ButtonContainer, Container } from "./styles";
 
 const CharactersDetail: FC = () => {
   const [characterList, setCharacterList] = useState<Character[]>([]);
@@ -39,6 +39,13 @@ const CharactersDetail: FC = () => {
     getCharactersList();
   }, [getCharactersList]);
 
+  const goToBack = useCallback(() => {
+    navigate('/characters', { replace: true });
+  },
+  [navigate]
+);
+
+
   // useEffect(() => {
   //   console.log("entramos");
   //   getStudentsList();
@@ -52,6 +59,9 @@ const CharactersDetail: FC = () => {
   const filteredItems = characterList.filter((item) => item.id === id);
   return (
     <App>
+        <ButtonContainer>
+      <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
+      </ButtonContainer>
       <Container>
         {filteredItems.map((character, index) => (
           <div key={index}>
