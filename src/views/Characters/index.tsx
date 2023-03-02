@@ -26,6 +26,7 @@ const Characters: FC = () => {
     const characters = await getCharacters();
     setCharacterList(characters);
     // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
 
   const syncData = useCallback(async () => {
