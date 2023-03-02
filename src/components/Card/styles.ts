@@ -17,6 +17,7 @@ export const Container = styled.div`
   box-shadow: 0 0 0 5px #740001;
   text-align: center;
   position: relative;
+  transition: all 0.3s ease-in-out;
   &:before {
     content: "Harry Potter character";
     font-family: "Oswald";
@@ -35,6 +36,16 @@ export const Container = styled.div`
     right: 0;
     margin: auto;
   }
+  /* Efecto de iluminación */
+  &:hover {
+    box-shadow: 0 0 10px 10px #2f73d8;
+    transform: scale(1.05);
+    transition: box-shadow 0.5s ease, transform 0.5s ease;
+  }
+  /* &:hover {
+    box-shadow: 0 0 0 5px #740001, 0 0 10px 5px #ffdd00, 0 0 20px 5px #ff8800,
+      0 0 30px 5px #ff4400, 0 0 40px 5px #ff0000;
+  } */
 `;
 
 export const Image = styled.img`
@@ -74,3 +85,30 @@ export const DetailsButton = styled(Link)`
   padding: 5px 5px;
   font-family: Oswald;
 `;
+
+export const EditButton = styled.button`
+  padding: 10px 20px;
+  font-size: large;
+  background-color: ${({ theme }) => theme.colors.DementorBlack};
+  /* color: ${({ theme }) => theme.colors.white}; */
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline;
+  padding: 5px 5px;
+  font-family: Oswald;
+`;
+
+// export const DeleteButton = styled.button`
+//   padding: 10px 20px;
+//   background-color: ${({ theme }) => theme.colors.DementorBlack};
+//   /* color: ${({ theme }) => theme.colors.white}; */
+//   color: white;
+//   font-size: large;
+//   border-radius: 5px;
+//   text-decoration: none;
+//   display: inline;
+//   padding: 5px 5px;
+//   font-family: Oswald;
+//   margin-right: 20px;
+// `;

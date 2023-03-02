@@ -5,14 +5,23 @@ import Navbar from "../../components/Navbar";
 import {
   Character,
   getCharacters,
+  removeCharacter,
   syncCharacters,
 } from "../../services/api/characters";
-import { App, Container, SyncButton } from "./styles";
+import {
+  App,
+  ButtonContainer,
+  ButtonNext,
+  ButtonPreview,
+  Container,
+  SyncButton,
+} from "./styles";
 
 const Characters: FC = () => {
   const [characterList, setCharacterList] = useState<Character[]>([]);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [isloading, setIsLoading] = useState<boolean>(false);
+  const [page, setPage] = useState(1);
 
   const getCharactersList = useCallback(async () => {
     const characters = await getCharacters();
@@ -23,8 +32,17 @@ const Characters: FC = () => {
 
   const syncData = useCallback(async () => {
     await syncCharacters();
-    setLoading(false);
+    setIsLoading(false);
     getCharactersList();
+  }, []);
+
+  const handleRemoveCharacter = useCallback(async (id: string) => {
+    console.log("entramos en remove");
+
+    setIsLoading(true);
+    await removeCharacter(id);
+    setCharacterList((prev) => prev.filter((item) => item.id !== id));
+    setIsLoading(false);
   }, []);
 
   // useEffect(() => {
@@ -40,7 +58,14 @@ const Characters: FC = () => {
     [navigate]
   );
 
-  if (loading) {
+  const handleNextPage = () => {
+    setPage(page + 1);
+  };
+  const handlePrevPage = () => {
+    setPage(page - 1);
+  };
+
+  if (isloading) {
     return <h1>LOADING</h1>;
   }
 
@@ -48,36 +73,51 @@ const Characters: FC = () => {
     <App>
       <Navbar />
       <SyncButton onClick={syncData}>Sync Characters</SyncButton>
+      <ButtonContainer>
+        <ButtonPreview onClick={handlePrevPage}>Previous</ButtonPreview>
+        <ButtonNext onClick={handleNextPage}>Next</ButtonNext>
+      </ButtonContainer>
       <Container>
-        {characterList.map((character, index) => (
-          <Card
-            key={index}
-            image={
-              character.image !== ""
-                ? character.image
-                : (() => {
-                    switch (character.house) {
-                      case "Gryffindor":
-                        return "https://64.media.tumblr.com/9e0ee5d829bcc71745f02d366adc1479/tumblr_o8s13618fJ1s42pu5o2_1280.jpg";
-                      case "Slytherin":
-                        return "https://64.media.tumblr.com/7dbc0f5abd753c81f66c079e573e765f/tumblr_o8s13618fJ1s42pu5o4_1280.jpg";
-                      case "Ravenclaw":
-                        return "https://64.media.tumblr.com/43e8caab3d582a1dfd0c15fa2b9388c8/tumblr_o8s13618fJ1s42pu5o1_1280.jpg";
-                      case "Hufflepuff":
-                        return "https://64.media.tumblr.com/b56e9126b9da847babbf877cb260a08c/tumblr_o8s13618fJ1s42pu5o3_1280.jpg";
-                      default:
-                        return "https://i.pinimg.com/564x/07/a4/99/07a4993c3feeb70605ee13c7a2fc1041.jpg";
-                    }
-                  })()
-            }
-            name={character.name}
-            house={character.house}
-            onClick={goToDetails}
-            id={character.id}
-            type="listcharacters"
-          />
-        ))}
+        {characterList
+          .slice((page - 1) * 8, (page - 1) * 8 + 8)
+          .map((character, index) => (
+            <div key={index}>
+              <Card
+                // key={index}
+                image={
+                  character.image !== ""
+                    ? character.image
+                    : (() => {
+                        switch (character.house) {
+                          case "Gryffindor":
+                            return "https://64.media.tumblr.com/9e0ee5d829bcc71745f02d366adc1479/tumblr_o8s13618fJ1s42pu5o2_1280.jpg";
+                          case "Slytherin":
+                            return "https://64.media.tumblr.com/7dbc0f5abd753c81f66c079e573e765f/tumblr_o8s13618fJ1s42pu5o4_1280.jpg";
+                          case "Ravenclaw":
+                            return "https://64.media.tumblr.com/43e8caab3d582a1dfd0c15fa2b9388c8/tumblr_o8s13618fJ1s42pu5o1_1280.jpg";
+                          case "Hufflepuff":
+                            return "https://64.media.tumblr.com/b56e9126b9da847babbf877cb260a08c/tumblr_o8s13618fJ1s42pu5o3_1280.jpg";
+                          default:
+                            return "https://i.pinimg.com/564x/07/a4/99/07a4993c3feeb70605ee13c7a2fc1041.jpg";
+                        }
+                      })()
+                }
+                name={character.name}
+                house={character.house}
+                onClick={goToDetails}
+                id={character.id}
+                type="listcharacters"
+              />
+              <button onClick={() => handleRemoveCharacter(character.id)}>
+                DELETE
+              </button>
+            </div>
+          ))}
       </Container>
+      <ButtonContainer>
+        <ButtonPreview onClick={handlePrevPage}>Previous</ButtonPreview>
+        <ButtonNext onClick={handleNextPage}>Next</ButtonNext>
+      </ButtonContainer>
     </App>
   );
 };
