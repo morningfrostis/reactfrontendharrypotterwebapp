@@ -26,3 +26,23 @@ export const SyncButton = styled.button`
   margin-top: 20px;
   cursor: pointer;
 `;
+
+export const ButtonPreview = styled.button`
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+`;
+export const ButtonNext = styled.button`
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+`;
+export const ButtonContainer = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  justify-content: space-between;
+`;

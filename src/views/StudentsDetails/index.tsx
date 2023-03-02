@@ -1,7 +1,6 @@
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/Card";
-import Navbar from "../../components/Navbar";
 import { getStudents, Student } from "../../services/api/students";
 // import Navbar from "../../components/Navbar";
 import { App, Container } from "./styles";

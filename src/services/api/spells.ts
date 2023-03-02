@@ -1,6 +1,7 @@
 import { getToken } from "../storage";
 
 export type Spell = {
+  id: string;
   spellId: string;
   name: string;
   description: string;
