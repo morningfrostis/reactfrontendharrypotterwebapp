@@ -27,8 +27,6 @@ const CharactersDetail: FC = () => {
   // }, []);
 
   const handleRemoveCharacter = useCallback(async (id: string) => {
-    console.log("entramos en remove");
-
     setIsLoading(true);
     await removeCharacter(id);
     setCharacterList((prev) => prev.filter((item) => item.id !== id));
@@ -36,19 +34,14 @@ const CharactersDetail: FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log("entramos");
     getCharactersList();
   }, [getCharactersList]);
 
   const goToBack = useCallback(() => {
-    navigate('/characters', { replace: true });
-  },
-  [navigate]
-);
-
+    navigate("/characters", { replace: true });
+  }, [navigate]);
 
   // useEffect(() => {
-  //   console.log("entramos");
   //   getStudentsList();
   // }, [getStudentsList]);
 
@@ -60,8 +53,8 @@ const CharactersDetail: FC = () => {
   const filteredItems = characterList.filter((item) => item.id === id);
   return (
     <App>
-        <ButtonContainer>
-      <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
+      <ButtonContainer>
+        <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
       </ButtonContainer>
       <Container>
         {filteredItems.map((character, index) => (

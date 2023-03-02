@@ -16,23 +16,19 @@ const StaffDetails: FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log("entramos");
     getStaffList();
   }, [getStaffList]);
 
   const goToBack = useCallback(() => {
-    navigate('/staff', { replace: true });
-  },
-  [navigate]
-);
-
+    navigate("/staff", { replace: true });
+  }, [navigate]);
 
   const { id } = params;
   const filteredItems = staffList.filter((item) => item.id === id);
   return (
     <App>
-       <ButtonContainer>
-      <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
+      <ButtonContainer>
+        <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
       </ButtonContainer>
       <Container>
         {filteredItems.map((character, index) => (

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, memo, useCallback, useMemo, useState } from "react";
 import {
   App,
@@ -46,6 +47,7 @@ const CharacterEdit: FC = () => {
       const character = await getCharacterById(characterId);
       setCharacter(character);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // const getStudentsList = useCallback(async () => {
@@ -54,19 +56,16 @@ const CharacterEdit: FC = () => {
   // }, []);
 
   //   useEffect(() => {
-  //     console.log("entramos");
   //     getCharactersList();
   //   }, [getCharactersList]);
 
   // useEffect(() => {
-  //   console.log("entramos");
   //   getStudentsList();
   // }, [getStudentsList]);
 
   // const goBack = useCallback(() => {
   //   navigate("/home", { replace: true });
   // }, [navigate]);
-
 
   const initialValues = useMemo(
     () => ({
@@ -88,7 +87,6 @@ const CharacterEdit: FC = () => {
       actor: character?.actor || "",
       createdAt: character?.createdAt || new Date(),
       updatedAt: character?.updatedAt || new Date(),
-
     }),
     [character]
   );

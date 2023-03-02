@@ -17,7 +17,6 @@ const SpellsDetails: FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log("entramos");
     getSpellsList();
   }, [getSpellsList]);
 

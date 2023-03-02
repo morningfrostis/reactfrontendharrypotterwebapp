@@ -25,7 +25,6 @@ export const getStaff = async () => {
       },
     });
     const data: Staff[] = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log((error as Error).message);

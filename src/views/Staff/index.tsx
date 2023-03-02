@@ -21,7 +21,6 @@ const Staffs: FC = () => {
   const getStaffList = useCallback(async () => {
     const staff = await getStaff();
     setStaffList(staff);
-    console.log(staffList);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

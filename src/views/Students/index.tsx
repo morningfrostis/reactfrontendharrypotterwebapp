@@ -26,7 +26,6 @@ const Students: FC = () => {
   const getStudentsList = useCallback(async () => {
     const students = await getStudents();
     setStudentsList(students);
-    console.log(studentsList);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

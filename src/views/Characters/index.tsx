@@ -25,7 +25,6 @@ const Characters: FC = () => {
   const getCharactersList = useCallback(async () => {
     const characters = await getCharacters();
     setCharacterList(characters);
-    console.log(characterList);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -70,7 +69,6 @@ const Characters: FC = () => {
       <ButtonContainer>
         <ButtonPreview onClick={handlePrevPage}>Previous</ButtonPreview>
         <ButtonNext onClick={handleNextPage}>Next</ButtonNext>
-
       </ButtonContainer>
       <Container>
         {characterList
