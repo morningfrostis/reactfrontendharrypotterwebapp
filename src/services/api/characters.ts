@@ -8,7 +8,7 @@ export type Character = {
   house: string;
   wizard: string;
   ancestry: string;
-  wand: JSON;
+  wand: string;
   patronus: string;
   actor: string;
   image: string;
@@ -51,8 +51,12 @@ export const removeCharacter = async (id: string) => {
     const token = getToken();
     await fetch(`${BASE_API_URL}/${id}`, {
       method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
+    console.log(fetch);
   } catch (error) {
     console.log((error as Error).message);
   }

@@ -1,11 +1,10 @@
+/* eslint-disable react/style-prop-object */
 import { FC } from "react";
-import {
-  Spellcards,
-  Spellcardinner,
-  Spellcardshape,
-  Spellcardtrace,
-} from "./styles";
+import { Link } from "react-router-dom";
+import { Container, Description } from "./styles";
 import { Props } from "./types";
+
+import "./styles.scss";
 
 const SpellCard: FC<Props> = ({
   type = "list",
@@ -14,10 +13,10 @@ const SpellCard: FC<Props> = ({
   description,
 }) => {
   return (
-    <Spellcards>
-      <Spellcardinner>
-        <Spellcardshape>
-          <Spellcardtrace />
+    <div className="spell-card">
+      <div className="spell-card__inner">
+        <div className="spell-card__shape">
+          <div className="spell-card__trace"></div>
 
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 182.37 169.75">
             <clipPath id="clip-expecto">
@@ -34,13 +33,13 @@ const SpellCard: FC<Props> = ({
               transform="translate(-36.27 -26.47)"
             />
           </svg>
-        </Spellcardshape>
+        </div>
         <div className="spell-card__name">
           <h5>Name: {name}</h5>
           <p>Description: {description}</p>
         </div>
-      </Spellcardinner>
-    </Spellcards>
+      </div>
+    </div>
     // <Container>
     //   <Description>Name: {name}</Description>
     //   <Description>Description: {description}</Description>

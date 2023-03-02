@@ -1,4 +1,10 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const draw = keyframes`
+  to {
+    stroke-dashoffset: 0;
+  }
+`;
 
 export const Container = styled.div`
   /* border: 1px solid white; */
@@ -70,7 +76,7 @@ export const Spellcardtrace = styled.div`
   &:hover {
     cursor: pointer;
     .trace-motion {
-      animation: draw 0.7s linear forwards;
+      animation: ${draw} 0.7s linear forwards;
     }
   }
 `;
