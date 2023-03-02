@@ -1,8 +1,7 @@
 import styled from "styled-components";
-
 export const App = styled.div`
   text-align: center;
-  background-color: #282c34;
+  background-color: #282C34;
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -11,7 +10,6 @@ export const App = styled.div`
   font-size: calc(10px + 2vmin);
   color: white;
 `;
-
 export const Container = styled.div`
   padding: 5em;
   padding-top: 5px;
@@ -21,15 +19,32 @@ export const Container = styled.div`
   gap: 24px;
 `;
 export const SyncButton = styled.button`
-    width: 90px;
-    height: 40px;
-    border-radius: 5px;
-    margin:10px;
-    cursor:pointer;
-`
-
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+`;
+export const ButtonPreview = styled.button`
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+`;
+export const ButtonNext = styled.button`
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+`;
 export const ButtonContainer = styled.div`
   display: flex;
   /* justify-content: center; */
   justify-content: space-between;
 `;
+
+
+
+
