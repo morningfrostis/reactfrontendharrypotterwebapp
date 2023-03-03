@@ -1,17 +1,19 @@
-import { FC, useState, useCallback, useEffect } from "react";
-import { App, Container } from "./styles";
-import { getUserInfo, ProfileResponse } from "../../services/api/profile";
-import Card from "../../components/Card";
+import { FC, useState, useCallback, useEffect, memo } from "react";
+import { App, Container, Info, SpinnerContainer } from "./styles";
+import { getUserInfo } from "../../services/api/profile";
+import type { Profile } from '../../models/profile'
+import { useNavigate } from "react-router-dom";
 
 const Profile: FC = () => {
-  const [userinfo, setUserInfo] = useState<ProfileResponse[]>([]);
+  const [userinfo, setUserInfo] = useState<Profile | null>(null)
   const [isloading, setIsLoading] = useState<boolean>(false);
-
+  const navigate = useNavigate()
+  
   const getProfileList = useCallback(async () => {
+    setIsLoading(true)
     const userprofile = await getUserInfo();
-    //@ts-ignore
     setUserInfo(userprofile);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setIsLoading(false)
   }, []);
 
   useEffect(() => {
@@ -19,20 +21,22 @@ const Profile: FC = () => {
   }, [getProfileList]);
 
   if (isloading) {
-    return <h1>LOADING</h1>;
+    return <SpinnerContainer>LOADING</SpinnerContainer>;
   }
 
   return (
     <App>
       <Container>
-        {userinfo.map((user, index) => (
+      <Info>ID: {userinfo?.id}</Info>
+        <Info>EMAIL: {userinfo?.email}</Info>
+        {/* {userinfo.map((user, index) => (
           <div key={index}>
             <Card id={user.id} email={user.email} />
           </div>
-        ))}
+        ))} */}
       </Container>
     </App>
   );
 };
 
-export default Profile;
+export default memo(Profile);
