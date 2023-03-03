@@ -27,6 +27,7 @@ export const SignoutButton = styled.button`
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
+  background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
 `;
 
 export const ProfileButton = styled.button`
@@ -42,6 +43,7 @@ export const ProfileButton = styled.button`
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
+  background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
 `;
 
 export const Tittle = styled(Link)`

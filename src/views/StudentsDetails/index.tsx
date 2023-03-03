@@ -43,6 +43,7 @@ const StudentsDetail: FC = () => {
         {filteredItems.map((character, index) => (
           <Card
             key={index}
+            image={character.image}
             house={character.house}
             name={character.name}
             species={character.species}
@@ -51,7 +52,6 @@ const StudentsDetail: FC = () => {
             actor={character.actor}
             patronus={character.patronus}
             id={character.id}
-            image={character.image}
             type="details"
           />
         ))}

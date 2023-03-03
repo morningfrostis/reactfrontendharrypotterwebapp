@@ -13,6 +13,7 @@ import {
   ButtonNext,
   ButtonPreview,
   Container,
+  DeleteButton,
   SyncButton,
 } from "./styles";
 
@@ -99,9 +100,9 @@ const Students: FC = () => {
                 id={student.id}
                 type="liststudents"
               />
-              <button onClick={() => handleRemoveStudent(student.id)}>
+              <DeleteButton onClick={() => handleRemoveStudent(student.id)}>
                 DELETE
-              </button>
+              </DeleteButton>
             </div>
           ))}
       </Container>

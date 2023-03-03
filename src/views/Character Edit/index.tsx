@@ -10,9 +10,9 @@ import {
   Label,
   Input,
 } from "./styles";
-import { Field, Form, Formik, FormikValues } from "formik";
+import { Field, Form, Formik } from "formik";
 import { validationSchema } from "./constants";
-import { Character, CharacterInput } from "../../models/character";
+import { Character } from "../../models/character";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCharacterById, getCharacters } from "../../services/api/characters";
 import Button from "../../components/Button";
@@ -23,6 +23,7 @@ const CharacterEdit: FC = () => {
   const [character, setCharacter] = useState<Character | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  
 
   const handleActiveEdition = useCallback(async () => {
     setIsEditing(true);
@@ -171,7 +172,7 @@ const CharacterEdit: FC = () => {
               </InputContainer>
             )}
           </Field>
-          <Field name="Wand">
+          {/* <Field name="Wand">
             {({ field, meta }: { field: any; meta: any }) => (
               <InputContainer>
                 <Label>Wand</Label>
@@ -184,7 +185,7 @@ const CharacterEdit: FC = () => {
                 {meta?.error && <Error>{meta.error}</Error>}
               </InputContainer>
             )}
-          </Field>
+          </Field> */}
           <Field name="Patronus">
             {({ field, meta }: { field: any; meta: any }) => (
               <InputContainer>
