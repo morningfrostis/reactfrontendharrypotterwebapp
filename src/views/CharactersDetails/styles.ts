@@ -95,13 +95,6 @@ export const Error = styled.span`
 `;
 
 export const EditButton = styled.button`
-  /* border-radius: 5px;
-  cursor: pointer;
-  margin: 16px;
-  padding: 5px;
-  font-family: Oswald;
-  background-color: ${({ theme }) => theme.colors.GriffindorGold}; */
-  
   padding: 10px 20px;
   background-color: ${({ theme }) => theme.colors.DementorBlack};
    color: ${({ theme }) => theme.colors.white}; 
@@ -113,4 +106,6 @@ export const EditButton = styled.button`
   padding: 5px 5px;
   font-family: Oswald;
   margin-right: 20px;
+  cursor:pointer;
 `;
+

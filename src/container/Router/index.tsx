@@ -127,7 +127,7 @@ const Router: FC = () => {
           }
         ></Route>
         <Route
-          path="/character/:id"
+          path="/characters/:id"
           element={
             <ProtectedRoutes>
               <>
@@ -138,7 +138,7 @@ const Router: FC = () => {
           }
         />
         <Route
-          path="/student/:id"
+          path="/students/:id"
           element={
             <ProtectedRoutes>
               <>
@@ -171,7 +171,7 @@ const Router: FC = () => {
           }
         />
         <Route
-          path="/edit"
+          path="/details:id"
 
           element={
             <ProtectedRoutes>

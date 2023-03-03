@@ -31,7 +31,8 @@ const Characters: FC = () => {
     await syncCharacters();
     setIsLoading(false);
     getCharactersList();
-  }, [getCharactersList]);
+  }, []);
+
 
   const handleRemoveCharacter = useCallback(async (id: string) => {
     setIsLoading(true);
@@ -79,7 +80,7 @@ const Characters: FC = () => {
                 house={character.house}
                 onClick={goToDetails}
                 id={character.id}
-                type="listcharacters"
+                type="characters"
               />
               <button onClick={() => handleRemoveCharacter(character.id)}>
                 DELETE

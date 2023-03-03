@@ -98,7 +98,7 @@ const Students: FC = () => {
                 house={student.house}
                 onClick={goToDetails}
                 id={student.id}
-                type="liststudents"
+                type="students"
               />
               <DeleteButton onClick={() => handleRemoveStudent(student.id)}>
                 DELETE

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import {
   Container,
   Description,
@@ -22,10 +22,12 @@ const Card: FC<Props> = ({
   actor,
   type,
 }) => {
+  console.log({type})
   return (
     <Container>
       <Image src={image} />
-      {type === "listcharacters" && (
+
+      {type !== "details" ? (
         <>
           <Description>
             Name:&nbsp;&nbsp;<DescriptionApi>{name}</DescriptionApi>
@@ -33,32 +35,9 @@ const Card: FC<Props> = ({
           <Description>
             Hogwarts house:&nbsp;&nbsp;<DescriptionApi>{house}</DescriptionApi>
           </Description>
-          <DetailsButton to={`/character/${id}`}>View character</DetailsButton>
+          <DetailsButton to={`/${type}/${id}`}>View {type}</DetailsButton>
         </>
-      )}
-      {type === "liststudents" && (
-        <>
-          <Description>
-            Name:&nbsp;&nbsp;<DescriptionApi>{name}</DescriptionApi>
-          </Description>
-          <Description>
-            Hogwarts house:&nbsp;&nbsp;<DescriptionApi>{house}</DescriptionApi>
-          </Description>
-          <DetailsButton to={`/student/${id}`}>View student</DetailsButton>
-        </>
-      )}
-      {type === "liststaff" && (
-        <>
-          <Description>
-            Name:&nbsp;&nbsp;<DescriptionApi>{name}</DescriptionApi>
-          </Description>
-          <Description>
-            Hogwarts house:&nbsp;&nbsp;<DescriptionApi>{house}</DescriptionApi>
-          </Description>
-          <DetailsButton to={`/staff/${id}`}>View staff</DetailsButton>
-        </>
-      )}
-      {type === "details" && (
+      ) : (
         <>
           <Description>Specie: {species}</Description>
           <Description>Is a wizard? {wizard}</Description>
@@ -67,12 +46,7 @@ const Card: FC<Props> = ({
           <Description>Patronus: {patronus}</Description>
           <Description>Actor: {actor}</Description>
           <Description>Id: {id}</Description>
-        </>
-      )}
-      {type === "profile" && (
-        <>
-          <Description>User ID: {id}</Description>
-          <Description>Email: {email}</Description>
+          <DetailsButton to={`/${type}/${id}`}>Edit {type}</DetailsButton>
         </>
       )}
     </Container>

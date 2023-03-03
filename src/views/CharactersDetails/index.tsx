@@ -47,8 +47,9 @@ const CharactersDetail: FC = () => {
     navigate("/characters", { replace: true });
   }, [navigate]);
 
-  const goToEdit = useCallback(() => {
-      navigate('/characteredit/', { replace: true });
+  const goToEdit = useCallback(
+    (id: string) => {
+      navigate(`/characteredit/${id}`, { replace: true });
     },
     [navigate]
   );
@@ -81,12 +82,13 @@ const CharactersDetail: FC = () => {
               patronus={character.patronus}
               id={character.id}
               image={character.image}
+              onClick={goToEdit}
               type="details"
             />
-            <EditButton onClick={() => handleGoToEdit(character.id)}>
-              Edit
+            {/* <EditButton onClick={()=>goToEdit}>
+              Go to Edit
+            </EditButton> */}
 
-            </EditButton>
           </div>
         ))}
       </Container>

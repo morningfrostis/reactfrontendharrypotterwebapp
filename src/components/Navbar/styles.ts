@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const CustomNavbar = styled.nav`
-  background-color: ${({ theme }) => theme.colors.RavenclawGreyLady};
+  background-color: ${({ theme }) => theme.colors.GriffindorRedDark};
   display: flex;
   justify-content: space-between;
   height: 90px;
