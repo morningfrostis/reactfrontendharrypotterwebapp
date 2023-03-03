@@ -170,8 +170,9 @@ const Router: FC = () => {
             </ProtectedRoutes>
           }
         />
-         <Route
-          path="/characteredit"
+        <Route
+          path="/edit"
+
           element={
             <ProtectedRoutes>
               <>
