@@ -172,6 +172,7 @@ const Router: FC = () => {
         />
         <Route
           path="/edit"
+
           element={
             <ProtectedRoutes>
               <>

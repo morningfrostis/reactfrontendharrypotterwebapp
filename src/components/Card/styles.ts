@@ -12,10 +12,10 @@ export const Container = styled.div`
   flex: 0 0 300px;
   padding: 5px;
   padding-bottom: 25px;
-  margin: 2em;
+  margin: 1em;
   border-radius: 20px;
   box-shadow: 0 0 0 5px #740001;
-  text-align: center;
+  /* text-align: center; */
   position: relative;
   transition: all 0.3s ease-in-out;
   &:before {
@@ -77,7 +77,6 @@ export const DescriptionApi = styled.p`
 export const DetailsButton = styled(Link)`
   padding: 10px 20px;
   background-color: ${({ theme }) => theme.colors.DementorBlack};
-  /* color: ${({ theme }) => theme.colors.white}; */
   color: white;
   border-radius: 5px;
   text-decoration: none;
