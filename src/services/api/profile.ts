@@ -16,7 +16,7 @@ export const getUserInfo = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const data: ProfileResponse[] = await response.json();
+    const data = await response.json();
     return data.map(normalizeProfile);
   } catch (error) {
     console.log((error as Error).message);
