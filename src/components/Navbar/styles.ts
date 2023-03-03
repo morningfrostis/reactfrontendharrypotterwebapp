@@ -9,7 +9,13 @@ export const CustomNavbar = styled.nav`
   width: 100%;
 `;
 
+export const ContainerButton = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const SignoutButton = styled.button`
+  font-family: Oswald;
   width: 100px;
   height: 30px;
   border-radius: 5px;
@@ -23,7 +29,8 @@ export const SignoutButton = styled.button`
   cursor: pointer;
 `;
 
-export const ProfileButton = styled(Link)`
+export const ProfileButton = styled.button`
+  font-family: Oswald;
   width: 100px;
   height: 30px;
   border-radius: 5px;
