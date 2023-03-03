@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, memo, useCallback, useMemo, useState } from "react";
+import { FC, memo, useCallback, useEffect, useMemo, useState } from "react";
 import {
   App,
   Container,
@@ -13,9 +12,8 @@ import {
 import { Field, Form, Formik } from "formik";
 import { validationSchema } from "./constants";
 import { Character } from "../../models/character";
-import { useNavigate, useParams } from "react-router-dom";
-import { getCharacterById, getCharacters } from "../../services/api/characters";
-import { updateCharacter } from "../../services/api/characters";
+import { useParams } from "react-router-dom";
+import { getCharacterById, updateCharacter } from "../../services/api/characters";
 
 const CharacterEdit: FC = () => {
   const { id: characterId } = useParams();
@@ -41,31 +39,7 @@ const CharacterEdit: FC = () => {
     [characterId, isEditing]
   );
 
-  const getCharacter = useCallback(async () => {
-    if (characterId) {
-      const character = await getCharacterById(characterId);
-      setCharacter(character);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // const getStudentsList = useCallback(async () => {
-  //   const students = await getStudents();
-  //   setStudentList(students);
-  // }, []);
-
-  //   useEffect(() => {
-  //     getCharactersList();
-  //   }, [getCharactersList]);
-
-  // useEffect(() => {
-  //   getStudentsList();
-  // }, [getStudentsList]);
-
-  // const goBack = useCallback(() => {
-  //   navigate("/home", { replace: true });
-  // }, [navigate]);
-
+  console.log({ character });
   const initialValues = useMemo(
     () => ({
       id: character?.id || "",
@@ -81,7 +55,6 @@ const CharacterEdit: FC = () => {
         core: character?.wand.core || "",
         size: character?.wand.size || "",
       },
-      // wand: JSON.stringify(character?.wand),
       patronus: character?.patronus || "",
       actor: character?.actor || "",
       createdAt: character?.createdAt || new Date(),
@@ -89,6 +62,23 @@ const CharacterEdit: FC = () => {
     }),
     [character]
   );
+
+  const handleGetCharacter = useCallback(async (id?: string) => {
+    if (id) {
+      setIsLoading(true);
+      const character = await getCharacterById(id);
+      setCharacter(character);
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    handleGetCharacter(characterId);
+  }, [handleGetCharacter, characterId]);
+
+  if (isLoading) {
+    return <p>LOADING</p>
+  }
 
   return (
     <App>
@@ -100,7 +90,7 @@ const CharacterEdit: FC = () => {
           initialValues={initialValues}
         >
           <Form>
-            <Field name="Name">
+            <Field name="name">
               {({ field, meta }: { field: any; meta: any }) => (
                 <InputContainer>
                   <Label>Name</Label>
@@ -114,7 +104,7 @@ const CharacterEdit: FC = () => {
                 </InputContainer>
               )}
             </Field>
-            <Field name="Species">
+            <Field name="species">
               {({ field, meta }: { field: any; meta: any }) => (
                 <InputContainer>
                   <Label>Species</Label>
@@ -128,7 +118,7 @@ const CharacterEdit: FC = () => {
                 </InputContainer>
               )}
             </Field>
-            <Field name="House">
+            <Field name="house">
               {({ field, meta }: { field: any; meta: any }) => (
                 <InputContainer>
                   <Label>House</Label>
@@ -142,7 +132,7 @@ const CharacterEdit: FC = () => {
                 </InputContainer>
               )}
             </Field>
-            <Field name="Wizard">
+            <Field name="wizard">
               {({ field, meta }: { field: any; meta: any }) => (
                 <InputContainer>
                   <Label>Wizard</Label>
@@ -156,7 +146,7 @@ const CharacterEdit: FC = () => {
                 </InputContainer>
               )}
             </Field>
-            <Field name="Ancestry">
+            <Field name="ancestry">
               {({ field, meta }: { field: any; meta: any }) => (
                 <InputContainer>
                   <Label>Ancestry</Label>
@@ -170,7 +160,7 @@ const CharacterEdit: FC = () => {
                 </InputContainer>
               )}
             </Field>
-            {/* <Field name="Wand">
+            <Field name="wand.wood">
             {({ field, meta }: { field: any; meta: any }) => (
               <InputContainer>
                 <Label>Wand</Label>
@@ -183,8 +173,8 @@ const CharacterEdit: FC = () => {
                 {meta?.error && <Error>{meta.error}</Error>}
               </InputContainer>
             )}
-          </Field> */}
-            <Field name="Patronus">
+          </Field> 
+            <Field name="patronus">
               {({ field, meta }: { field: any; meta: any }) => (
                 <InputContainer>
                   <Label>Patronus</Label>
@@ -198,7 +188,7 @@ const CharacterEdit: FC = () => {
                 </InputContainer>
               )}
             </Field>
-            <Field name="Actor">
+            <Field name="actor">
               {({ field, meta }: { field: any; meta: any }) => (
                 <InputContainer>
                   <Label>Actor</Label>
