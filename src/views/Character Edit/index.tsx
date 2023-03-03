@@ -15,7 +15,6 @@ import { validationSchema } from "./constants";
 import { Character } from "../../models/character";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCharacterById, getCharacters } from "../../services/api/characters";
-import Button from "../../components/Button";
 import { updateCharacter } from "../../services/api/characters";
 
 const CharacterEdit: FC = () => {
@@ -23,7 +22,6 @@ const CharacterEdit: FC = () => {
   const [character, setCharacter] = useState<Character | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  
 
   const handleActiveEdition = useCallback(async () => {
     setIsEditing(true);
@@ -100,79 +98,79 @@ const CharacterEdit: FC = () => {
           validationSchema={validationSchema}
           onSubmit={onEditCharacter}
           initialValues={initialValues}
-        />
-        <Form>
-          <Field name="Name">
-            {({ field, meta }: { field: any; meta: any }) => (
-              <InputContainer>
-                <Label>Name</Label>
-                <Input
-                  disabled={!isEditing}
-                  $hasError={!!meta?.error}
-                  type="text"
-                  {...field}
-                />
-                {meta?.error && <Error>{meta.error}</Error>}
-              </InputContainer>
-            )}
-          </Field>
-          <Field name="Species">
-            {({ field, meta }: { field: any; meta: any }) => (
-              <InputContainer>
-                <Label>Species</Label>
-                <Input
-                  disabled={!isEditing}
-                  $hasError={!!meta?.error}
-                  type="text"
-                  {...field}
-                />
-                {meta?.error && <Error>{meta.error}</Error>}
-              </InputContainer>
-            )}
-          </Field>
-          <Field name="House">
-            {({ field, meta }: { field: any; meta: any }) => (
-              <InputContainer>
-                <Label>House</Label>
-                <Input
-                  disabled={!isEditing}
-                  $hasError={!!meta?.error}
-                  type="text"
-                  {...field}
-                />
-                {meta?.error && <Error>{meta.error}</Error>}
-              </InputContainer>
-            )}
-          </Field>
-          <Field name="Wizard">
-            {({ field, meta }: { field: any; meta: any }) => (
-              <InputContainer>
-                <Label>Wizard</Label>
-                <Input
-                  disabled={!isEditing}
-                  $hasError={!!meta?.error}
-                  type="text"
-                  {...field}
-                />
-                {meta?.error && <Error>{meta.error}</Error>}
-              </InputContainer>
-            )}
-          </Field>
-          <Field name="Ancestry">
-            {({ field, meta }: { field: any; meta: any }) => (
-              <InputContainer>
-                <Label>Ancestry</Label>
-                <Input
-                  disabled={!isEditing}
-                  $hasError={!!meta?.error}
-                  type="text"
-                  {...field}
-                />
-                {meta?.error && <Error>{meta.error}</Error>}
-              </InputContainer>
-            )}
-          </Field>
-          {/* <Field name="Wand">
+        >
+          <Form>
+            <Field name="Name">
+              {({ field, meta }: { field: any; meta: any }) => (
+                <InputContainer>
+                  <Label>Name</Label>
+                  <Input
+                    disabled={!isEditing}
+                    $hasError={!!meta?.error}
+                    type="text"
+                    {...field}
+                  />
+                  {meta?.error && <Error>{meta.error}</Error>}
+                </InputContainer>
+              )}
+            </Field>
+            <Field name="Species">
+              {({ field, meta }: { field: any; meta: any }) => (
+                <InputContainer>
+                  <Label>Species</Label>
+                  <Input
+                    disabled={!isEditing}
+                    $hasError={!!meta?.error}
+                    type="text"
+                    {...field}
+                  />
+                  {meta?.error && <Error>{meta.error}</Error>}
+                </InputContainer>
+              )}
+            </Field>
+            <Field name="House">
+              {({ field, meta }: { field: any; meta: any }) => (
+                <InputContainer>
+                  <Label>House</Label>
+                  <Input
+                    disabled={!isEditing}
+                    $hasError={!!meta?.error}
+                    type="text"
+                    {...field}
+                  />
+                  {meta?.error && <Error>{meta.error}</Error>}
+                </InputContainer>
+              )}
+            </Field>
+            <Field name="Wizard">
+              {({ field, meta }: { field: any; meta: any }) => (
+                <InputContainer>
+                  <Label>Wizard</Label>
+                  <Input
+                    disabled={!isEditing}
+                    $hasError={!!meta?.error}
+                    type="text"
+                    {...field}
+                  />
+                  {meta?.error && <Error>{meta.error}</Error>}
+                </InputContainer>
+              )}
+            </Field>
+            <Field name="Ancestry">
+              {({ field, meta }: { field: any; meta: any }) => (
+                <InputContainer>
+                  <Label>Ancestry</Label>
+                  <Input
+                    disabled={!isEditing}
+                    $hasError={!!meta?.error}
+                    type="text"
+                    {...field}
+                  />
+                  {meta?.error && <Error>{meta.error}</Error>}
+                </InputContainer>
+              )}
+            </Field>
+            {/* <Field name="Wand">
             {({ field, meta }: { field: any; meta: any }) => (
               <InputContainer>
                 <Label>Wand</Label>
@@ -186,36 +184,37 @@ const CharacterEdit: FC = () => {
               </InputContainer>
             )}
           </Field> */}
-          <Field name="Patronus">
-            {({ field, meta }: { field: any; meta: any }) => (
-              <InputContainer>
-                <Label>Patronus</Label>
-                <Input
-                  disabled={!isEditing}
-                  $hasError={!!meta?.error}
-                  type="text"
-                  {...field}
-                />
-                {meta?.error && <Error>{meta.error}</Error>}
-              </InputContainer>
-            )}
-          </Field>
-          <Field name="Actor">
-            {({ field, meta }: { field: any; meta: any }) => (
-              <InputContainer>
-                <Label>Actor</Label>
-                <Input
-                  disabled={!isEditing}
-                  $hasError={!!meta?.error}
-                  type="text"
-                  {...field}
-                />
-                {meta?.error && <Error>{meta.error}</Error>}
-              </InputContainer>
-            )}
-          </Field>
-          {isEditing && <EditButton type="submit">Edit</EditButton>}
-        </Form>
+            <Field name="Patronus">
+              {({ field, meta }: { field: any; meta: any }) => (
+                <InputContainer>
+                  <Label>Patronus</Label>
+                  <Input
+                    disabled={!isEditing}
+                    $hasError={!!meta?.error}
+                    type="text"
+                    {...field}
+                  />
+                  {meta?.error && <Error>{meta.error}</Error>}
+                </InputContainer>
+              )}
+            </Field>
+            <Field name="Actor">
+              {({ field, meta }: { field: any; meta: any }) => (
+                <InputContainer>
+                  <Label>Actor</Label>
+                  <Input
+                    disabled={!isEditing}
+                    $hasError={!!meta?.error}
+                    type="text"
+                    {...field}
+                  />
+                  {meta?.error && <Error>{meta.error}</Error>}
+                </InputContainer>
+              )}
+            </Field>
+            {isEditing && <EditButton type="submit">Edit</EditButton>}
+          </Form>
+        </Formik>
         {!isEditing && (
           <EditButton onClick={handleActiveEdition}>Active Edition</EditButton>
         )}

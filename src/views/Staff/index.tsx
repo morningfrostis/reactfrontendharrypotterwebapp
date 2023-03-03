@@ -97,7 +97,7 @@ const Staffs: FC = () => {
                 house={staff.house}
                 onClick={goToDetails}
                 id={staff.id}
-                type="liststaff"
+                type="staff"
               />
               <button onClick={() => handleRemoveStaff(staff.id)}>
                 DELETE

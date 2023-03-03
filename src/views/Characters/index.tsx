@@ -25,15 +25,12 @@ const Characters: FC = () => {
   const getCharactersList = useCallback(async () => {
     const characters = await getCharacters();
     setCharacterList(characters);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-
   }, []);
 
   const syncData = useCallback(async () => {
     await syncCharacters();
     setIsLoading(false);
     getCharactersList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRemoveCharacter = useCallback(async (id: string) => {
@@ -82,7 +79,7 @@ const Characters: FC = () => {
                 house={character.house}
                 onClick={goToDetails}
                 id={character.id}
-                type="listcharacters"
+                type="characters"
               />
               <button onClick={() => handleRemoveCharacter(character.id)}>
                 DELETE
