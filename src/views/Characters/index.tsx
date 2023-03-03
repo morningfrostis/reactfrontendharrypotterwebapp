@@ -25,16 +25,13 @@ const Characters: FC = () => {
   const getCharactersList = useCallback(async () => {
     const characters = await getCharacters();
     setCharacterList(characters);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-
   }, []);
 
   const syncData = useCallback(async () => {
     await syncCharacters();
     setIsLoading(false);
     getCharactersList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [getCharactersList]);
 
   const handleRemoveCharacter = useCallback(async (id: string) => {
     setIsLoading(true);

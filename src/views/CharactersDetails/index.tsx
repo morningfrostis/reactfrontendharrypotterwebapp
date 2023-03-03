@@ -1,9 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/Card";
 import { Character } from "../../models/character";
 import { getCharacters, removeCharacter } from "../../services/api/characters";
-import { App, ButtonBack, ButtonContainer, Container } from "./styles";
+import {
+  App,
+  ButtonBack,
+  ButtonContainer,
+  Container,
+  EditButton,
+} from "./styles";
 
 const CharactersDetail: FC = () => {
   const [characterList, setCharacterList] = useState<Character[]>([]);
@@ -22,12 +29,12 @@ const CharactersDetail: FC = () => {
   //   setStudentList(students);
   // }, []);
 
-  const handleRemoveCharacter = useCallback(async (id: string) => {
-    setIsLoading(true);
-    await removeCharacter(id);
-    setCharacterList((prev) => prev.filter((item) => item.id !== id));
-    setIsLoading(false);
-  }, []);
+  const handleGoToEdit = useCallback(
+    async (id: string) => {
+      navigate("/edit", { replace: true });
+    },
+    [navigate]
+  );
 
   useEffect(() => {
     getCharactersList();
@@ -56,7 +63,6 @@ const CharactersDetail: FC = () => {
         {filteredItems.map((character, index) => (
           <div key={index}>
             <Card
-              // key={index}
               house={character.house}
               name={character.name}
               species={character.species}
@@ -68,9 +74,9 @@ const CharactersDetail: FC = () => {
               image={character.image}
               type="details"
             />
-            <button onClick={() => handleRemoveCharacter(character.id)}>
-              Delete
-            </button>
+            <EditButton onClick={() => handleGoToEdit(character.id)}>
+              Edit
+            </EditButton>
           </div>
         ))}
       </Container>
