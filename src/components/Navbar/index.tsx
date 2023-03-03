@@ -3,6 +3,7 @@ import { FC, useCallback } from "react";
 import { Props } from "./types";
 import { useNavigate } from "react-router-dom";
 import {
+  ContainerButton,
   Logoimg,
   ProfileButton,
   SignoutButton,
@@ -19,6 +20,10 @@ const Navbar: FC<Props> = ({ type = "list" }) => {
     navigate("/");
   };
 
+  const handleProfile = async () => {
+    navigate("/profile");
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -26,8 +31,10 @@ const Navbar: FC<Props> = ({ type = "list" }) => {
         <Tittle to="/landing">
           <Logoimg></Logoimg>
         </Tittle>
-        <ProfileButton to="/profile">Profile</ProfileButton>
-        <SignoutButton onClick={handleSignOut}>LogOut</SignoutButton>
+        <ContainerButton>
+          <ProfileButton onClick={handleProfile}>Profile</ProfileButton>
+          <SignoutButton onClick={handleSignOut}>LogOut</SignoutButton>
+        </ContainerButton>
       </CustomNavbar>
     </>
   );
