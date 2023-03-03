@@ -33,6 +33,7 @@ const Characters: FC = () => {
     getCharactersList();
   }, []);
 
+
   const handleRemoveCharacter = useCallback(async (id: string) => {
     setIsLoading(true);
     await removeCharacter(id);
