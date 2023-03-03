@@ -1,14 +1,12 @@
-import type { ProfileResponse } from "../services/api/profile";
-
 export type ProfileInput = {
-  id: string;
+  password: string;
   email: string;
 };
 
-export const normalizeProfile = (input: ProfileResponse) => {
+export const normalizeProfile = (input: any) => {
   return {
-    id: input?.id || "",
-    email: input?.email || "",
+    id: (input?.id || '') as string,
+    email: (input?.email || '') as string,
   };
 };
 
