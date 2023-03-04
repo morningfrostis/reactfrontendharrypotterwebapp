@@ -15,7 +15,7 @@ import Navbar from "../../components/Navbar";
 import { getToken } from "../../services/storage";
 import { useLocation, Navigate } from "react-router-dom";
 import Profile from "../../views/Profile";
-import CharacterEdit from "../../views/Character Edit";
+import CharacterEdit from "../../views/CharacterEdit";
 
 const Router: FC = () => {
   const ProtectedRoutes = ({ children }: { children: JSX.Element }) => {
@@ -171,8 +171,7 @@ const Router: FC = () => {
           }
         />
         <Route
-          path="/details:id"
-
+          path="/details/:id"
           element={
             <ProtectedRoutes>
               <>

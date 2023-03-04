@@ -3,22 +3,13 @@ import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/Card";
 import { Character } from "../../models/character";
-// import Navbar from "../../components/Navbar";
 import { getCharacters, removeCharacter } from "../../services/api/characters";
-import {
-  App,
-  ButtonBack,
-  ButtonContainer,
-  Container,
-  EditButton,
-} from "./styles";
+import { App, ButtonBack, ButtonContainer, Container, EditButton } from "./styles";
 
 const CharactersDetail: FC = () => {
   const [characterList, setCharacterList] = useState<Character[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isloading, setIsLoading] = useState<boolean>(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const navigate = useNavigate();
   const params = useParams();
 
@@ -26,18 +17,6 @@ const CharactersDetail: FC = () => {
     const characters = await getCharacters();
     setCharacterList(characters);
   }, []);
-
-  // const getStudentsList = useCallback(async () => {
-  //   const students = await getStudents();
-  //   setStudentList(students);
-  // }, []);
-
-  const handleGoToEdit = useCallback(
-    async (id: string) => {
-      navigate("/edit", { replace: true });
-    },
-    [navigate]
-  );
 
   useEffect(() => {
     getCharactersList();
@@ -53,14 +32,6 @@ const CharactersDetail: FC = () => {
     },
     [navigate]
   );
-
-  // useEffect(() => {
-  //   getStudentsList();
-  // }, [getStudentsList]);
-
-  // const goBack = useCallback(() => {
-  //   navigate("/home", { replace: true });
-  // }, [navigate]);
 
   const { id } = params;
   const filteredItems = characterList.filter((item) => item.id === id);

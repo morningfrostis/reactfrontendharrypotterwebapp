@@ -103,15 +103,24 @@ export const createCharacter = async (data: Omit<Character, "id">) => {
   }
 };
 
-export const updateCharacter = async (id: string, data: CharacterInput) => {
+export const updateCharacter = async (
+  id: string,
+  data: Partial<CharacterInput>
+) => {
   try {
+    console.log({ data });
     const token = getToken();
     const response = await fetch(`${BASE_API_URL}/${id}`, {
       method: "PUT",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
     });
+
     const character: CharacterResponse = await response.json();
+    console.log({ character });
     return normalizeCharacter(character);
   } catch (error) {
     console.log((error as Error).message);
