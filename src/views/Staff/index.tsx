@@ -1,7 +1,7 @@
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
-import { removeStaff, Staff } from "../../services/api/staff";
+import { removeStaff, StaffResponse } from "../../services/api/staff";
 import { getStaff, syncStaff } from "../../services/api/staff";
 import {
   App,
@@ -13,7 +13,7 @@ import {
 } from "./styles";
 
 const Staffs: FC = () => {
-  const [staffList, setStaffList] = useState<Staff[]>([]);
+  const [staffList, setStaffList] = useState<StaffResponse[]>([]);
   const navigate = useNavigate();
   const [loading, setIsLoading] = useState<boolean>(false);
   const [page, setPage] = useState(1);

@@ -4,18 +4,18 @@ import Welcome from "../../views/Welcome";
 import LoginForm from "../../views/Auth/Login";
 import SignupForm from "../../views/Auth/Signup";
 import Characters from "../../views/Characters";
-import CharacterDetails from "../../views/CharactersDetails";
 import Students from "../../views/Students";
 import Staff from "../../views/Staff";
 import Spells from "../../views/Spells";
 import Landing from "../../views/LandingPage";
 import StudentsDetails from "../../views/StudentsDetails";
-import StaffDetails from "../../views/Staff Details";
+import StaffDetails from "../../views/StaffDetails";
 import Navbar from "../../components/Navbar";
 import { getToken } from "../../services/storage";
 import { useLocation, Navigate } from "react-router-dom";
 import Profile from "../../views/Profile";
 import CharacterEdit from "../../views/CharacterEdit";
+import StudentEdit from "../../views/StudentEdit";
 
 const Router: FC = () => {
   const ProtectedRoutes = ({ children }: { children: JSX.Element }) => {
@@ -132,7 +132,7 @@ const Router: FC = () => {
             <ProtectedRoutes>
               <>
                 <Navbar />
-                <CharacterDetails />
+                <CharacterEdit />
               </>
             </ProtectedRoutes>
           }
@@ -143,7 +143,7 @@ const Router: FC = () => {
             <ProtectedRoutes>
               <>
                 <Navbar />
-                <StudentsDetails />
+                <StudentEdit />
               </>
             </ProtectedRoutes>
           }
@@ -170,17 +170,7 @@ const Router: FC = () => {
             </ProtectedRoutes>
           }
         />
-        <Route
-          path="/details/:id"
-          element={
-            <ProtectedRoutes>
-              <>
-                <Navbar />
-                <CharacterEdit />
-              </>
-            </ProtectedRoutes>
-          }
-        />
+        
       </Routes>
     </BrowserRouter>
   );

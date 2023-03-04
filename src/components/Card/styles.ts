@@ -42,10 +42,6 @@ export const Container = styled.div`
     transform: scale(1.05);
     transition: box-shadow 0.5s ease, transform 0.5s ease;
   }
-  /* &:hover {
-    box-shadow: 0 0 0 5px #740001, 0 0 10px 5px #ffdd00, 0 0 20px 5px #ff8800,
-      0 0 30px 5px #ff4400, 0 0 40px 5px #ff0000;
-  } */
 `;
 
 export const Image = styled.img`

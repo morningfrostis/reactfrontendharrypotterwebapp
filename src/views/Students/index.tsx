@@ -4,7 +4,7 @@ import Card from "../../components/Card";
 import {
   getStudents,
   removeStudent,
-  Student,
+  StudentResponse,
   syncStudents,
 } from "../../services/api/students";
 import {
@@ -18,23 +18,20 @@ import {
 } from "./styles";
 
 const Students: FC = () => {
-  const [studentsList, setStudentsList] = useState<Student[]>([]);
+  const [studentsList, setStudentsList] = useState<StudentResponse[]>([]);
   const navigate = useNavigate();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [loading, setIsLoading] = useState(false);
+  const [isloading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
 
   const getStudentsList = useCallback(async () => {
     const students = await getStudents();
     setStudentsList(students);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const syncData = useCallback(async () => {
     await syncStudents();
     setIsLoading(false);
     getStudentsList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRemoveStudent = useCallback(async (id: string) => {
@@ -48,9 +45,16 @@ const Students: FC = () => {
     getStudentsList();
   }, [getStudentsList]);
 
-  const goToDetails = useCallback(
-    (studentsId: string) => {
-      navigate(`/student/${studentsId}`, { replace: true });
+  // const goToDetails = useCallback(
+  //   (studentsId: string) => {
+  //     navigate(`/student/${studentsId}`, { replace: true });
+  //   },
+  //   [navigate]
+  // );
+
+  const goToEdit = useCallback(
+    (id: string) => {
+      navigate(`/studentedit/${id}`, { replace: true });
     },
     [navigate]
   );
@@ -62,6 +66,9 @@ const Students: FC = () => {
   const handlePrevPage = () => {
     setPage(page - 1);
   };
+  if (isloading) {
+    return <h1>LOADING</h1>;
+  }
 
   return (
     <App>
@@ -76,27 +83,10 @@ const Students: FC = () => {
           .map((student, index) => (
             <div key={index}>
               <Card
-                image={
-                  student.image !== ""
-                    ? student.image
-                    : (() => {
-                        switch (student.house) {
-                          case "Gryffindor":
-                            return "https://64.media.tumblr.com/9e0ee5d829bcc71745f02d366adc1479/tumblr_o8s13618fJ1s42pu5o2_1280.jpg";
-                          case "Slytherin":
-                            return "https://64.media.tumblr.com/7dbc0f5abd753c81f66c079e573e765f/tumblr_o8s13618fJ1s42pu5o4_1280.jpg";
-                          case "Ravenclaw":
-                            return "https://64.media.tumblr.com/43e8caab3d582a1dfd0c15fa2b9388c8/tumblr_o8s13618fJ1s42pu5o1_1280.jpg";
-                          case "Hufflepuff":
-                            return "https://64.media.tumblr.com/b56e9126b9da847babbf877cb260a08c/tumblr_o8s13618fJ1s42pu5o3_1280.jpg";
-                          default:
-                            return "https://i.pinimg.com/564x/07/a4/99/07a4993c3feeb70605ee13c7a2fc1041.jpg";
-                        }
-                      })()
-                }
+                image={student.image}
                 name={student.name}
                 house={student.house}
-                onClick={goToDetails}
+                onClick={goToEdit}
                 id={student.id}
                 type="students"
               />

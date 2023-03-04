@@ -49,6 +49,7 @@ export const Container = styled.div`
 `;
 
 export const SpinnerContainer = styled.h1``;
+
 export const Info = styled.p`
   color: ${({ theme }) => theme.colors.DementorBlack};
   font-size: 22px;

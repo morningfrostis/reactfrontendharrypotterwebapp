@@ -4,7 +4,7 @@ import SpellCard from "../../components/Spell Card";
 import {
   getSpells,
   removeSpells,
-  Spell,
+  SpellResponse,
   syncSpells,
 } from "../../services/api/spells";
 import {
@@ -18,7 +18,7 @@ import {
 
 const Spells: FC = () => {
   // const [data, setData] = useState<Character[]>([]);
-  const [spellsList, setSpellsList] = useState<Spell[]>([]);
+  const [spellsList, setSpellsList] = useState<SpellResponse[]>([]);
   const navigate = useNavigate();
   const [loading, setIsLoading] = useState<boolean>(false);
   const [page, setPage] = useState(1);

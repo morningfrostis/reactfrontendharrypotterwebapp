@@ -16,7 +16,7 @@ export type Props = {
   wand?: string;
   patronus?: string;
   actor?: string;
-  type?: "characters" | "students" | "staff" | "details";
+  type?: "characters" | "students" | "staff" | "edit";
   spellId?: string;
   spellsName?: string;
   description?: string;

@@ -27,7 +27,7 @@ const Card: FC<Props> = ({
     <Container>
       <Image src={image} />
 
-      {type !== "details" ? (
+      {type !== "edit" ? (
         <>
           <Description>
             Name:&nbsp;&nbsp;<DescriptionApi>{name}</DescriptionApi>

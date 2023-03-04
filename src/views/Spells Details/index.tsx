@@ -2,11 +2,11 @@ import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import SpellCard from "../../components/Spell Card";
-import { getSpells, Spell } from "../../services/api/spells";
+import { getSpells, SpellResponse } from "../../services/api/spells";
 import { App, Container } from "./styles";
 
 const SpellsDetails: FC = () => {
-  const [spellList, setSpellList] = useState<Spell[]>([]);
+  const [spellList, setSpellList] = useState<SpellResponse[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const navigate = useNavigate();
   const params = useParams();

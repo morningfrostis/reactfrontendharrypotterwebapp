@@ -1,11 +1,11 @@
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/Card";
-import { getStaff, Staff } from "../../services/api/staff";
+import { getStaff, StaffResponse } from "../../services/api/staff";
 import { App, ButtonContainer, Container, ButtonBack } from "./styles";
 
 const StaffDetails: FC = () => {
-  const [staffList, setStaffList] = useState<Staff[]>([]);
+  const [staffList, setStaffList] = useState<StaffResponse[]>([]);
   const navigate = useNavigate();
   const params = useParams();
 
@@ -42,7 +42,7 @@ const StaffDetails: FC = () => {
             patronus={character.patronus}
             id={character.id}
             image={character.image}
-            type="details"
+            type="edit"
           />
         ))}
       </Container>

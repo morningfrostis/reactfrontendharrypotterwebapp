@@ -12,16 +12,16 @@ import {
 } from "./styles";
 import { Field, Form, Formik } from "formik";
 import { validationSchema } from "./constants";
-import { Character } from "../../models/character";
 import { useParams } from "react-router-dom";
 import {
-  getCharacterById,
-  updateCharacter,
-} from "../../services/api/characters";
+  getStudentById,
+  updateStudent,
+} from "../../services/api/students";
+import { Student } from "../../models/students";
 
-const CharacterEdit: FC = () => {
-  const { id: characterId } = useParams();
-  const [character, setCharacter] = useState<Character | null>(null);
+const StudentEdit: FC = () => {
+  const { id: studentId } = useParams();
+  const [student, setStudent] = useState<Student | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
@@ -30,48 +30,48 @@ const CharacterEdit: FC = () => {
   }, []);
 
   const onEditCharacter = useCallback(
-    async (values: Partial<Character>) => {
-      if (isEditing && characterId) {
+    async (values: Partial<Student>) => {
+      if (isEditing && studentId) {
         setIsLoading(true);
-        const editedCharacter = await updateCharacter(characterId, values);
-        if (editedCharacter) {
-          setCharacter(editedCharacter);
+        const editedStudent = await updateStudent(studentId, values);
+        if (editedStudent) {
+          setStudent(editedStudent);
         }
         setIsLoading(false);
       }
     },
-    [characterId, isEditing]
+    [studentId, isEditing]
   );
 
   const initialValues = useMemo(
     () => ({
-      characterId: character?.characterId || "",
-      image: character?.image || "",
-      name: character?.name || "",
-      species: character?.species || "",
-      house: character?.house || "",
-      wizard: character?.wizard || "",
-      ancestry: character?.ancestry || "",
-      patronus: character?.patronus || "",
-      actor: character?.actor || "",
-      createdAt: character?.createdAt || new Date(),
-      updatedAt: character?.updatedAt || new Date(),
+      characterId: student?.studentId || "",
+      image: student?.image || "",
+      name: student?.name || "",
+      species: student?.species || "",
+      house: student?.house || "",
+      wizard: student?.wizard || "",
+      ancestry: student?.ancestry || "",
+      patronus: student?.patronus || "",
+      actor: student?.actor || "",
+      createdAt: student?.createdAt || new Date(),
+      updatedAt: student?.updatedAt || new Date(),
     }),
-    [character]
+    [student]
   );
 
-  const handleGetCharacter = useCallback(async (id?: string) => {
+  const handleGetStudent = useCallback(async (id?: string) => {
     if (id) {
       setIsLoading(true);
-      const character = await getCharacterById(id);
-      setCharacter(character);
+      const student = await getStudentById(id);
+      setStudent(student);
       setIsLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    handleGetCharacter(characterId);
-  }, [handleGetCharacter, characterId]);
+    handleGetStudent(studentId);
+  }, [handleGetStudent, studentId]);
 
   if (isLoading) {
     return <p>LOADING</p>;
@@ -80,7 +80,7 @@ const CharacterEdit: FC = () => {
   return (
     <App>
       <AppEdit>
-        <Image src={character?.image} />
+        <Image src={student?.image} />
         <Container>
         {!isEditing && (
             <EditButton onClick={handleActiveEdition}>
@@ -201,4 +201,4 @@ const CharacterEdit: FC = () => {
   );
 };
 
-export default memo(CharacterEdit);
+export default memo(StudentEdit);
