@@ -50,3 +50,12 @@ export const ButtonContainer = styled.div`
   /* justify-content: center; */
   justify-content: space-between;
 `;
+
+export const DeleteButton = styled.button`
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+  background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
+`;

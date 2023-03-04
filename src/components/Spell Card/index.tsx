@@ -4,15 +4,11 @@ import {
   Spellcardinner,
   Spellcardshape,
   Spellcardtrace,
+  DetailsButton,
 } from "./styles";
 import { Props } from "./types";
 
-const SpellCard: FC<Props> = ({
-  type = "list",
-  spellId,
-  name,
-  description,
-}) => {
+const SpellCard: FC<Props> = ({ name, spellId, description, onClick }) => {
   return (
     <Spellcards>
       <Spellcardinner>
@@ -39,14 +35,9 @@ const SpellCard: FC<Props> = ({
           <h5>Name: {name}</h5>
           <p>Description: {description}</p>
         </div>
+        <DetailsButton onClick={() => onClick(spellId)}>Edit</DetailsButton>
       </Spellcardinner>
     </Spellcards>
-    // <Container>
-    //   <Description>Name: {name}</Description>
-    //   <Description>Description: {description}</Description>
-    //   {type === "list" && <Link to={`/edit/${spellId}`}>Edit</Link>}
-    //   {/* <Description>Id: {spellId}</Description> */}
-    // </Container>
   );
 };
 

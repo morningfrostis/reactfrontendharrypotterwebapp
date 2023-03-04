@@ -9,6 +9,7 @@ import {
 } from "../../services/api/students";
 import {
   App,
+  ButtonBack,
   ButtonContainer,
   ButtonNext,
   ButtonPreview,
@@ -45,19 +46,16 @@ const Students: FC = () => {
     getStudentsList();
   }, [getStudentsList]);
 
-  // const goToDetails = useCallback(
-  //   (studentsId: string) => {
-  //     navigate(`/student/${studentsId}`, { replace: true });
-  //   },
-  //   [navigate]
-  // );
-
   const goToEdit = useCallback(
     (id: string) => {
       navigate(`/studentedit/${id}`, { replace: true });
     },
     [navigate]
   );
+
+  const goToBack = useCallback(() => {
+    navigate("/landing", { replace: true });
+  }, [navigate]);
 
   const handleNextPage = () => {
     setPage(page + 1);
@@ -72,6 +70,7 @@ const Students: FC = () => {
 
   return (
     <App>
+      <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
       <SyncButton onClick={syncData}>Sync Students</SyncButton>
       <ButtonContainer>
         <ButtonPreview onClick={handlePrevPage}>Previous</ButtonPreview>

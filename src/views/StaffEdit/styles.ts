@@ -114,13 +114,3 @@ export const EditButton = styled.button`
   font-family: Oswald;
   background-color: ${({ theme }) => theme.colors.GriffindorGold};
 `;
-
-export const ButtonBack = styled.button`
-   width: 90px;
-  height: 40px;
-  border-radius: 5px;
-  margin: 10px;
-  cursor: pointer;
-  background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
-`;
-

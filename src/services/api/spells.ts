@@ -1,3 +1,4 @@
+import { normalizeSpells, SpellInput, Spells } from "../../models/spells";
 import { getToken } from "../storage";
 
 export type SpellResponse = {
@@ -40,6 +41,24 @@ export const syncSpells = async () => {
   }
 };
 
+export const getSpellById = async (
+  id: string
+): Promise<Spells | null> => {
+  try {
+    const token = getToken();
+    const response = await fetch(`${BASE_API_URL}/${id}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data: SpellResponse = await response.json();
+    console.log({data})
+    return normalizeSpells(data);
+  } catch (error) {
+    console.log((error as Error).message);
+  }
+  return null;
+};
+
 export const removeSpells = async (id: string) => {
   try {
     const token = getToken();
@@ -65,10 +84,10 @@ export const createSpells = async (data: Omit<SpellResponse, "id">) => {
   }
 };
 
-export const updateSpells = async (id: string, data: Partial<SpellResponse>) => {
+export const updateSpells = async (id: string, data: Partial<SpellInput>) => {
   try {
     const token = getToken();
-    await fetch(`${BASE_API_URL}/${id}`, {
+   const response = await fetch(`${BASE_API_URL}/${id}`, {
       method: "PUT",
       headers: { 
         Authorization: `Bearer ${token}`,
@@ -76,6 +95,8 @@ export const updateSpells = async (id: string, data: Partial<SpellResponse>) => 
       },
       body: JSON.stringify(data),
     });
+    const staff: SpellResponse = await response.json();
+    return normalizeSpells(staff);
   } catch (error) {
     console.log((error as Error).message);
   }

@@ -13,11 +13,11 @@ import {
   ButtonNext,
   ButtonPreview,
   Container,
+  DeleteButton,
   SyncButton,
 } from "./styles";
 
 const Spells: FC = () => {
-  // const [data, setData] = useState<Character[]>([]);
   const [spellsList, setSpellsList] = useState<SpellResponse[]>([]);
   const navigate = useNavigate();
   const [loading, setIsLoading] = useState<boolean>(false);
@@ -26,14 +26,12 @@ const Spells: FC = () => {
   const getSpellsList = useCallback(async () => {
     const spells = await getSpells();
     setSpellsList(spells);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const syncData = useCallback(async () => {
     await syncSpells();
     setIsLoading(false);
     getSpellsList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRemoveSpell = useCallback(async (id: string) => {
@@ -49,7 +47,8 @@ const Spells: FC = () => {
 
   const goToEdit = useCallback(
     (spellId: string) => {
-      navigate(`/edit/${spellId}`, { replace: true });
+      console.log("G TO DETAILS", spellId);
+      navigate(`/spells/${spellId}`, { replace: true });
     },
     [navigate]
   );
@@ -79,14 +78,14 @@ const Spells: FC = () => {
           .map((spell, index) => (
             <div key={index}>
               <SpellCard
-                spellId={spell.spellId}
+                spellId={spell.id}
                 name={spell.name}
                 description={spell.description}
                 onClick={goToEdit}
               />
-              <button onClick={() => handleRemoveSpell(spell.id)}>
+              <DeleteButton onClick={() => handleRemoveSpell(spell.id)}>
                 DELETE
-              </button>
+              </DeleteButton>
             </div>
           ))}
       </Container>
