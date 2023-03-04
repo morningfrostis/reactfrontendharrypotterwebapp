@@ -7,7 +7,6 @@ export const validationSchema = Yup.object().shape({
   house: Yup.string(),
   wizard: Yup.string(),
   ancestry: Yup.string(),
-  wand: Yup.string(),
   patronus: Yup.string(),
   actor: Yup.string(),
 });

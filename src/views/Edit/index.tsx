@@ -3,13 +3,13 @@ import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import SpellCard from "../../components/Spell Card";
-import { getSpells, Spell, syncSpells } from "../../services/api/spells";
+import { getSpells, SpellResponse, syncSpells } from "../../services/api/spells";
 // import Navbar from "../../components/Navbar";
 import { App, Container } from "./styles";
 
 const Edit: FC = () => {
   // const [data, setData] = useState<Character[]>([]);
-  const [spellsList, setSpellsList] = useState<Spell[]>([]);
+  const [spellsList, setSpellsList] = useState<SpellResponse[]>([]);
   const navigate = useNavigate();
   const params = useParams();
 

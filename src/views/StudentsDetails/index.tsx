@@ -1,37 +1,37 @@
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/Card";
-import { getStudents, Student } from "../../services/api/students";
+import { getStudents, StudentResponse } from "../../services/api/students";
 // import Navbar from "../../components/Navbar";
 import { App, ButtonContainer, Container, ButtonBack } from "./styles";
 
 const StudentsDetail: FC = () => {
-  const [studentList, setStudentList] = useState<Student[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [studentList, setStudentList] = useState<StudentResponse[]>([]);
   const navigate = useNavigate();
   const params = useParams();
+  const [isloading, setIsLoading] = useState<boolean>(false);
+
 
   const getStudentsList = useCallback(async () => {
     const students = await getStudents();
     setStudentList(students);
   }, []);
 
-  // const getStudentsList = useCallback(async () => {
-  //   const students = await getStudents();
-  //   setStudentList(students);
-  // }, []);
-
   useEffect(() => {
     getStudentsList();
   }, [getStudentsList]);
 
-  // useEffect(() => {
-  //   getStudentsList();
-  // }, [getStudentsList]);
-
   const goToBack = useCallback(() => {
     navigate("/students", { replace: true });
   }, [navigate]);
+
+  const goToEdit = useCallback(
+    (id: string) => {
+      navigate(`/studentedit/${id}`, { replace: true });
+    },
+    [navigate]
+  );
+
   const { id } = params;
   const filteredItems = studentList.filter((item) => item.id === id);
   return (
@@ -52,7 +52,7 @@ const StudentsDetail: FC = () => {
             actor={character.actor}
             patronus={character.patronus}
             id={character.id}
-            type="details"
+            type="edit"
           />
         ))}
       </Container>

@@ -1,17 +1,24 @@
+import { normalizeStudent, Student, StudentInput } from "../../models/students";
 import { getToken } from "../storage";
 
-export type Student = {
+export type StudentResponse = {
   id: string;
-  studentsId: string;
+  studentId: string;
   name: string;
   species: string;
   house: string;
   wizard: string;
   ancestry: string;
-  wand: JSON;
+  wand: {
+    wood: string;
+    core: string;
+    length: string;
+  };
   patronus: string;
   actor: string;
   image: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 const BASE_API_URL = "http://localhost:8000/students";
@@ -24,7 +31,7 @@ export const getStudents = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const data: Student[] = await response.json();
+    const data: StudentResponse[] = await response.json();
     return data;
   } catch (error) {
     console.log((error as Error).message);
@@ -45,6 +52,23 @@ export const syncStudents = async () => {
   }
 };
 
+export const getStudentById = async (
+  id: string
+): Promise<Student | null> => {
+  try {
+    const token = getToken();
+    const response = await fetch(`${BASE_API_URL}/${id}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data: StudentResponse = await response.json();
+    return normalizeStudent(data);
+  } catch (error) {
+    console.log((error as Error).message);
+  }
+  return null;
+};
+
 export const removeStudent = async (id: string) => {
   try {
     const token = getToken();
@@ -57,7 +81,7 @@ export const removeStudent = async (id: string) => {
   }
 };
 
-export const createStudent = async (data: Omit<Student, "id">) => {
+export const createStudent = async (data: Omit<StudentResponse, "id">) => {
   try {
     const token = getToken();
     await fetch(BASE_API_URL, {
@@ -70,14 +94,20 @@ export const createStudent = async (data: Omit<Student, "id">) => {
   }
 };
 
-export const updateStudent = async (id: string, data: Partial<Student>) => {
+export const updateStudent = async (id: string, data: Partial<StudentInput>) => {
   try {
     const token = getToken();
-    await fetch(`${BASE_API_URL}/${id}`, {
+    const response = await fetch(`${BASE_API_URL}/${id}`, {
       method: "PUT",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { 
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
     });
+    const student: StudentResponse = await response.json();
+    console.log({ student });
+    return normalizeStudent(student);
   } catch (error) {
     console.log((error as Error).message);
   }

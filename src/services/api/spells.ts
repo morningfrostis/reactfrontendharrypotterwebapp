@@ -1,10 +1,12 @@
 import { getToken } from "../storage";
 
-export type Spell = {
+export type SpellResponse = {
   id: string;
   spellId: string;
   name: string;
   description: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 const BASE_API_URL = "http://localhost:8000/spells";
@@ -17,7 +19,7 @@ export const getSpells = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const data: Spell[] = await response.json();
+    const data: SpellResponse[] = await response.json();
     return data;
   } catch (error) {
     console.log((error as Error).message);
@@ -50,7 +52,7 @@ export const removeSpells = async (id: string) => {
   }
 };
 
-export const createSpells = async (data: Omit<Spell, "id">) => {
+export const createSpells = async (data: Omit<SpellResponse, "id">) => {
   try {
     const token = getToken();
     await fetch(BASE_API_URL, {
@@ -63,12 +65,15 @@ export const createSpells = async (data: Omit<Spell, "id">) => {
   }
 };
 
-export const updateSpells = async (id: string, data: Partial<Spell>) => {
+export const updateSpells = async (id: string, data: Partial<SpellResponse>) => {
   try {
     const token = getToken();
     await fetch(`${BASE_API_URL}/${id}`, {
       method: "PUT",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { 
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
     });
   } catch (error) {

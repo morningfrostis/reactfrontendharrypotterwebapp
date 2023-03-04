@@ -1,6 +1,6 @@
 import { getToken } from "../storage";
 
-export type Staff = {
+export type StaffResponse = {
   id: string;
   staffId: string;
   name: string;
@@ -8,10 +8,16 @@ export type Staff = {
   house: string;
   wizard: string;
   ancestry: string;
-  wand: JSON;
+  wand: {
+    wood: string;
+    core: string;
+    length: string;
+  };
   patronus: string;
   actor: string;
   image: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 const BASE_API_URL = "http://localhost:8000/staff";
@@ -24,7 +30,7 @@ export const getStaff = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const data: Staff[] = await response.json();
+    const data: StaffResponse[] = await response.json();
     return data;
   } catch (error) {
     console.log((error as Error).message);
@@ -57,7 +63,7 @@ export const removeStaff = async (id: string) => {
   }
 };
 
-export const createStaff = async (data: Omit<Staff, "id">) => {
+export const createStaff = async (data: Omit<StaffResponse, "id">) => {
   try {
     const token = getToken();
     await fetch(BASE_API_URL, {
@@ -70,12 +76,15 @@ export const createStaff = async (data: Omit<Staff, "id">) => {
   }
 };
 
-export const updateStaff = async (id: string, data: Partial<Staff>) => {
+export const updateStaff = async (id: string, data: Partial<StaffResponse>) => {
   try {
     const token = getToken();
     await fetch(`${BASE_API_URL}/${id}`, {
       method: "PUT",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { 
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
     });
   } catch (error) {

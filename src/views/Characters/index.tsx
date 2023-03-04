@@ -45,12 +45,19 @@ const Characters: FC = () => {
     getCharactersList();
   }, [getCharactersList]);
 
-  const goToDetails = useCallback(
+  // const goToDetails = useCallback(
+  //   (id: string) => {
+  //     navigate(`/characterdetails/${id}`, { replace: true });
+  //   },
+  //   [navigate]
+  // );
+  const goToEdit = useCallback(
     (id: string) => {
-      navigate(`/characterdetails/${id}`, { replace: true });
+      navigate(`/characteredit/${id}`, { replace: true });
     },
     [navigate]
   );
+
   const handleNextPage = () => {
     setPage(page + 1);
   };
@@ -78,7 +85,7 @@ const Characters: FC = () => {
                 image={character.image}
                 name={character.name}
                 house={character.house}
-                onClick={goToDetails}
+                onClick={goToEdit}
                 id={character.id}
                 type="characters"
               />
