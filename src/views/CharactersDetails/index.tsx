@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../components/Card";
@@ -43,7 +44,6 @@ const CharactersDetail: FC = () => {
         {filteredItems.map((character, index) => (
           <div key={index}>
             <Card
-              // key={index}
               house={character.house}
               name={character.name}
               species={character.species}
@@ -59,6 +59,7 @@ const CharactersDetail: FC = () => {
             {/* <EditButton onClick={()=>goToEdit}>
               Go to Edit
             </EditButton> */}
+
           </div>
         ))}
       </Container>

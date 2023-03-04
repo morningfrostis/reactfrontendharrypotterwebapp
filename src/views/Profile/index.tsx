@@ -1,20 +1,32 @@
 import { FC, useState, useCallback, useEffect, memo } from "react";
-import { App, Container, Info, SpinnerContainer } from "./styles";
+import {
+  App,
+  ButtonBack,
+  ButtonContainer,
+  Container,
+  Info,
+  SpinnerContainer,
+} from "./styles";
 import { getUserInfo } from "../../services/api/profile";
-import type { Profile } from '../../models/profile'
+import type { Profile } from "../../models/profile";
 import { useNavigate } from "react-router-dom";
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare
 const Profile: FC = () => {
-  const [userinfo, setUserInfo] = useState<Profile | null>(null)
+  const [userinfo, setUserInfo] = useState<Profile | null>(null);
   const [isloading, setIsLoading] = useState<boolean>(false);
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const getProfileList = useCallback(async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     const userprofile = await getUserInfo();
     setUserInfo(userprofile);
-    setIsLoading(false)
+    setIsLoading(false);
   }, []);
+
+  const goToBack = useCallback(() => {
+    navigate("/landing", { replace: true });
+  }, [navigate]);
 
   useEffect(() => {
     getProfileList();
@@ -26,8 +38,11 @@ const Profile: FC = () => {
 
   return (
     <App>
+      <ButtonContainer>
+        <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
+      </ButtonContainer>
       <Container>
-      <Info>ID: {userinfo?.id}</Info>
+        <Info>ID: {userinfo?.id}</Info>
         <Info>EMAIL: {userinfo?.email}</Info>
         {/* {userinfo.map((user, index) => (
           <div key={index}>

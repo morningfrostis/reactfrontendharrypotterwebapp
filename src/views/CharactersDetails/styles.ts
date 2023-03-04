@@ -16,7 +16,7 @@ export const Container = styled.div`
   padding: 5em;
   gap: 24px;
 `;
-export const DeleteButton = styled.button`
+export const EditButton = styled.button`
   padding: 10px 20px;
   background-color: ${({ theme }) => theme.colors.DementorBlack};
   /* color: ${({ theme }) => theme.colors.white}; */
@@ -35,7 +35,6 @@ export const ButtonContainer = styled.div`
   /* justify-content: center; */
   justify-content: space-between;
 `;
-
 
 export const ButtonBack = styled.button`
   width: 90px;
@@ -109,7 +108,4 @@ export const EditButton = styled.button`
   margin-right: 20px;
   cursor:pointer;
 `;
-
-
-
 

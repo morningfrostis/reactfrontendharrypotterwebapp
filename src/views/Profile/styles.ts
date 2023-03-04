@@ -12,7 +12,7 @@ export const App = styled.div`
   color: white;
 `;
 export const Container = styled.div`
-background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
+  background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
   flex: 0 0 300px;
   padding: 5px;
   padding-bottom: 25px;
@@ -48,14 +48,12 @@ background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
   }
 `;
 
-export const SpinnerContainer = styled.h1`
-
-`
+export const SpinnerContainer = styled.h1``;
 export const Info = styled.p`
   color: ${({ theme }) => theme.colors.DementorBlack};
   font-size: 22px;
   font-weight: bold;
-`
+`;
 export const MainContainerProfile = styled.div`
   display: flex;
   align-items: center;
@@ -126,4 +124,18 @@ export const Content = styled.div`
   width: 300px;
   border-radius: 20px;
   background-color: ${({ theme }) => theme.colors.primary};
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  justify-content: space-between;
+`;
+
+export const ButtonBack = styled.button`
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
 `;
