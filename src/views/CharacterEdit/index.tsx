@@ -13,7 +13,10 @@ import { Field, Form, Formik } from "formik";
 import { validationSchema } from "./constants";
 import { Character } from "../../models/character";
 import { useParams } from "react-router-dom";
-import { getCharacterById, updateCharacter } from "../../services/api/characters";
+import {
+  getCharacterById,
+  updateCharacter,
+} from "../../services/api/characters";
 
 const CharacterEdit: FC = () => {
   const { id: characterId } = useParams();
@@ -26,7 +29,7 @@ const CharacterEdit: FC = () => {
   }, []);
 
   const onEditCharacter = useCallback(
-    async (values: Character) => {
+    async (values: Partial<Character>) => {
       if (isEditing && characterId) {
         setIsLoading(true);
         const editedCharacter = await updateCharacter(characterId, values);
@@ -39,10 +42,8 @@ const CharacterEdit: FC = () => {
     [characterId, isEditing]
   );
 
-  console.log({ character });
   const initialValues = useMemo(
     () => ({
-      id: character?.id || "",
       characterId: character?.characterId || "",
       image: character?.image || "",
       name: character?.name || "",
@@ -50,11 +51,6 @@ const CharacterEdit: FC = () => {
       house: character?.house || "",
       wizard: character?.wizard || "",
       ancestry: character?.ancestry || "",
-      wand: {
-        wood: character?.wand.wood || "",
-        core: character?.wand.core || "",
-        size: character?.wand.size || "",
-      },
       patronus: character?.patronus || "",
       actor: character?.actor || "",
       createdAt: character?.createdAt || new Date(),
@@ -77,7 +73,7 @@ const CharacterEdit: FC = () => {
   }, [handleGetCharacter, characterId]);
 
   if (isLoading) {
-    return <p>LOADING</p>
+    return <p>LOADING</p>;
   }
 
   return (
@@ -160,20 +156,6 @@ const CharacterEdit: FC = () => {
                 </InputContainer>
               )}
             </Field>
-            <Field name="wand.wood">
-            {({ field, meta }: { field: any; meta: any }) => (
-              <InputContainer>
-                <Label>Wand</Label>
-                <Input
-                  disabled={!isEditing}
-                  $hasError={!!meta?.error}
-                  type="text"
-                  {...field}
-                />
-                {meta?.error && <Error>{meta.error}</Error>}
-              </InputContainer>
-            )}
-          </Field> 
             <Field name="patronus">
               {({ field, meta }: { field: any; meta: any }) => (
                 <InputContainer>
