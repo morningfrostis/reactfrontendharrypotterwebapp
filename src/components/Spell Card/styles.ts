@@ -87,3 +87,14 @@ export const Description = styled.p`
   margin-bottom: 10px;
   color: ${({ theme }) => theme.colors.RavenclawGreyLady};
 `;
+
+export const DetailsButton = styled.button`
+  padding: 10px 20px;
+  background-color: ${({ theme }) => theme.colors.DementorBlack};
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline;
+  padding: 5px 5px;
+  font-family: Oswald;
+`;

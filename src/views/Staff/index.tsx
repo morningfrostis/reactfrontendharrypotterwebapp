@@ -5,10 +5,12 @@ import { removeStaff, StaffResponse } from "../../services/api/staff";
 import { getStaff, syncStaff } from "../../services/api/staff";
 import {
   App,
+  ButtonBack,
   ButtonContainer,
   ButtonNext,
   ButtonPreview,
   Container,
+  DeleteButton,
   SyncButton,
 } from "./styles";
 
@@ -21,14 +23,12 @@ const Staffs: FC = () => {
   const getStaffList = useCallback(async () => {
     const staff = await getStaff();
     setStaffList(staff);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const syncData = useCallback(async () => {
     await syncStaff();
     setIsLoading(false);
     getStaffList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRemoveStaff = useCallback(async (id: string) => {
@@ -56,6 +56,9 @@ const Staffs: FC = () => {
   const handlePrevPage = () => {
     setPage(page - 1);
   };
+  const goToBack = useCallback(() => {
+    navigate("/landing", { replace: true });
+  }, [navigate]);
 
   if (loading) {
     return <h1>LOADING</h1>;
@@ -63,6 +66,7 @@ const Staffs: FC = () => {
 
   return (
     <App>
+      <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
       <SyncButton onClick={syncData}>Sync Staff</SyncButton>
       <ButtonContainer>
         <ButtonPreview onClick={handlePrevPage}>Previous</ButtonPreview>
@@ -99,9 +103,9 @@ const Staffs: FC = () => {
                 id={staff.id}
                 type="staff"
               />
-              <button onClick={() => handleRemoveStaff(staff.id)}>
+              <DeleteButton onClick={() => handleRemoveStaff(staff.id)}>
                 DELETE
-              </button>
+              </DeleteButton>
             </div>
           ))}
       </Container>

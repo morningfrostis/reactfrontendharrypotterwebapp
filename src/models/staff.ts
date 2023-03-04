@@ -35,7 +35,7 @@ const getDefaultImage = (house: string) => {
   }
 };
 
-export const normalizeCharacter = (input: StaffResponse) => {
+export const normalizeStaff = (input: StaffResponse) => {
   const house = input?.house || "";
   const image = input?.image ? input.image : getDefaultImage(house);
 
@@ -60,4 +60,4 @@ export const normalizeCharacter = (input: StaffResponse) => {
   };
 };
 
-export type Student = ReturnType<typeof normalizeCharacter>;
+export type Staff = ReturnType<typeof normalizeStaff>;

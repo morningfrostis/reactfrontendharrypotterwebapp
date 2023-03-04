@@ -9,10 +9,12 @@ import {
 } from "../../services/api/characters";
 import {
   App,
+  ButtonBack,
   ButtonContainer,
   ButtonNext,
   ButtonPreview,
   Container,
+  DeleteButton,
   SyncButton,
 } from "./styles";
 
@@ -33,7 +35,6 @@ const Characters: FC = () => {
     getCharactersList();
   }, []);
 
-
   const handleRemoveCharacter = useCallback(async (id: string) => {
     setIsLoading(true);
     await removeCharacter(id);
@@ -45,18 +46,16 @@ const Characters: FC = () => {
     getCharactersList();
   }, [getCharactersList]);
 
-  // const goToDetails = useCallback(
-  //   (id: string) => {
-  //     navigate(`/characterdetails/${id}`, { replace: true });
-  //   },
-  //   [navigate]
-  // );
   const goToEdit = useCallback(
     (id: string) => {
       navigate(`/characteredit/${id}`, { replace: true });
     },
     [navigate]
   );
+
+  const goToBack = useCallback(() => {
+    navigate("/landing", { replace: true });
+  }, [navigate]);
 
   const handleNextPage = () => {
     setPage(page + 1);
@@ -71,6 +70,7 @@ const Characters: FC = () => {
   }
   return (
     <App>
+      <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
       <SyncButton onClick={syncData}>Sync Characters</SyncButton>
       <ButtonContainer>
         <ButtonPreview onClick={handlePrevPage}>Previous</ButtonPreview>
@@ -89,9 +89,9 @@ const Characters: FC = () => {
                 id={character.id}
                 type="characters"
               />
-              <button onClick={() => handleRemoveCharacter(character.id)}>
+              <DeleteButton onClick={() => handleRemoveCharacter(character.id)}>
                 DELETE
-              </button>
+              </DeleteButton>
             </div>
           ))}
       </Container>

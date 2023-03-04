@@ -9,7 +9,7 @@ export type SpellInput = {
   updatedAt: Date;
 };
 
-export const normalizeCharacter = (input: SpellResponse) => {
+export const normalizeSpells = (input: SpellResponse) => {
 
   return {
     id: input?.id || "",
@@ -20,4 +20,4 @@ export const normalizeCharacter = (input: SpellResponse) => {
   };
 };
 
-export type Spells = ReturnType<typeof normalizeCharacter>;
+export type Spells = ReturnType<typeof normalizeSpells>;

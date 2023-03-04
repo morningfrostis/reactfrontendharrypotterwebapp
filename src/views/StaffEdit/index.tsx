@@ -9,75 +9,69 @@ import {
   Label,
   Input,
   AppEdit,
-  ButtonBack,
 } from "./styles";
 import { Field, Form, Formik } from "formik";
 import { validationSchema } from "./constants";
-import { Character } from "../../models/character";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
-  getCharacterById,
-  updateCharacter,
-} from "../../services/api/characters";
+  getStaffById,
+  updateStaff,
+} from "../../services/api/staff";
+import { Staff } from "../../models/staff";
 
-const CharacterEdit: FC = () => {
-  const { id: characterId } = useParams();
-  const [character, setCharacter] = useState<Character | null>(null);
+const StaffEdit: FC = () => {
+  const { id: staffId } = useParams();
+  const [staff, setStaff] = useState<Staff | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const navigate = useNavigate();
 
   const handleActiveEdition = useCallback(async () => {
     setIsEditing(true);
   }, []);
 
-  const onEditCharacter = useCallback(
-    async (values: Partial<Character>) => {
-      if (isEditing && characterId) {
+  const onEditStaff = useCallback(
+    async (values: Partial<Staff>) => {
+      if (isEditing && staffId) {
         setIsLoading(true);
-        const editedCharacter = await updateCharacter(characterId, values);
-        if (editedCharacter) {
-          setCharacter(editedCharacter);
+        const editedStaff = await updateStaff(staffId, values);
+        if (editedStaff) {
+          setStaff(editedStaff);
         }
         setIsLoading(false);
       }
     },
-    [characterId, isEditing]
+    [staffId, isEditing]
   );
 
   const initialValues = useMemo(
     () => ({
-      characterId: character?.characterId || "",
-      image: character?.image || "",
-      name: character?.name || "",
-      species: character?.species || "",
-      house: character?.house || "",
-      wizard: character?.wizard || "",
-      ancestry: character?.ancestry || "",
-      patronus: character?.patronus || "",
-      actor: character?.actor || "",
-      createdAt: character?.createdAt || new Date(),
-      updatedAt: character?.updatedAt || new Date(),
+      staffId: staff?.staffId || "",
+      image: staff?.image || "",
+      name: staff?.name || "",
+      species: staff?.species || "",
+      house: staff?.house || "",
+      wizard: staff?.wizard || "",
+      ancestry: staff?.ancestry || "",
+      patronus: staff?.patronus || "",
+      actor: staff?.actor || "",
+      createdAt: staff?.createdAt || new Date(),
+      updatedAt: staff?.updatedAt || new Date(),
     }),
-    [character]
+    [staff]
   );
 
-  const handleGetCharacter = useCallback(async (id?: string) => {
+  const handleGetStaff = useCallback(async (id?: string) => {
     if (id) {
       setIsLoading(true);
-      const character = await getCharacterById(id);
-      setCharacter(character);
+      const staff = await getStaffById(id);
+      setStaff(staff);
       setIsLoading(false);
     }
   }, []);
 
-  const goToBack = useCallback(() => {
-    navigate("/landing", { replace: true });
-  }, [navigate]);
-
   useEffect(() => {
-    handleGetCharacter(characterId);
-  }, [handleGetCharacter, characterId]);
+    handleGetStaff(staffId);
+  }, [handleGetStaff, staffId]);
 
   if (isLoading) {
     return <p>LOADING</p>;
@@ -85,11 +79,10 @@ const CharacterEdit: FC = () => {
 
   return (
     <App>
-      {/* <ButtonBack onClick={goToBack}>Go Back!</ButtonBack> */}
       <AppEdit>
-        <Image src={character?.image} />
+        <Image src={staff?.image} />
         <Container>
-          {!isEditing && (
+        {!isEditing && (
             <EditButton onClick={handleActiveEdition}>
               Active Edition
             </EditButton>
@@ -97,7 +90,7 @@ const CharacterEdit: FC = () => {
           <Formik
             type="edit"
             validationSchema={validationSchema}
-            onSubmit={onEditCharacter}
+            onSubmit={onEditStaff}
             initialValues={initialValues}
           >
             <Form>
@@ -208,4 +201,4 @@ const CharacterEdit: FC = () => {
   );
 };
 
-export default memo(CharacterEdit);
+export default memo(StaffEdit);

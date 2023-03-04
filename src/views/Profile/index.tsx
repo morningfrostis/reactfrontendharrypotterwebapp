@@ -11,7 +11,6 @@ import { getUserInfo } from "../../services/api/profile";
 import type { Profile } from "../../models/profile";
 import { useNavigate } from "react-router-dom";
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 const Profile: FC = () => {
   const [userinfo, setUserInfo] = useState<Profile | null>(null);
   const [isloading, setIsLoading] = useState<boolean>(false);

@@ -25,8 +25,17 @@ export const SyncButton = styled.button`
   margin: 10px;
   cursor: pointer;
   background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
-
 `;
+
+export const DeleteButton = styled.button`
+  width: 70px;
+  height: 25px;
+  border-radius: 5px;
+  margin: 2px;
+  cursor: pointer;
+  background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
+`;
+
 export const ButtonPreview = styled.button`
   width: 90px;
   height: 40px;
@@ -51,5 +60,13 @@ export const ButtonContainer = styled.div`
   justify-content: space-between;
 `;
 
+export const ButtonBack = styled.button`
+   width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+  background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
+`;
 
 
