@@ -59,7 +59,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const ButtonBack = styled.button`
-   width: 90px;
+  width: 90px;
   height: 40px;
   border-radius: 5px;
   margin: 10px;

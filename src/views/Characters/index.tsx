@@ -9,6 +9,7 @@ import {
 } from "../../services/api/characters";
 import {
   App,
+  BackContainer,
   ButtonBack,
   ButtonContainer,
   ButtonNext,
@@ -70,7 +71,10 @@ const Characters: FC = () => {
   }
   return (
     <App>
-      <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
+      <BackContainer>
+        <ButtonBack onClick={goToBack}>Go Back!</ButtonBack>
+      </BackContainer>
+      <SyncButton onClick={syncData}>Sync Characters</SyncButton>
       <SyncButton onClick={syncData}>Sync Characters</SyncButton>
       <ButtonContainer>
         <ButtonPreview onClick={handlePrevPage}>Previous</ButtonPreview>

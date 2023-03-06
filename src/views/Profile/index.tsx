@@ -43,11 +43,6 @@ const Profile: FC = () => {
       <Container>
         <Info>ID: {userinfo?.id}</Info>
         <Info>EMAIL: {userinfo?.email}</Info>
-        {/* {userinfo.map((user, index) => (
-          <div key={index}>
-            <Card id={user.id} email={user.email} />
-          </div>
-        ))} */}
       </Container>
     </App>
   );

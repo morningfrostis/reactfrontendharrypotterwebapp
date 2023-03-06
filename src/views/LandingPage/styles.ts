@@ -23,7 +23,7 @@ export const WelcomeMessage = styled.h4`
 `;
 
 export const RedirectMessage = styled.p`
-  color: ${({ theme }) => theme.colors.black}; ;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 export const ButtonBoxes = styled.div`

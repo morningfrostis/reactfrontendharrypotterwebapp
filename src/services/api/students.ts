@@ -52,9 +52,7 @@ export const syncStudents = async () => {
   }
 };
 
-export const getStudentById = async (
-  id: string
-): Promise<Student | null> => {
+export const getStudentById = async (id: string): Promise<Student | null> => {
   try {
     const token = getToken();
     const response = await fetch(`${BASE_API_URL}/${id}`, {
@@ -94,12 +92,15 @@ export const createStudent = async (data: Omit<StudentResponse, "id">) => {
   }
 };
 
-export const updateStudent = async (id: string, data: Partial<StudentInput>) => {
+export const updateStudent = async (
+  id: string,
+  data: Partial<StudentInput>
+) => {
   try {
     const token = getToken();
     const response = await fetch(`${BASE_API_URL}/${id}`, {
       method: "PUT",
-      headers: { 
+      headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },

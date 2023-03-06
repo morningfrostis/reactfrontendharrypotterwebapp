@@ -10,11 +10,11 @@ export const App = styled.div`
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  flex-direction:row;
+  flex-direction: row;
 `;
 
 export const AppEdit = styled.div`
-background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
+  background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
   flex: 0 0 300px;
   padding: 5px;
   padding-bottom: 25px;
@@ -23,8 +23,8 @@ background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
   box-shadow: 0 0 0 5px #740001;
   position: relative;
   transition: all 0.3s ease-in-out;
-  display:flex;
-  flex-direction:row;
+  display: flex;
+  flex-direction: row;
   &:before {
     content: "Harry Potter character";
     font-family: "Oswald";
@@ -49,7 +49,7 @@ background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
     transform: scale(1.05);
     transition: box-shadow 0.5s ease, transform 0.5s ease;
   }
-`
+`;
 
 export const Container = styled.div`
   padding: 5em;
@@ -116,11 +116,10 @@ export const EditButton = styled.button`
 `;
 
 export const ButtonBack = styled.button`
-   width: 90px;
+  width: 90px;
   height: 40px;
   border-radius: 5px;
   margin: 10px;
   cursor: pointer;
   background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
 `;
-

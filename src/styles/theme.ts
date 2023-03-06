@@ -47,7 +47,7 @@ const theme = {
     HufflepuffLigthCanary: "#f0c75e",
     HufflepuffLigthBrown: "#726255",
     HufflepuffDarkBrown: "#372e29",
-    DementorBlack: "#000000"
+    DementorBlack: "#000000",
   },
   font: "MyFont",
 };

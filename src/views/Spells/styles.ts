@@ -25,7 +25,6 @@ export const SyncButton = styled.button`
   margin: 10px;
   cursor: pointer;
   background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
-
 `;
 export const ButtonPreview = styled.button`
   width: 90px;
@@ -34,7 +33,6 @@ export const ButtonPreview = styled.button`
   margin: 10px;
   cursor: pointer;
   background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
-
 `;
 export const ButtonNext = styled.button`
   width: 90px;
@@ -43,7 +41,6 @@ export const ButtonNext = styled.button`
   margin: 10px;
   cursor: pointer;
   background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
-
 `;
 export const ButtonContainer = styled.div`
   display: flex;

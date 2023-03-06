@@ -97,4 +97,5 @@ export const DetailsButton = styled.button`
   display: inline;
   padding: 5px 5px;
   font-family: Oswald;
+  cursor: pointer;
 `;
