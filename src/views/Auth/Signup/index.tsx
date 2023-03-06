@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from "react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Form,
@@ -14,7 +14,6 @@ import {
 } from "./styles";
 import { Formik, Field } from "formik";
 import { initialValues, validationSchema } from "./constants";
-// import { BackButton } from '../../../components/Navbar/styles'
 import { signup } from "../../../services/api/auth";
 
 const SignupForm: FC = () => {
@@ -62,7 +61,6 @@ const SignupForm: FC = () => {
             )}
           </Field>
           <FormButton type="submit">SignUp</FormButton>
-          {/* <BackButton onClick={goToBack}>🔙</BackButton> */}
           <div style={{ marginTop: "10px" }}>
             <Return>
               Already have an account?{" "}

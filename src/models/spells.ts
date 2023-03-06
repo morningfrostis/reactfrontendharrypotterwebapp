@@ -10,13 +10,11 @@ export type SpellInput = {
 };
 
 export const normalizeSpells = (input: SpellResponse) => {
-
   return {
     id: input?.id || "",
     spellId: input?.spellId || "",
     name: input?.name || "",
     description: input?.description || "",
-   
   };
 };
 

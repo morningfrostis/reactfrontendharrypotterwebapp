@@ -53,9 +53,7 @@ export const syncStaff = async () => {
   }
 };
 
-export const getStaffById = async (
-  id: string
-): Promise<Staff | null> => {
+export const getStaffById = async (id: string): Promise<Staff | null> => {
   try {
     const token = getToken();
     const response = await fetch(`${BASE_API_URL}/${id}`, {
@@ -98,9 +96,9 @@ export const createStaff = async (data: Omit<StaffResponse, "id">) => {
 export const updateStaff = async (id: string, data: Partial<StaffInput>) => {
   try {
     const token = getToken();
-    const response =  await fetch(`${BASE_API_URL}/${id}`, {
+    const response = await fetch(`${BASE_API_URL}/${id}`, {
       method: "PUT",
-      headers: { 
+      headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },

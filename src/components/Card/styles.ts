@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-// export const Container = styled.div`
-//   border: 1px solid white;
-//   padding: 15px;
-//   width: 10em;
-// `;
-
 export const Container = styled.div`
   background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
   flex: 0 0 300px;
@@ -15,7 +9,6 @@ export const Container = styled.div`
   margin: 1em;
   border-radius: 20px;
   box-shadow: 0 0 0 5px #740001;
-  /* text-align: center; */
   position: relative;
   transition: all 0.3s ease-in-out;
   &:before {
@@ -93,17 +86,3 @@ export const EditButton = styled.button`
   padding: 5px 5px;
   font-family: Oswald;
 `;
-
-// export const DeleteButton = styled.button`
-//   padding: 10px 20px;
-//   background-color: ${({ theme }) => theme.colors.DementorBlack};
-//   /* color: ${({ theme }) => theme.colors.white}; */
-//   color: white;
-//   font-size: large;
-//   border-radius: 5px;
-//   text-decoration: none;
-//   display: inline;
-//   padding: 5px 5px;
-//   font-family: Oswald;
-//   margin-right: 20px;
-// `;

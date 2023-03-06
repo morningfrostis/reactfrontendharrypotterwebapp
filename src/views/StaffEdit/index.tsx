@@ -13,10 +13,7 @@ import {
 import { Field, Form, Formik } from "formik";
 import { validationSchema } from "./constants";
 import { useParams } from "react-router-dom";
-import {
-  getStaffById,
-  updateStaff,
-} from "../../services/api/staff";
+import { getStaffById, updateStaff } from "../../services/api/staff";
 import { Staff } from "../../models/staff";
 
 const StaffEdit: FC = () => {
@@ -82,7 +79,7 @@ const StaffEdit: FC = () => {
       <AppEdit>
         <Image src={staff?.image} />
         <Container>
-        {!isEditing && (
+          {!isEditing && (
             <EditButton onClick={handleActiveEdition}>
               Active Edition
             </EditButton>

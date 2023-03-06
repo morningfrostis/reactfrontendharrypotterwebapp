@@ -9,7 +9,6 @@ import {
   Label,
   Input,
   AppEdit,
-  ButtonBack,
 } from "./styles";
 import { Field, Form, Formik } from "formik";
 import { validationSchema } from "./constants";
@@ -70,11 +69,7 @@ const CharacterEdit: FC = () => {
       setIsLoading(false);
     }
   }, []);
-
-  const goToBack = useCallback(() => {
-    navigate("/landing", { replace: true });
-  }, [navigate]);
-
+  
   useEffect(() => {
     handleGetCharacter(characterId);
   }, [handleGetCharacter, characterId]);
@@ -85,7 +80,6 @@ const CharacterEdit: FC = () => {
 
   return (
     <App>
-      {/* <ButtonBack onClick={goToBack}>Go Back!</ButtonBack> */}
       <AppEdit>
         <Image src={character?.image} />
         <Container>

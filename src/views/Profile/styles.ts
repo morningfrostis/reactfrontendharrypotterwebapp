@@ -129,7 +129,6 @@ export const Content = styled.div`
 
 export const ButtonContainer = styled.div`
   display: flex;
-  /* justify-content: center; */
   justify-content: space-between;
 `;
 
@@ -139,4 +138,5 @@ export const ButtonBack = styled.button`
   border-radius: 5px;
   margin: 10px;
   cursor: pointer;
+  background: linear-gradient(315deg, #9d523c 0%, #f2a65a 74%);
 `;

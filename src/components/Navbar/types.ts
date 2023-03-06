@@ -1,5 +1,5 @@
-import { ReactNode } from "react"
+import { ReactNode } from "react";
 
 export type Props = {
-    type?: 'list' | 'details'
-}
+  type?: "list" | "details";
+};

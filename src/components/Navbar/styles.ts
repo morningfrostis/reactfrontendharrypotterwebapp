@@ -65,13 +65,3 @@ export const Logoimg = styled.div`
   width: 400px;
   height: 50px;
 `;
-
-// export const WelcomeButton = styled(Link)`
-//   padding: 10px 20px;
-//   background-color: ${({ theme }) => theme.colors.GriffindorRedDark};
-//   color: ${({ theme }) => theme.colors.white100};
-//   border-radius: 5px;
-//   font-family: Oswald;
-//   text-decoration: none;
-//   margin: 0 10px;
-// `;

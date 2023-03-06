@@ -41,9 +41,7 @@ export const syncSpells = async () => {
   }
 };
 
-export const getSpellById = async (
-  id: string
-): Promise<Spells | null> => {
+export const getSpellById = async (id: string): Promise<Spells | null> => {
   try {
     const token = getToken();
     const response = await fetch(`${BASE_API_URL}/${id}`, {
@@ -51,7 +49,7 @@ export const getSpellById = async (
       headers: { Authorization: `Bearer ${token}` },
     });
     const data: SpellResponse = await response.json();
-    console.log({data})
+    console.log({ data });
     return normalizeSpells(data);
   } catch (error) {
     console.log((error as Error).message);
@@ -87,9 +85,9 @@ export const createSpells = async (data: Omit<SpellResponse, "id">) => {
 export const updateSpells = async (id: string, data: Partial<SpellInput>) => {
   try {
     const token = getToken();
-   const response = await fetch(`${BASE_API_URL}/${id}`, {
+    const response = await fetch(`${BASE_API_URL}/${id}`, {
       method: "PUT",
-      headers: { 
+      headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },

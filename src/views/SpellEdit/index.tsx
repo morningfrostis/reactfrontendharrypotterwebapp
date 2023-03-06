@@ -2,7 +2,6 @@ import { FC, memo, useCallback, useEffect, useMemo, useState } from "react";
 import {
   App,
   Container,
-  Image,
   Error,
   EditButton,
   InputContainer,
@@ -13,10 +12,7 @@ import {
 import { Field, Form, Formik } from "formik";
 import { validationSchema } from "./constants";
 import { useParams } from "react-router-dom";
-import {
-  getSpellById,
-  updateSpells,
-} from "../../services/api/spells";
+import { getSpellById, updateSpells } from "../../services/api/spells";
 import { Spells } from "../../models/spells";
 
 const SpellEdit: FC = () => {
@@ -28,7 +24,7 @@ const SpellEdit: FC = () => {
   const handleActiveEdition = useCallback(async () => {
     setIsEditing(true);
   }, []);
-console.log({spellId})
+  console.log({ spellId });
 
   const onEditSpell = useCallback(
     async (values: Partial<Spells>) => {
@@ -55,10 +51,10 @@ console.log({spellId})
 
   const handleGetSpell = useCallback(async (id?: string) => {
     if (id) {
-      console.log('entramos')
+      console.log("entramos");
       setIsLoading(true);
       const spell = await getSpellById(id);
-      console.log({spell})
+      console.log({ spell });
       setSpell(spell);
       setIsLoading(false);
     }
@@ -71,12 +67,12 @@ console.log({spellId})
   if (isLoading) {
     return <p>LOADING</p>;
   }
-console.log({initialValues})
+  console.log({ initialValues });
   return (
     <App>
       <AppEdit>
         <Container>
-        {!isEditing && (
+          {!isEditing && (
             <EditButton onClick={handleActiveEdition}>
               Active Edition
             </EditButton>

@@ -17,7 +17,6 @@ import { useLocation, Navigate } from "react-router-dom";
 import StaffEdit from "../../views/StaffEdit";
 import SpellEdit from "../../views/SpellEdit";
 
-
 const Router: FC = () => {
   const ProtectedRoutes = ({ children }: { children: JSX.Element }) => {
     const token = getToken();
@@ -160,7 +159,7 @@ const Router: FC = () => {
             </ProtectedRoutes>
           }
         />
-         <Route
+        <Route
           path="/spells/:id"
           element={
             <ProtectedRoutes>
@@ -182,7 +181,6 @@ const Router: FC = () => {
             </ProtectedRoutes>
           }
         />
-        
       </Routes>
     </BrowserRouter>
   );

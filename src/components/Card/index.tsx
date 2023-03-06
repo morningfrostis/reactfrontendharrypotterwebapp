@@ -1,4 +1,4 @@
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import {
   Container,
   Description,
@@ -10,7 +10,6 @@ import { Props } from "./types";
 
 const Card: FC<Props> = ({
   name,
-  email,
   house,
   image,
   id,
@@ -22,7 +21,7 @@ const Card: FC<Props> = ({
   actor,
   type,
 }) => {
-  console.log({type})
+  console.log({ type });
   return (
     <Container>
       <Image src={image} />

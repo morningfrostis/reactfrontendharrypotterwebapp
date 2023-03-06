@@ -55,8 +55,8 @@ export const normalizeStudent = (input: StudentResponse) => {
     patronus: input?.patronus || "",
     actor: input?.actor || "",
     image,
-    createdAt: input?.createdAt ||Date(),
-    updatedAt: input?.updatedAt ||Date(),
+    createdAt: input?.createdAt || Date(),
+    updatedAt: input?.updatedAt || Date(),
   };
 };
 
