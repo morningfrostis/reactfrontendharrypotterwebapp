@@ -22,7 +22,6 @@ const Card: FC<Props> = ({
   actor,
   type,
 }) => {
-  console.log({type})
   return (
     <Container>
       <Image src={image} />
